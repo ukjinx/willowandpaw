@@ -1,0 +1,119 @@
+/* Container styling for the gallery */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px; /* Adds consistent spacing between images */
+    padding: 10px;
+}
+
+/* Landscape photos */
+.landscapephoto {
+    width: 450px;
+    height: 300px;
+    margin: 15px;
+    max-width: 100%;
+    object-fit: cover; /* Keeps aspect ratio and covers the container */
+}
+
+/* Portrait photos */
+.portraitphoto {
+    width: 210px;
+    height: 300px;
+    margin: 15px;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+/* Square photos */
+.squarephoto {
+    width: 300px;
+    height: 300px;
+    margin: 15px;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+/* Panorama photos */
+.panophoto {
+    width: auto;
+    height: 170px;
+    margin: 15px;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+/* Vertical panorama photos */
+.vertpano {
+    width: 170px;
+    height: auto;
+    margin: 15px;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+/* Gallery image styling */
+.gallery1 {
+    border: 8px solid #412A22;
+    transition: all 1s;
+}
+
+.gallery1:hover {
+    border: 8px solid #8F9E8B;
+    transform: scale(1.1);
+}
+
+/* Lightbox styling */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.lightbox img {
+    max-width: 95%;
+    max-height: 95%;
+    margin-top: 1%;
+}
+
+.lightbox:target {
+    outline: none;
+    display: block;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .landscapephoto, .portraitphoto, .squarephoto, .panophoto, .vertpano {
+        width: 100%; /* Makes images full width of their container */
+        height: auto; /* Adjusts height automatically to maintain aspect ratio */
+        margin: 5px; /* Reduces margin on smaller screens */
+    }
+
+    .container {
+        gap: 5px; /* Reduces gap between images */
+        padding: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .landscapephoto, .portraitphoto, .squarephoto, .panophoto, .vertpano {
+        width: 100%;
+        height: auto;
+        margin: 2px;
+    }
+    
+    .gallery1 {
+        border: 4px solid #412A22; /* Smaller border for smaller screens */
+    }
+
+    .gallery1:hover {
+        border: 4px solid #8F9E8B;
+        transform: scale(1.05); /* Slightly reduced zoom effect on hover */
+    }
+}
