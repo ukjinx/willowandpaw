@@ -310,8 +310,8 @@ hr.style-seven:before { /* Not really supposed to work, but does */
 }
 
 .headshot {
-  max-width: 40%;
-  height: auto;
+  max-width: 20rem;
+  max-height: 20rem;
   padding: 1rem;
 }
 
@@ -354,7 +354,7 @@ input[type=text], select, textarea {
 /* Style the submit button with a specific background color etc */
 input[type=submit] {
   background-color: #9caf88;
-  color: white;
+  color: black;
   padding: 12px 20px;
   border: none;
   border-radius: 4px;
@@ -369,7 +369,7 @@ input[type=submit]:hover {
 /* Add a background color and some padding around the form */
 .formBackground {
   border-radius: 5px;
-  background-color: #f2f2f2;
+  background-color: green;
   padding: 20px;
 }
 
@@ -379,4 +379,8 @@ input[type=submit]:hover {
 
 .formBackground {
   background-color:#292929;
+}
+
+.formInput {
+  color: aqua;
 }
