@@ -384,3 +384,20 @@ input[type=submit]:hover {
 .formInput {
   color: aqua;
 }
+
+.footer {
+  border-color: #F2E6B6;
+border-style: solid;
+border-width: 2px 0 2px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.socialButton {
+  max-width: 10%;
+  max-height: 10%;
+}
