@@ -7,6 +7,10 @@
     padding: 10px;
 }
 
+.portfolioGallery {
+    background-color: #292929;
+}
+
 /* Landscape photos */
 .landscapephoto {
     width: 450px;
