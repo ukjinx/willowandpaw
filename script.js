@@ -1,5 +1,3 @@
-const track = document.getElementById("image-track");
-
 const handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
 
 const handleOnUp = () => {
@@ -53,3 +51,65 @@ function myFunction() {
       x.className = "topnav";
     }
   }
+
+
+<script>
+const gallery = document.getElementById('gallery');
+const leftBtn = document.getElementById('leftBtn');
+const rightBtn = document.getElementById('rightBtn');
+
+const images = Array.from(gallery.querySelectorAll('img'));
+let currentIndex = 0;
+
+// Work out which image is currently centred
+function updateCurrentIndex() {
+  const galleryCenter = gallery.scrollLeft + gallery.clientWidth / 2;
+
+  let closest = 0;
+  let closestDistance = Infinity;
+
+  images.forEach((img, index) => {
+    const imgCenter = img.offsetLeft + img.clientWidth / 2;
+    const distance = Math.abs(galleryCenter - imgCenter);
+
+    if (distance < closestDistance) {
+      closestDistance = distance;
+      closest = index;
+    }
+  });
+
+  currentIndex = closest;
+  updateArrows();
+}
+
+function scrollToImage(index) {
+  images[index].scrollIntoView({
+    behavior: 'smooth',
+    inline: 'center'
+  });
+}
+
+function updateArrows() {
+  leftBtn.classList.toggle('disabled', currentIndex === 0);
+  rightBtn.classList.toggle('disabled', currentIndex === images.length - 1);
+}
+
+leftBtn.addEventListener('click', () => {
+  if (currentIndex > 0) {
+    scrollToImage(currentIndex - 1);
+  }
+});
+
+rightBtn.addEventListener('click', () => {
+  if (currentIndex < images.length - 1) {
+    scrollToImage(currentIndex + 1);
+  }
+});
+
+gallery.addEventListener('scroll', () => {
+  window.requestAnimationFrame(updateCurrentIndex);
+});
+
+// Initial state
+updateCurrentIndex();
+</script>
