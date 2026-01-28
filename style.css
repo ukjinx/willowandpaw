@@ -404,7 +404,7 @@ border-width: 2px 0 2px 0;
 
 body {
   margin: 0;
-  background: #0f0f0f;
+  background: #292929;
   font-family: system-ui, sans-serif;
 }
 
@@ -503,12 +503,12 @@ body {
 
 .fade-left {
   left: 0;
-  background: linear-gradient(to right, #0f0f0f 0%, transparent 100%);
+  background: linear-gradient(to right, #292929 0%, transparent 100%);
 }
 
 .fade-right {
   right: 0;
-  background: linear-gradient(to left, #0f0f0f 0%, transparent 100%);
+  background: linear-gradient(to left, #292929 0%, transparent 100%);
 }
 
 /* Responsive */
