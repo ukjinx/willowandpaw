@@ -11,57 +11,6 @@
     background-color: #292929;
 }
 
-/* Landscape photos */
-.landscapephoto {
-    width: 450px;
-    height: 300px;
-    margin: 15px;
-    max-width: 100%;
-    object-fit: cover; /* Keeps aspect ratio and covers the container */
-}
-
-/* Portrait photos */
-.portraitphoto {
-    width: 210px;
-    height: 300px;
-    margin: 15px;
-    max-width: 100%;
-    object-fit: cover;
-}
-
-/* Square photos */
-.squarephoto {
-    width: 300px;
-    height: 300px;
-    margin: 15px;
-    max-width: 100%;
-    object-fit: cover;
-}
-
-/* Panorama photos */
-.panophoto {
-    width: auto;
-    height: 170px;
-    margin: 15px;
-    max-width: 100%;
-    object-fit: cover;
-}
-
-/* Vertical panorama photos */
-.vertpano {
-    width: 170px;
-    height: auto;
-    margin: 15px;
-    max-width: 100%;
-    object-fit: cover;
-}
-
-/* Gallery image styling */
-.gallery1 {
-    border: 8px solid #412A22;
-    transition: all 1s;
-}
-
 .gallery1:hover {
     border: 8px solid #8F9E8B;
     transform: scale(1.1);
@@ -84,11 +33,6 @@
     max-width: 95%;
     max-height: 95%;
     margin-top: 1%;
-}
-
-.lightbox:target {
-    outline: none;
-    display: block;
 }
 
 /* Media queries for responsiveness */
@@ -121,3 +65,60 @@
         transform: scale(1.05); /* Slightly reduced zoom effect on hover */
     }
 }
+
+/* Portfolio Grid */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  
+  .portfolio-grid img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .portfolio-grid img:hover {
+    transform: scale(1.02);
+    opacity: 0.95;
+  }
+  
+  /* Lightbox */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .lightbox img {
+    max-width: 95%;
+    max-height: 95%;
+    border-radius: 12px;
+  }
+  
+  .lightbox.show {
+    display: flex;
+  }
+
+  .lightbox figure {
+    margin: 0;
+    text-align: center;
+  }
+  
+  .lightbox figcaption {
+    margin-top: 16px;
+    color: #f2e6b6;
+    font-size: 0.95rem;
+    opacity: 0.85;
+  }
