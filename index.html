@@ -15,7 +15,6 @@
         <img class="willowAndPawLogo" src="assets/W&P-Logo.png" alt="logo">
     </div>
 
-
     <div class="topnav" id="myTopnav">
         <a href="index.html" class="active">Home</a>
         <a href="portfolio.html" class="active">Portfolio</a>
@@ -24,8 +23,6 @@
         <a href="contact.html" class="active">Contact</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
       </div>
-
-
 
     <div class="welcomeMessage">
         <h1>Welcome to Willow & Paw Photography</h1>
@@ -36,13 +33,13 @@
             <div class="fade fade-right"></div>
           
             <div class="gallery" id="gallery">
-              <img src="portfolio-gallery/Luna5.jpg" alt="">
-              <img src="portfolio-gallery/Willow5.jpg" alt="">
-              <img src="portfolio-gallery/Wally2.jpg" alt="">
-              <img src="portfolio-gallery/Willow1.jpg" alt="">
-              <img src="portfolio-gallery/Willow10.jpg" alt="">
-              <img src="portfolio-gallery/Willow4.jpg" alt="">
-            </div>
+                <img src="portfolio-gallery/Luna5.jpg" alt="" class="is-active">
+                <img src="portfolio-gallery/Willow5.jpg" alt="">
+                <img src="portfolio-gallery/Wally2.jpg" alt="">
+                <img src="portfolio-gallery/Willow1.jpg" alt="">
+                <img src="portfolio-gallery/Willow10.jpg" alt="">
+                <img src="portfolio-gallery/Willow4.jpg" alt="">
+              </div>
           
             <button class="arrow right" id="rightBtn">&#10095;</button>
           </div>
@@ -103,7 +100,6 @@
         </a>
     </div> -->
 
-
     </div>
 </div>
 <div class="footer">
@@ -113,65 +109,6 @@
     <a href="https://www.facebook.com/willowandpawphoto" src="assets/facebook.png">
 
 </div>
-<script>
-    const gallery = document.getElementById('gallery');
-    const leftBtn = document.getElementById('leftBtn');
-    const rightBtn = document.getElementById('rightBtn');
-    
-    const images = Array.from(gallery.querySelectorAll('img'));
-    let currentIndex = 0;
-    
-    function updateCurrentIndex() {
-      const galleryCenter = gallery.scrollLeft + gallery.clientWidth / 2;
-    
-      let closest = 0;
-      let closestDistance = Infinity;
-    
-      images.forEach((img, index) => {
-        const imgCenter = img.offsetLeft + img.clientWidth / 2;
-        const distance = Math.abs(galleryCenter - imgCenter);
-    
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closest = index;
-        }
-      });
-    
-      currentIndex = closest;
-      updateArrows();
-    }
-    
-    function scrollToImage(index) {
-      images[index].scrollIntoView({
-        behavior: 'smooth',
-        inline: 'center'
-      });
-    }
-    
-    function updateArrows() {
-      leftBtn.classList.toggle('disabled', currentIndex === 0);
-      rightBtn.classList.toggle('disabled', currentIndex === images.length - 1);
-    }
-    
-    leftBtn.addEventListener('click', () => {
-      if (currentIndex > 0) {
-        scrollToImage(currentIndex - 1);
-      }
-    });
-    
-    rightBtn.addEventListener('click', () => {
-      if (currentIndex < images.length - 1) {
-        scrollToImage(currentIndex + 1);
-      }
-    });
-    
-    gallery.addEventListener('scroll', () => {
-      window.requestAnimationFrame(updateCurrentIndex);
-    });
-    
-    // Initial state
-    updateCurrentIndex();
-    </script>
-</body>
 <script src="script.js"></script>
+</body>
 </html>
