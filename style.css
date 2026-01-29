@@ -446,13 +446,9 @@ body {
   object-fit: contain;
   border-radius: 18px;
   scroll-snap-align: center;
-  opacity: 0.5;
+  opacity: 0.1;
   transition: opacity 0.3s ease;
 }
-
-.gallery img:hover {
-  opacity: 1;
-} */
 
 .gallery img {
   opacity: 0.5;
