@@ -338,17 +338,7 @@ hr.style-seven:before { /* Not really supposed to work, but does */
 
 /* Contact Page and Form */
 
-/* Style inputs with type="text", select elements and textareas */
-input[type=text], select, textarea {
-  width: 100%; /* Full width */
-  padding: 12px; /* Some padding */ 
-  border: 1px solid #000000; /* Gray border */
-  border-radius: 4px; /* Rounded borders */
-  box-sizing: border-box; /* Make sure that padding and width stays in place */
-  margin-top: 6px; /* Add a top margin */
-  margin-bottom: 16px; /* Bottom margin */
-  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
-}
+
 
 /* Style the submit button with a specific background color etc */
 input[type=submit] {
@@ -525,5 +515,52 @@ body {
     width: 80vw;        /* 👈 limit width */
     height: 380px;     /* 👈 consistent height */
     max-width: 480px;  /* 👈 prevents portraits from dominating */
+  }
+}
+
+/* Contact Buttons */
+button {
+  background-color: #9caf88;
+  color: black;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #F2E6B6;
+}
+
+.contact-form {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Make ALL inputs behave the same */
+.formInput {
+  width: 100%;
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid #000;
+  box-sizing: border-box;
+}
+
+/* Mobile stack */
+@media (max-width: 600px) {
+  .two-col {
+    grid-template-columns: 1fr;
   }
 }

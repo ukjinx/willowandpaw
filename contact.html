@@ -38,23 +38,52 @@
         <div class="article-text formBackground">
 
           <div class="container formBackground" >
-            <form action="action_page.php">
-          
-              <label class="contactFormText" for="fname">First Name</label>
-              <input class="formInput" type="text" id="fname" name="firstname" placeholder="Your name..">
-          
-              <label class="contactFormText" for="lname">Last Name</label>
-              <input class="formInput" type="text" id="lname" name="lastname" placeholder="Your last name..">
-          
-          
-              <label class="contactFormText" for="subject">Subject</label>
-              <textarea class="formInput" id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-          
-              <input type="submit" value="Submit">
-          
+
+            <form action="https://formspree.io/f/mnjvdvvv" method="POST" class="contact-form">
+
+              <div class="form-row two-col">
+                <div>
+                  <label class="contactFormText">First Name</label>
+                  <input class="formInput" type="text" name="firstName" required>
+                </div>
+            
+                <div>
+                  <label class="contactFormText">Last Name</label>
+                  <input class="formInput" type="text" name="lastName" required>
+                </div>
+              </div>
+            
+              <div class="form-row">
+                <label class="contactFormText">Email</label>
+                <input class="formInput" type="email" name="email" required>
+              </div>
+            
+              <div class="form-row">
+                <label class="contactFormText">Tell me about your dog & session</label>
+                <textarea class="formInput" name="message" rows="6" required></textarea>
+              </div>
+            
+              <input type="text" name="_gotcha" style="display:none">
+            
+              <button type="submit">Send Message</button>
+            
             </form>
+
           </div>
     <!--Section: Contact v.2-->
+    <script>
+      const form = document.querySelector("form");
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        await fetch(form.action, {
+          method: "POST",
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        form.innerHTML = "<h2>Thank you! I'll be in touch soon 🐾</h2>";
+      });
+    </script>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
