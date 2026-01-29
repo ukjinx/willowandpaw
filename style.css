@@ -428,8 +428,7 @@ body {
 .gallery-section {
   position: relative;
   max-width: 1100px;
-  margin: 80px auto;
-  height: 75vh;               /* 👈 lock vertical space */
+  margin: 40px auto;     /* 👈 reduced from 80px */
   display: flex;
   align-items: center;
 }
@@ -440,7 +439,7 @@ body {
 
 .gallery img {
   flex: 0 0 auto;
-  height: 420px;              /* 👈 uniform visual size */
+  height: 500px;              /* 👈 uniform visual size */
   width: auto;
   max-width: 90vw;            /* safety on very wide images */
   object-fit: contain;
@@ -454,8 +453,9 @@ body {
   opacity: 0.5;
 }
 
- .gallery img.is-active {
+.gallery img.is-active {
   opacity: 1;
+  filter: saturate(1.05);
 }
 
 /* Arrows */
@@ -522,6 +522,8 @@ body {
 
 @media (max-width: 768px) {
   .gallery img {
-    height: 380px;
+    width: 80vw;        /* 👈 limit width */
+    height: 380px;     /* 👈 consistent height */
+    max-width: 480px;  /* 👈 prevents portraits from dominating */
   }
 }
