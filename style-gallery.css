@@ -140,7 +140,13 @@
     border: none;
     color: #f2e6b6;
     cursor: pointer;
-    z-index: 1000;
+    pointer-events: auto;
+    z-index: 1001;
+  }
+
+  body.lightbox-open {
+    overflow: hidden;
+    touch-action: none;
   }
 
 /* ---------------------------------
@@ -175,5 +181,39 @@
 @media (prefers-reduced-motion: reduce) {
   .lightbox {
     backdrop-filter: none;
+  }
+}
+
+.lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+  background: none;
+  border: none;
+  color: #f2e6b6;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1000;
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
+}
+
+.lightbox-arrow:hover {
+  opacity: 1;
+}
+
+.lightbox-arrow.left {
+  left: 20px;
+}
+
+.lightbox-arrow.right {
+  right: 20px;
+}
+
+/* Hide arrows on small screens */
+@media (max-width: 768px) {
+  .lightbox-arrow {
+    display: none;
   }
 }

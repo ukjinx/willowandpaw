@@ -81,7 +81,7 @@ if (gallery) {
 }
 
 // ---------------------------
-// Portfolio gallery + lightbox
+// Portfolio gallery + lightbox (FIXED & SAFE)
 // ---------------------------
 document.addEventListener('DOMContentLoaded', () => {
   const grid = document.getElementById('portfolioGrid');
@@ -89,6 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxImage = document.getElementById('lightboxImage');
   const lightboxCaption = document.getElementById('lightboxCaption');
   const closeBtn = document.querySelector('.lightbox-close');
+  const nextBtn = document.querySelector('.lightbox-arrow.right');
+  const prevBtn = document.querySelector('.lightbox-arrow.left');
 
   if (!grid || !lightbox) return;
 
@@ -105,10 +107,12 @@ document.addEventListener('DOMContentLoaded', () => {
     currentIndex = index;
     updateLightbox();
     lightbox.classList.add('show');
+    document.body.classList.add('lightbox-open');
   }
 
   function closeLightbox() {
     lightbox.classList.remove('show');
+    document.body.classList.remove('lightbox-open');
   }
 
   function showNext() {
@@ -145,26 +149,36 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(err => console.error('Portfolio load error:', err));
 
-  // Close controls
-  closeBtn.addEventListener('click', closeLightbox);
+  // Controls
+  closeBtn?.addEventListener('click', e => {
+    e.stopPropagation();
+    closeLightbox();
+  });
+
+  nextBtn?.addEventListener('click', e => {
+    e.stopPropagation();
+    showNext();
+  });
+
+  prevBtn?.addEventListener('click', e => {
+    e.stopPropagation();
+    showPrev();
+  });
 
   lightbox.addEventListener('click', e => {
     if (e.target === lightbox) closeLightbox();
   });
 
+  // Keyboard navigation
   document.addEventListener('keydown', e => {
     if (!lightbox.classList.contains('show')) return;
-  
-    if (['ArrowLeft', 'ArrowRight', 'Escape'].includes(e.key)) {
-      e.preventDefault();
-    }
-  
+
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowRight') showNext();
     if (e.key === 'ArrowLeft') showPrev();
   });
 
-  // Swipe controls
+  // Touch gestures
   let startX = 0;
   let startY = 0;
 
@@ -174,18 +188,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   lightbox.addEventListener('touchend', e => {
-    const endX = e.changedTouches[0].clientX;
-    const endY = e.changedTouches[0].clientY;
-
-    const diffX = endX - startX;
-    const diffY = endY - startY;
+    const diffX = e.changedTouches[0].clientX - startX;
+    const diffY = e.changedTouches[0].clientY - startY;
 
     if (Math.abs(diffY) > 80 && diffY > 0) {
-      closeLightbox(); // swipe down
+      closeLightbox();
       return;
     }
 
-    if (Math.abs(diffX) > 60) {
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 60) {
       diffX < 0 ? showNext() : showPrev();
     }
   });
