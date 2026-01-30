@@ -81,15 +81,6 @@
 }
   
   /* Lightbox */
-  .lightbox {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-  }
   
   .lightbox figure {
     max-width: 90vw;
@@ -104,8 +95,27 @@
     object-fit: contain;
   }
   
-  .lightbox.show {
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .lightbox.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .lightbox figure {
@@ -132,3 +142,38 @@
     cursor: pointer;
     z-index: 1000;
   }
+
+/* ---------------------------------
+   Lightbox animation polish
+---------------------------------- */
+
+/* Initial state */
+.lightbox img {
+  opacity: 0;
+  transform: scale(0.96);
+  transition:
+    opacity 0.35s cubic-bezier(0.4, 0.0, 0.2, 1),
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* When lightbox is visible */
+.lightbox.show img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ---------------------------------
+   Reduced motion support
+---------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .lightbox img {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lightbox {
+    backdrop-filter: none;
+  }
+}

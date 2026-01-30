@@ -80,76 +80,113 @@ if (gallery) {
   window.addEventListener('load', updateCurrentIndex);
 }
 
-
 // ---------------------------
-// Portfolio gallery
+// Portfolio gallery + lightbox
 // ---------------------------
 document.addEventListener('DOMContentLoaded', () => {
   const grid = document.getElementById('portfolioGrid');
   const lightbox = document.getElementById('lightbox');
   const lightboxImage = document.getElementById('lightboxImage');
   const lightboxCaption = document.getElementById('lightboxCaption');
+  const closeBtn = document.querySelector('.lightbox-close');
 
-  if (!grid) return;
+  if (!grid || !lightbox) return;
 
+  let portfolioImages = [];
+  let currentIndex = 0;
+
+  function updateLightbox() {
+    const item = portfolioImages[currentIndex];
+    lightboxImage.src = `portfolio-gallery/${item.src}`;
+    lightboxCaption.textContent = item.caption || '';
+  }
+
+  function openLightbox(index) {
+    currentIndex = index;
+    updateLightbox();
+    lightbox.classList.add('show');
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('show');
+  }
+
+  function showNext() {
+    currentIndex = (currentIndex + 1) % portfolioImages.length;
+    updateLightbox();
+  }
+
+  function showPrev() {
+    currentIndex =
+      (currentIndex - 1 + portfolioImages.length) % portfolioImages.length;
+    updateLightbox();
+  }
+
+  // Load portfolio images
   fetch('data/portfolio.json')
     .then(res => res.json())
-    .then(images => {
-      images.forEach(item => {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'portfolio-card';
+    .then(data => {
+      portfolioImages = data;
+
+      data.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'portfolio-card';
 
         const img = document.createElement('img');
         img.src = `portfolio-gallery/${item.src}`;
         img.alt = item.caption || '';
         img.loading = 'lazy';
 
-        img.addEventListener('click', () => {
-          lightboxImage.src = img.src;
-          lightboxCaption.textContent = item.caption || '';
-          lightbox.classList.add('show');
-        });
+        img.addEventListener('click', () => openLightbox(index));
 
-        wrapper.appendChild(img);
-        grid.appendChild(wrapper);
+        card.appendChild(img);
+        grid.appendChild(card);
       });
     })
     .catch(err => console.error('Portfolio load error:', err));
-    lightbox.addEventListener('click', e => {
-      if (e.target === lightbox) {
-        lightbox.classList.remove('show');
-      }
-    });
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') {
-        lightbox.classList.remove('show');
-      }
-    });
 
+  // Close controls
+  closeBtn.addEventListener('click', closeLightbox);
 
-  // ---------------------------
-  // Swipe down to close (mobile)
-  // ---------------------------
-  let touchStartY = 0;
-  let touchEndY = 0;
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('show')) return;
+  
+    if (['ArrowLeft', 'ArrowRight', 'Escape'].includes(e.key)) {
+      e.preventDefault();
+    }
+  
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+  });
+
+  // Swipe controls
+  let startX = 0;
+  let startY = 0;
 
   lightbox.addEventListener('touchstart', e => {
-    touchStartY = e.touches[0].clientY;
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
   });
 
-  lightbox.addEventListener('touchmove', e => {
-    touchEndY = e.touches[0].clientY;
-  });
+  lightbox.addEventListener('touchend', e => {
+    const endX = e.changedTouches[0].clientX;
+    const endY = e.changedTouches[0].clientY;
 
-  lightbox.addEventListener('touchend', () => {
-    if (touchEndY - touchStartY > 80) {
-      lightbox.classList.remove('show');
+    const diffX = endX - startX;
+    const diffY = endY - startY;
+
+    if (Math.abs(diffY) > 80 && diffY > 0) {
+      closeLightbox(); // swipe down
+      return;
+    }
+
+    if (Math.abs(diffX) > 60) {
+      diffX < 0 ? showNext() : showPrev();
     }
   });
 });
-
-
-document.querySelector('.lightbox-close')
-  ?.addEventListener('click', () => {
-    lightbox.classList.remove('show');
-  });
