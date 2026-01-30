@@ -96,9 +96,12 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(res => res.json())
     .then(images => {
       images.forEach(item => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'portfolio-card';
+
         const img = document.createElement('img');
         img.src = `portfolio-gallery/${item.src}`;
-        img.alt = '';
+        img.alt = item.caption || '';
         img.loading = 'lazy';
 
         img.addEventListener('click', () => {
@@ -107,30 +110,46 @@ document.addEventListener('DOMContentLoaded', () => {
           lightbox.classList.add('show');
         });
 
-        grid.appendChild(img);
+        wrapper.appendChild(img);
+        grid.appendChild(wrapper);
       });
     })
     .catch(err => console.error('Portfolio load error:', err));
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('show');
+      }
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        lightbox.classList.remove('show');
+      }
+    });
 
-  lightbox.addEventListener('click', () => {
-    lightbox.classList.remove('show');
+
+  // ---------------------------
+  // Swipe down to close (mobile)
+  // ---------------------------
+  let touchStartY = 0;
+  let touchEndY = 0;
+
+  lightbox.addEventListener('touchstart', e => {
+    touchStartY = e.touches[0].clientY;
+  });
+
+  lightbox.addEventListener('touchmove', e => {
+    touchEndY = e.touches[0].clientY;
+  });
+
+  lightbox.addEventListener('touchend', () => {
+    if (touchEndY - touchStartY > 80) {
+      lightbox.classList.remove('show');
+    }
   });
 });
 
 
-let touchStartY = 0;
-let touchEndY = 0;
-
-lightbox.addEventListener('touchstart', e => {
-  touchStartY = e.touches[0].clientY;
-});
-
-lightbox.addEventListener('touchmove', e => {
-  touchEndY = e.touches[0].clientY;
-});
-
-lightbox.addEventListener('touchend', () => {
-  if (touchEndY - touchStartY > 80) {
-    lightbox.classList.remove('show'); // swipe down to close
-  }
-});
+document.querySelector('.lightbox-close')
+  ?.addEventListener('click', () => {
+    lightbox.classList.remove('show');
+  });

@@ -16,38 +16,17 @@
     transform: scale(1.1);
 }
 
-/* Lightbox styling */
-.lightbox {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    top: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.8);
-}
-
-.lightbox img {
-    max-width: 95%;
-    max-height: 95%;
-    margin-top: 1%;
-}
-
 /* Media queries for responsiveness */
 @media (max-width: 768px) {
-    .landscapephoto, .portraitphoto, .squarephoto, .panophoto, .vertpano {
-        width: 100%; /* Makes images full width of their container */
-        height: auto; /* Adjusts height automatically to maintain aspect ratio */
-        margin: 5px; /* Reduces margin on smaller screens */
-    }
+  .lightbox img {
+    max-height: 70vh;
+  }
+}
 
     .container {
         gap: 5px; /* Reduces gap between images */
         padding: 5px;
     }
-}
 
 @media (max-width: 480px) {
     .landscapephoto, .portraitphoto, .squarephoto, .panophoto, .vertpano {
@@ -68,27 +47,38 @@
 
 /* Portfolio Grid */
 .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
-  }
-  
-  .portfolio-grid img {
-    width: 100%;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-    border-radius: 16px;
-    cursor: pointer;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-  
-  .portfolio-grid img:hover {
-    transform: scale(1.02);
-    opacity: 0.95;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Card defines the uniform size */
+.portfolio-card {
+  aspect-ratio: 3 / 4;
+  background: #1f1f1f;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Image adapts INSIDE the card */
+.portfolio-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* 👈 CROPS TO FILL CARD */
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.portfolio-card img:hover {
+  transform: scale(1.03);
+  opacity: 0.95;
+}
   
   /* Lightbox */
   .lightbox {
@@ -101,10 +91,17 @@
     z-index: 999;
   }
   
+  .lightbox figure {
+    max-width: 90vw;
+    max-height: 90vh;
+  }
+  
   .lightbox img {
-    max-width: 95%;
-    max-height: 95%;
-    border-radius: 12px;
+    max-width: 100%;
+    max-height: 80vh;   /* 👈 key change */
+    width: auto;
+    height: auto;
+    object-fit: contain;
   }
   
   .lightbox.show {
@@ -121,4 +118,17 @@
     color: #f2e6b6;
     font-size: 0.95rem;
     opacity: 0.85;
+  }
+
+
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    font-size: 32px;
+    background: none;
+    border: none;
+    color: #f2e6b6;
+    cursor: pointer;
+    z-index: 1000;
   }
