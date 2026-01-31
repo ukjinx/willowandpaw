@@ -16,6 +16,13 @@
     transform: scale(1.1);
 }
 
+/* Emotional Section */
+.emotion-section {
+  max-width: 800px;
+  margin: 80px auto;
+  text-align: center;
+}
+
 /* Media queries for responsiveness */
 @media (max-width: 768px) {
   .lightbox img {
@@ -72,12 +79,12 @@
   height: 100%;
   object-fit: cover;     /* 👈 CROPS TO FILL CARD */
   cursor: pointer;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.5s ease, opacity 0.4s ease;
 }
 
-.portfolio-card img:hover {
-  transform: scale(1.03);
-  opacity: 0.95;
+.portfolio-card:hover img {
+  transform: scale(1.04);
+  opacity: 0.9;
 }
   
   /* Lightbox */
@@ -93,6 +100,8 @@
     width: auto;
     height: auto;
     object-fit: contain;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+
   }
   
   .lightbox {
@@ -168,6 +177,15 @@
   transform: scale(1);
 }
 
+/* CTA at bottom of portfolio */
+
+.final-cta {
+  padding: 60px 20px;
+  text-align: center;
+  background: rgba(255,255,255,0.03);
+  margin-top: 80px;
+}
+
 /* ---------------------------------
    Reduced motion support
 ---------------------------------- */
@@ -180,7 +198,7 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .lightbox {
-    backdrop-filter: none;
+    backdrop-filter: blur(10px);
   }
 }
 
@@ -215,5 +233,13 @@
 @media (max-width: 768px) {
   .lightbox-arrow {
     display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
   }
 }

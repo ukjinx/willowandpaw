@@ -62,13 +62,17 @@ if (gallery) {
 
   if (leftBtn) {
     leftBtn.addEventListener('click', () => {
-      if (currentIndex > 0) scrollToImage(currentIndex - 1);
+      const prevIndex =
+        (currentIndex - 1 + images.length) % images.length;
+      scrollToImage(prevIndex);
     });
   }
-
+  
   if (rightBtn) {
     rightBtn.addEventListener('click', () => {
-      if (currentIndex < images.length - 1) scrollToImage(currentIndex + 1);
+      const nextIndex =
+        (currentIndex + 1) % images.length;
+      scrollToImage(nextIndex);
     });
   }
 
