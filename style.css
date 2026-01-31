@@ -439,9 +439,9 @@ input[type=submit]:hover {
   background-color:#292929;
 }
 
-.formInput {
+/* .formInput {
   color: aqua;
-}
+} */
 
 .footer {
   border-color: #F2E6B6;
@@ -691,4 +691,29 @@ button:hover {
 
 .primary-cta:hover {
   background: #F2E6B6;
+}
+
+
+/* Contact Page */
+
+.contact-steps {
+  max-width: 600px;
+  margin: 30px auto;
+  text-align: left;
+}
+
+.contact-steps li {
+  margin-bottom: 10px;
+}
+
+.form-note {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-top: 8px;
+}
+
+.contact-trust {
+  margin-top: 40px;
+  font-size: 0.85rem;
+  opacity: 0.7;
 }

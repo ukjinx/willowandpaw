@@ -14,11 +14,9 @@
 </head>
 
 <body>
-    <div class="website-logo">
-        <img class="willowAndPawLogo" src="assets/W&P-Logo.png" alt="logo">
-    </div>
-
-
+  <div class="website-logo">
+    <img class="willowAndPawLogo" src="assets/W&P-Logo.png" alt="logo">
+</div>
     <div class="topnav" id="myTopnav">
       <a href="index.html" class="active">Home</a>
       <a href="portfolio.html" class="active">Portfolio</a>
@@ -27,40 +25,91 @@
       <a href="contact.html" class="active">Contact</a>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
-            
-            <!-- <a class="nav-link" href="contact.html">Contact</a> -->
-        </div>
-    </div>
     
-    <div class="article-container">
+    <main class="article-container">
 
-        <img class="willowAndPawLogo" src="assets/WillowWoods.jpg">
-        <div class="article-text formBackground">
+      <h1>Book a photography session</h1>
+
+<p class="hero-subtitle">
+  Ready to capture your dog just as they are?  
+  Use the form below to book a session or ask a few questions — no pressure at all.
+</p>
+
+<img
+  class="willowAndPawLogo"
+  src="assets/WillowWoods.jpg"
+  alt="Dog photography session in woodland setting"
+/>
+
+<div class="article-text formBackground">
+
+          <p>
+            Whether you already know what you want or you’re just starting to explore the idea,
+            you’re very welcome to get in touch.
+          </p>
+          
+          <p>
+            Once I receive your message, I’ll reply personally to talk through your dog,
+            suggest a suitable location in South East Wales, and answer any questions you have.
+          </p>
+
+
+          <h2>What happens next?</h2>
+
+<ol class="contact-steps">
+  <li>You send a message using the form below</li>
+  <li>I’ll get back to you within 48 hours</li>
+  <li>We’ll chat about your dog and what you’re looking for</li>
+  <li>If it feels right, we’ll book a session date</li>
+</ol>
 
           <div class="container formBackground" >
 
-            <form action="https://formspree.io/f/mnjvdvvv" method="POST" class="contact-form">
+            <form action="htps://formspree.iot/f/mnjvdvvv" method="POST" class="contact-form">
 
               <div class="form-row two-col">
                 <div>
-                  <label class="contactFormText">First Name</label>
-                  <input class="formInput" type="text" name="firstName" required>
+                  <label for="firstName" class="contactFormText">First Name</label>
+                  <input id="firstName" class="formInput" type="text" name="firstName" required>
                 </div>
             
                 <div>
-                  <label class="contactFormText">Last Name</label>
-                  <input class="formInput" type="text" name="lastName" required>
+                  <label for="lastName" class="contactFormText">Last Name</label>
+                  <input id="lastName" class="formInput" type="text" name="lastName" required>
                 </div>
               </div>
             
               <div class="form-row">
-                <label class="contactFormText">Email</label>
-                <input class="formInput" type="email" name="email" required>
+                <label for="email" class="contactFormText">Email</label>
+                <input id="email" class="formInput" type="email" name="email" required>
+              </div>
+
+              <div class="form-row">
+                <label for="dogName" class="contactFormText">Dog’s name</label>
+                <input
+                  id="dogName"
+                  class="formInput"
+                  type="text"
+                  name="dogName"
+                  placeholder="e.g. Willow"
+                  required
+                >
+              </div>
+              
+              <div class="form-row">
+                <label for="dogAge" class="contactFormText">Dog’s age (approx)</label>
+                <input
+                  id="dogAge"
+                  class="formInput"
+                  type="text"
+                  name="dogAge"
+                  placeholder="e.g. 3 years"
+                >
               </div>
             
               <div class="form-row">
-                <label class="contactFormText">Tell me about your dog & session</label>
-                <textarea class="formInput" name="message" rows="6" required></textarea>
+                <label for="message" class="contactFormText">Tell me about your dog & session</label>
+                <textarea id="message" class="formInput" name="message" rows="6" required></textarea>
               </div>
             
               <input type="text" name="_gotcha" style="display:none">
@@ -70,29 +119,38 @@
             </form>
 
           </div>
+
+          <p class="form-note">
+            Not sure what to say? That’s absolutely fine — just tell me a little about your dog.
+          </p>
+
+          <p class="contact-trust">
+            Based in South Wales • Outdoor sessions • Dog-first approach
+          </p>
     <!--Section: Contact v.2-->
-    <script>
-      const form = document.querySelector("form");
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const data = new FormData(form);
-        await fetch(form.action, {
-          method: "POST",
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
-        form.innerHTML = "<h2>Thank you! I'll be in touch soon 🐾</h2>";
-      });
-    </script>
-</body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-</html>
-
-
-</body>
 <script src="script.js"></script>
-
+  </main>
+<script>
+  const form = document.querySelector(".contact-form");
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      await fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      form.innerHTML = `
+        <h2>Thank you 🐾</h2>
+        <p>Your message has been sent successfully.</p>
+        <p>I’ll be in touch within 48 hours.</p>
+      `;
+    });
+  }
+</script>
+</body>
 </html>
