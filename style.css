@@ -454,7 +454,10 @@ input[type=submit]:hover {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr;
   gap: 40px;
+
   align-items: start;
+  justify-items: center;   /* 👈 centres content in each column */
+  text-align: center;      /* 👈 centres text by default */
 }
 
 /* Brand block */
@@ -463,6 +466,7 @@ input[type=submit]:hover {
   font-size: 1.1rem;
   color: #8F9E8B;
   letter-spacing: 0.04em;
+  max-width: 320px;
 }
 
 .footer-brand p {
@@ -476,6 +480,7 @@ input[type=submit]:hover {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  align-items: center;   /* 👈 centres links */
 }
 
 .footer-nav a {
@@ -531,6 +536,8 @@ input[type=submit]:hover {
   }
 
   .footer-meta {
+    display: flex;
+    flex-direction: column;
     align-items: center;
   }
 }
