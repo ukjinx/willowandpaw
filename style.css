@@ -358,24 +358,16 @@ li {
 }
 
 hr.style-seven {
-  overflow: visible; /* For IE */
-  height: 30px;
-  border-style: solid;
-  border-color: #5B7876;
-  border-width: 1px 0 0 0;
-  border-radius: 20px;
-  margin: 3rem 0 3rem 0;
-}
-hr.style-seven:before { /* Not really supposed to work, but does */
-  display: block;
-  content: "";
-  height: 30px;
-  width: 50%;
-  margin-top: -31px;
-  border-style: solid;
-  border-color: #5B7876;
-  border-width: 0 0 1px 0;
-  border-radius: 20px;
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #5B7876,
+    transparent
+  );
+  margin: 60px auto;
+  max-width: 700px;
 }
 
 .headshot {
@@ -662,21 +654,65 @@ button:hover {
 }
 
 .pricing-box {
-  background: #1f1f1f;
-  padding: 30px;
-  border-radius: 16px;
+  background: linear-gradient(
+    180deg,
+    #1f1f1f 0%,
+    #181818 100%
+  );
+  padding: 40px;
+  border-radius: 22px;
   text-align: center;
+  max-width: 520px;
+  margin: 0 auto;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.04);
 }
 
 .price {
-  font-size: 2.5rem;
-  color: #F2E6B6;
-  margin: 0;
+  font-size: 3rem;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
 }
 
 .price-subtitle {
-  opacity: 0.8;
-  margin-bottom: 20px;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 30px;
+}
+
+.pricing-features {
+  margin: 30px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pricing-features li {
+  position: relative;
+  padding: 12px 0;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.pricing-features li::before {
+  content: "—";
+  color: #8F9E8B;
+  margin-right: 8px;
+}
+
+/* subtle separators */
+.pricing-features li + li {
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.pricing-note {
+  margin-top: 24px;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  line-height: 1.6;
 }
 
 .primary-cta {
@@ -712,7 +748,11 @@ button:hover {
 
 @media (max-width: 600px) {
   .pricing-box {
-    padding: 20px;
+    padding: 28px 22px;
+  }
+
+  .price {
+    font-size: 2.4rem;
   }
 }
 
@@ -739,4 +779,155 @@ button:hover {
   margin-top: 40px;
   font-size: 0.85rem;
   opacity: 0.7;
+}
+
+
+/* About Page */
+
+.about-layout {
+  max-width: 800px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  justify-items: center;
+}
+
+.headshot {
+  display: block;
+  margin: 0 auto;   /* 👈 THIS centres it in its grid column */
+  max-width: 20rem;
+  max-height: 20rem;
+  padding: 1rem;
+  border-radius: 18px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+.about-intro {
+  font-size: 1.05rem;
+  color: #F2E6B6;
+}
+
+.about-closing {
+  margin-top: 30px;
+  font-style: italic;
+  color: #8F9E8B;
+}
+
+/* Headings within about */
+.article-text h2 {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  color: #8F9E8B;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 0 1rem;
+  }
+}
+
+  .headshot {
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .headshot {
+      max-width: 14rem;
+      max-height: 14rem;
+      padding: 0.5rem;
+      margin-bottom: 10px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .article-text p {
+      text-align: left;
+    }
+  
+    .article-text h1,
+    .article-text h2 {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .kit-details {
+      margin: 2rem 0;
+    }
+  
+    .about-cta {
+      padding: 0 1rem;
+      text-align: center;
+    }
+  }
+
+
+.about-cta {
+  margin-top: 50px;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* Equipment dropdown fix */
+
+.kit-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3rem 0;
+}
+
+/* Remove default marker */
+.kit-details summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+/* Chrome / Safari */
+.kit-details summary::-webkit-details-marker {
+  display: none;
+}
+
+
+.kit-details summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  font-size: 1rem;
+  color: #8F9E8B;
+  text-align: center;
+}
+
+.kit-details summary::after {
+  content: "▾";
+  font-size: 0.9rem;
+  transition: transform 0.25s ease;
+}
+
+.kit-details[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.kit-list {
+  margin-top: 16px;
+  padding: 0;
+  width: 100%;
+  max-width: 320px;
+  text-align: left;
+}
+
+@media (max-width: 600px) {
+  .kit-details summary {
+    font-size: 0.95rem;
+  }
+
+  .kit-list {
+    max-width: 90%;
+  }
 }
