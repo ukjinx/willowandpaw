@@ -205,3 +205,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+/* Footer */
+
+fetch('/includes/footer.html')
+  .then(response => response.text())
+  .then(data => {
+    const footerPlaceholder = document.getElementById('footer-placeholder');
+    if (!footerPlaceholder) return;
+
+    footerPlaceholder.innerHTML = data;
+
+    // Observe newly injected fade-in elements
+    const newFadeElements = footerPlaceholder.querySelectorAll('.fade-in');
+    newFadeElements.forEach(el => fadeObserver.observe(el));
+  });
+
+const fadeObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  },
+  {
+    threshold: 0.2
+  }
+);
+
+fadeElements.forEach(el => fadeObserver.observe(el));
