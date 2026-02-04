@@ -139,19 +139,28 @@ document.addEventListener('DOMContentLoaded', () => {
       data.forEach((item, index) => {
         const card = document.createElement('div');
         card.className = 'portfolio-card';
-
+      
         const img = document.createElement('img');
         img.src = `portfolio-gallery/${item.src}`;
         img.alt = item.caption || '';
         img.loading = 'lazy';
-
+      
+        img.addEventListener('load', () => {
+          if (img.naturalWidth > img.naturalHeight) {
+            card.classList.add('landscape');
+          } else {
+            card.classList.add('portrait');
+          }
+        });
+      
         img.addEventListener('click', () => openLightbox(index));
-
+      
         card.appendChild(img);
         grid.appendChild(card);
       });
     })
     .catch(err => console.error('Portfolio load error:', err));
+
 
   // Controls
   closeBtn?.addEventListener('click', e => {

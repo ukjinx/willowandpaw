@@ -1,19 +1,17 @@
 [
+    { "src": "Willow1.jpg", "caption": ""}, 
     { "src": "Wally1.jpg", "caption": ""},
     { "src": "Luna1.jpg", "caption": ""},
-    { "src": "Willow1.jpg", "caption": ""},
-    { "src": "Wally2.jpg", "caption": ""},
     { "src": "Willow2.jpg", "caption": ""},
     { "src": "Willow3.jpg", "caption": ""},
-    { "src": "Wally3.jpg", "caption": ""},
-    { "src": "Luna2.jpg", "caption": ""},
     { "src": "Luna3.jpg", "caption": ""},
+    { "src": "Willow7.jpg", "caption": ""},
     { "src": "Willow4.jpg", "caption": ""},
     { "src": "Willow5.jpg", "caption": ""},
     { "src": "Willow6.jpg", "caption": ""},
-    { "src": "Willow7.jpg", "caption": ""},
+    { "src": "Wally2.jpg", "caption": ""},
     { "src": "Willow8.jpg", "caption": ""},
-    { "src": "Willow9.jpg", "caption": ""},
     { "src": "Willow10.jpg", "caption": ""},
-    { "src": "Luna5.jpg", "caption": "" }
+    { "src": "Luna5.jpg", "caption": "" },
+    { "src": "Willow9.jpg", "caption": ""}
   ]
