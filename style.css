@@ -792,17 +792,19 @@ input[type=submit] {
 }
 
 .fade-left {
+  left: 0;
   background: linear-gradient(
     to right,
-    var(--bg-main) 0%,
+    var(--bg-card) 0%,
     transparent 100%
   );
 }
 
 .fade-right {
+  right: 0;
   background: linear-gradient(
     to left,
-    var(--bg-main) 0%,
+    var(--bg-card) 0%,
     transparent 100%
   );
 }
