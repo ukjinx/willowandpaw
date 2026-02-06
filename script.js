@@ -244,4 +244,37 @@ const fadeObserver = new IntersectionObserver(
   }
 );
 
-fadeElements.forEach(el => fadeObserver.observe(el));
+
+
+const toggle = document.querySelector('.theme-toggle');
+    const root = document.documentElement;
+  
+    // 1. Check saved preference
+    const savedTheme = localStorage.getItem('theme');
+  
+    // 2. Check system preference
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+    // 3. Set initial theme
+    if (savedTheme) {
+      root.setAttribute('data-theme', savedTheme);
+    } else if (prefersDark) {
+      root.setAttribute('data-theme', 'dark');
+    }
+  
+    // Update aria state
+    toggle.setAttribute(
+      'aria-pressed',
+      root.getAttribute('data-theme') === 'dark'
+    );
+  
+    // 4. Toggle on click
+    toggle.addEventListener('click', () => {
+      const isDark = root.getAttribute('data-theme') === 'dark';
+      const newTheme = isDark ? 'light' : 'dark';
+  
+      root.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+  
+      toggle.setAttribute('aria-pressed', newTheme === 'dark');
+    });

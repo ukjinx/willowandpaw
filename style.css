@@ -1,18 +1,99 @@
+/* =========================
+   THEME FOUNDATION
+========================= */
+
+:root[data-theme="light"] {
+  --bg-main: #F7F5F2;
+
+  /* was #FFFFFF */
+  --bg-card: #FFF4EE;   /* very soft tint of #EF6024 */
+
+  --text-primary: #363432;
+  --text-secondary: #6F7C78;
+
+  --link: #196774;
+  --link-hover: #0F4F59;
+
+  --border-subtle: rgba(54, 52, 50, 0.12);
+
+  --accent-primary: #F0941F;
+  --accent-secondary: #90A19D;
+
+  --heading-color: #363432;
+}
+
+:root[data-theme="dark"] {
+  --bg-main: #1E1F1D;
+
+  /* warm dark, not grey */
+  --bg-card: #2C2623;
+
+  --text-primary: #F3F2EF;
+  --text-secondary: #B9C3BF;
+
+  --link: #90A19D;
+  --link-hover: #F0941F;
+
+  --border-subtle: rgba(255,255,255,0.08);
+
+  --accent-primary: #F0941F;
+  --accent-secondary: #90A19D;
+
+  --heading-color: #F3F2EF;
+}
+
 body {
-  background-color: #292929;
-  color: #F2E6B6;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin: 0;
   }
 
-a {
-  text-decoration: none;
+  h1, h2, h3 {
+    color: var(--heading-color);
+  }
+
+  p {
+    color: var(--text-secondary);
+  }
+
+  a {
+    color: var(--link);
+  }
+  
+  a:hover {
+    color: var(--link-hover);
+  }
+
+  .card,
+.portfolio-card,
+.pricing-box {
+  background-color: var(--bg-card);
+  border-radius: 22px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
 }
 
-.shopLink {
-  color: #F2E6B6;
-  text-decoration: underline;
-  font-weight: bold;
+.btn-primary {
+  background: var(--cta-primary-bg);
+  color: var(--cta-primary-text);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+}
+
+.btn-secondary {
+  border: 1px solid var(--accent-secondary);
+  color: var(--accent-secondary);
+  background: transparent;
+}
+
+.btn-secondary:hover {
+  background: rgba(144,161,157,0.15);
+}
+
+a {
+  text-decoration: none;
 }
 
 /* #navbar {
@@ -26,7 +107,6 @@ a:hover {
 
 /* Add a black background color to the top navigation */
 .topnav {
-  background-color: #292929;
   overflow: hidden;
 }
 
@@ -34,17 +114,10 @@ a:hover {
 .topnav a {
   float: left;
   display: block;
-  color: #F2E6B6;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 14px;
-}
-
-/* Add an active class to highlight the current page */
-.active {
-  background-color: #292929;
-  color: white;
 }
 
 /* Hide the link that should open and close the topnav on small screens */
@@ -63,7 +136,6 @@ a:hover {
   font-size: 14px;
   border: none;
   outline: none;
-  color: #F2E6B6;
   padding: 14px 16px;
   background-color: inherit;
   font-family: inherit;
@@ -74,7 +146,6 @@ a:hover {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #292929;
   min-width: 160px;
   /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
   z-index: 1;
@@ -83,7 +154,6 @@ a:hover {
 /* Style the links inside the dropdown */
 .dropdown-content a {
   float: none;
-  color: #F2E6B6;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -92,15 +162,11 @@ a:hover {
 
 /* Add a dark background on topnav links and the dropdown button on hover */
 .topnav a:hover, .dropdown:hover .dropbtn {
-  background-color: #F2E6B6;
-  color: black;
   border-radius: 1rem;
 }
 
 /* Add a grey background to dropdown links on hover */
 .dropdown-content a:hover {
-  background-color: #F2E6B6;
-  color: black;
   border-radius: 1rem;
 }
 
@@ -169,7 +235,6 @@ a:hover {
 
 h1, h2 {
   text-align: center;
-  color: #5B7876
 }
 
 p {
@@ -187,7 +252,6 @@ p {
 .hero-subtitle {
   text-align: center;
   font-size: 1.1rem;
-  color: #8F9E8B;
   margin-top: -10px;
   margin-bottom: 30px;
   letter-spacing: 0.02em;
@@ -209,18 +273,8 @@ p {
   transition: all 0.3s ease;
 }
 
-.btn-primary {
-  background: #8F9E8B;
-  color: #292929;
-}
-
-.btn-primary:hover {
-  background: #F2E6B6;
-}
-
 .btn-secondary {
   border: 1px solid #8F9E8B;
-  color: #8F9E8B;
   background: transparent;
 }
 
@@ -242,7 +296,6 @@ p {
 }
 
 .why-grid h3 {
-  color: #8F9E8B;
   font-size: 1rem;
   margin-bottom: 8px;
 }
@@ -253,7 +306,6 @@ p {
 }
 
 em {
-  color: #8F9E8B;
   font-weight: bold;
 }
 
@@ -274,7 +326,6 @@ em {
 /* Eyebrow / soft intro */
 .portfolio-invite-eyebrow {
   font-size: 0.85rem;
-  color: #8F9E8B;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   margin-bottom: 24px;
@@ -310,7 +361,6 @@ em {
 .portfolio-invite-text p {
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #e6e6e6;
   margin-bottom: 12px;
   max-width: 420px;
 }
@@ -318,7 +368,6 @@ em {
 /* Link */
 .portfolio-invite-link {
   font-size: 0.9rem;
-  color: #f2e6b6;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -433,13 +482,11 @@ li {
   border: 0.5rem solid #412A22;
 }
 
-.portfolio-border:hover {
-  border: 0.5rem solid #8F9E8B;
-  color: #8F9E8B;
+.portfolio-border {
+  border: 0.5rem solid var(--text-primary);
 }
-
 .portfolio-border:hover {
-  border: 0.5rem solid #8F9E8B;
+  border: 0.5rem solid var(--accent-secondary);
 }
 
 #top-portfolio {
@@ -471,7 +518,6 @@ li {
 }
 
 .centered {
-  color: #F2E6B6;
   text-shadow: #292929 5px 0 5px;
   font-size: larger;
   position: absolute;
@@ -527,32 +573,16 @@ hr.style-seven {
 
 /* Style the submit button with a specific background color etc */
 input[type=submit] {
-  background-color: #9caf88;
-  color: black;
   padding: 12px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
-/* When moving the mouse over the submit button, add a darker green color */
-input[type=submit]:hover {
-  background-color: #F2E6B6;
-}
-
 /* Add a background color and some padding around the form */
 .formBackground {
   border-radius: 5px;
-  background-color: green;
   padding: 20px;
-}
-
-.contactFormText {
-  color:#F2E6B6;
-}
-
-.formBackground {
-  background-color:#292929;
 }
 
 /* .formInput {
@@ -567,8 +597,6 @@ input[type=submit]:hover {
   border-top: 1px solid rgba(242, 230, 182, 0.3);
   margin-top: 80px;
   padding: 50px 20px 20px;
-  background-color: #292929;
-  color: #F2E6B6;
 }
 
 .footer-inner {
@@ -588,7 +616,6 @@ input[type=submit]:hover {
 .footer-brand h3 {
   margin-bottom: 12px;
   font-size: 1.1rem;
-  color: #8F9E8B;
   letter-spacing: 0.04em;
   max-width: 320px;
 }
@@ -608,7 +635,6 @@ input[type=submit]:hover {
 }
 
 .footer-nav a {
-  color: #F2E6B6;
   font-size: 0.9rem;
   opacity: 0.85;
   transition: opacity 0.3s ease;
@@ -721,23 +747,15 @@ input[type=submit]:hover {
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
-
   width: 40px;
   height: 40px;
-
   display: flex;                 /* 👈 key fix */
   align-items: center;           /* 👈 vertical centre */
   justify-content: center;       /* 👈 horizontal centre */
-
   border-radius: 50%;
   border: none;
-
-  background: rgba(255,255,255,0.08);
-  color: white;
-
   font-size: 26px;               /* slightly smaller = nicer */
   line-height: 1;                /* 👈 critical */
-
   cursor: pointer;
   backdrop-filter: blur(6px);
 }
@@ -774,13 +792,19 @@ input[type=submit]:hover {
 }
 
 .fade-left {
-  left: 0;
-  background: linear-gradient(to right, #292929 0%, transparent 100%);
+  background: linear-gradient(
+    to right,
+    var(--bg-main) 0%,
+    transparent 100%
+  );
 }
 
 .fade-right {
-  right: 0;
-  background: linear-gradient(to left, #292929 0%, transparent 100%);
+  background: linear-gradient(
+    to left,
+    var(--bg-main) 0%,
+    transparent 100%
+  );
 }
 
 /* Responsive */
@@ -795,16 +819,10 @@ input[type=submit]:hover {
 
 /* Contact Buttons */
 button {
-  background-color: #9caf88;
-  color: black;
   padding: 12px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-}
-
-button:hover {
-  background-color: #F2E6B6;
 }
 
 .contact-form {
@@ -855,7 +873,6 @@ button:hover {
 
 .sessions-section h3 {
   margin-top: 30px;
-  color: #8F9E8B;
 }
 
 .session-bullets {
@@ -913,7 +930,6 @@ button:hover {
 
 .pricing-features li::before {
   content: "—";
-  color: #8F9E8B;
   margin-right: 8px;
 }
 
@@ -933,8 +949,6 @@ button:hover {
   display: inline-block;
   margin-top: 20px;
   padding: 14px 26px;
-  background: #9caf88;
-  color: #000;
   border-radius: 8px;
   font-weight: bold;
 }
@@ -1019,20 +1033,17 @@ button:hover {
 
 .about-intro {
   font-size: 1.05rem;
-  color: #F2E6B6;
 }
 
 .about-closing {
   margin-top: 30px;
   font-style: italic;
-  color: #8F9E8B;
 }
 
 /* Headings within about */
 .article-text h2 {
   margin-top: 40px;
   margin-bottom: 10px;
-  color: #8F9E8B;
 }
 
 /* Mobile */
@@ -1114,7 +1125,6 @@ button:hover {
   gap: 10px;
 
   font-size: 1rem;
-  color: #8F9E8B;
   text-align: center;
 }
 
@@ -1143,5 +1153,79 @@ button:hover {
 
   .kit-list {
     max-width: 90%;
+  }
+}
+
+/* =========================
+   Theme Toggle Button
+========================= */
+
+.theme-toggle {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--brand-gold);
+  outline-offset: 3px;
+}
+
+/* Icons */
+.toggle-icon {
+  position: absolute;
+  font-size: 18px;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* Light mode default */
+.toggle-icon.sun {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.toggle-icon.moon {
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+/* Dark mode */
+[data-theme="dark"] .toggle-icon.sun {
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+[data-theme="dark"] .toggle-icon.moon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    transition: none;
   }
 }
