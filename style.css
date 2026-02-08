@@ -793,24 +793,39 @@ input[type=submit] {
   top: 0;
   bottom: 0;
   width: 100px;
-  z-index: 1;              /* BELOW arrows */
-  pointer-events: none;    /* allow clicks through */
+  z-index: 1;
+  pointer-events: none;
 }
 
 .fade-left {
+  left: 0;
   background: linear-gradient(
     to right,
-    var(--bg-card) 0%,
+    var(--bg-main) 0%,
     rgba(0,0,0,0) 100%
   );
 }
 
 .fade-right {
+  right: 0;
   background: linear-gradient(
     to left,
-    var(--bg-card) 0%,
+    var(--bg-main) 0%,
     rgba(0,0,0,0) 100%
   );
+}
+
+.fade-left {
+  left: 0;
+}
+
+.fade-right {
+  right: 0;
+}
+
+.fade-left,
+.fade-right {
+  width: 80px;
 }
 
 /* Responsive */
