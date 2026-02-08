@@ -1,3 +1,24 @@
+
+// ---------------------------
+// Toggle checking device settings
+// ---------------------------
+(function () {
+  const storedTheme = localStorage.getItem('theme');
+
+  if (storedTheme) {
+    document.documentElement.setAttribute('data-theme', storedTheme);
+  } else {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute(
+      'data-theme',
+      prefersDark ? 'dark' : 'light'
+    );
+  }
+})();
+
+
+
+
 // ---------------------------
 // Mobile navigation toggle
 // ---------------------------
@@ -245,29 +266,20 @@ const fadeObserver = new IntersectionObserver(
 );
 
 // ===========================
-// Theme Toggle (FIXED)
+// Theme Toggle
 // ===========================
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.documentElement;
   const toggles = document.querySelectorAll('[data-theme-toggle]');
+  const currentTheme = root.getAttribute('data-theme');
 
-  // 1. Load saved preference
-  const savedTheme = localStorage.getItem('theme');
-
-  // 2. System preference
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-  // 3. Set initial theme
-  const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
-  root.setAttribute('data-theme', initialTheme);
-
-  // 4. Update aria state
+  // Set aria state on load
   toggles.forEach(btn => {
-    btn.setAttribute('aria-pressed', initialTheme === 'dark');
+    btn.setAttribute('aria-pressed', currentTheme === 'dark');
   });
 
-  // 5. Toggle handler
+  // Toggle handler
   toggles.forEach(btn => {
     btn.addEventListener('click', () => {
       const isDark = root.getAttribute('data-theme') === 'dark';
@@ -281,4 +293,16 @@ document.addEventListener('DOMContentLoaded', () => {
       );
     });
   });
+});
+
+
+const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+mediaQuery.addEventListener('change', e => {
+  if (!localStorage.getItem('theme')) {
+    document.documentElement.setAttribute(
+      'data-theme',
+      e.matches ? 'dark' : 'light'
+    );
+  }
 });
