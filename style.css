@@ -96,141 +96,120 @@ a {
   text-decoration: none;
 }
 
-/* #navbar {
-  text-align: center;
-  overflow: hidden;
-} */
+/* =========================
+   Hybrid Navigation
+========================= */
+
+.site-nav {
+  position: relative;
+  z-index: 1000;
+}
+
+/* ---------- Desktop ---------- */
+
+/* =========================
+   Desktop Editorial Nav
+========================= */
+
+.nav-desktop {
+  display: none;
+  width: 100%;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-main);
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 18px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  font-size: 1rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.nav-links a {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.nav-links a:hover {
+  opacity: 1;
+}
+
+.nav-cta {
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: var(--accent-primary);
+  color: #1e1f1d;
+  font-size: 0.85rem;
+}
+
+/* ---------- Mobile ---------- */
+
+.nav-mobile {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: none;
+  justify-content: space-around;
+  align-items: center;
+
+  padding: 10px 8px env(safe-area-inset-bottom);
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.nav-mobile a,
+.nav-mobile button {
+  font-size: 0.75rem;
+  background: none;
+  border: none;
+  opacity: 0.85;
+}
+
+.mobile-cta {
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--accent-primary);
+  color: #1e1f1d;
+  font-weight: bold;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (min-width: 768px) {
+  .nav-desktop {
+    display: block;
+  }
+}
+
+@media (max-width: 767px) {
+  .nav-mobile {
+    display: flex;
+  }
+
+  body {
+    padding-bottom: 80px;
+  }
+}
 
 a:hover {
   cursor: pointer;
-}
-
-/* Add a black background color to the top navigation */
-.topnav {
-  overflow: hidden;
-}
-
-/* Style the links inside the navigation bar */
-.topnav a {
-  float: left;
-  display: block;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-/* Hide the link that should open and close the topnav on small screens */
-.topnav .icon {
-  display: none;
-}
-
-/* Dropdown container - needed to position the dropdown content */
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-
-/* Style the dropdown button to fit inside the topnav */
-.dropdown .dropbtn {
-  font-size: 14px;
-  border: none;
-  outline: none;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
-
-/* Style the dropdown content (hidden by default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  min-width: 160px;
-  /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
-  z-index: 1;
-}
-
-/* Style the links inside the dropdown */
-.dropdown-content a {
-  float: none;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-/* Add a dark background on topnav links and the dropdown button on hover */
-.topnav a:hover, .dropdown:hover .dropbtn {
-  border-radius: 1rem;
-}
-
-/* Add a grey background to dropdown links on hover */
-.dropdown-content a:hover {
-  border-radius: 1rem;
-}
-
-/* Show the dropdown menu when the user moves the mouse over the dropdown button */
-.dropdown:hover .dropdown-content {
-  display: block;
-  padding-bottom: 1rem;
-}
-
-/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
-@media screen and (max-width: 600px) {
-  .topnav a:not(:first-child), .dropdown .dropbtn {
-    display: none;
-  }
-  .topnav a.icon {
-    float: right;
-    display: block;
-    padding-bottom: 1rem;
-    padding-left: 1rem;
-  }
-}
-
-/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
-@media screen and (max-width: 600px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive a.icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-  .topnav.responsive .dropdown {float: none;}
-  .topnav.responsive .dropdown-content {position: relative;}
-  .topnav.responsive .dropdown .dropbtn {
-    display: block;
-    width: 100%;
-    text-align: left;
-  }
-}
-
-.topnav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: solid 1px;
-  border-top: solid 1px;
-  padding-top: 2rem;
-  margin-top: 2rem;
-  padding-bottom: 2rem;
-  margin-bottom: 2rem;
-}
-
-.website-logo {
-  display: flex;
-  justify-content: center;
-}
-
-.willowAndPawLogo {
-  height: auto;
-  width: 35%;
 }
 
 h1, h2 {
@@ -342,6 +321,15 @@ em {
 .portfolio-invite-image {
   display: block;
   flex-shrink: 0;
+}
+
+.contact-hero-image {
+  max-width: 100%;
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 18px;
+  margin: 30px 0;
 }
 
 .portfolio-invite-image img {
@@ -696,20 +684,20 @@ input[type=submit] {
   position: relative;
   max-width: 1100px;
   margin: 40px auto;
-  display: flex;
-  align-items: center;
 }
 
 .gallery {
+  position: relative;
   display: flex;
-  align-items: center;
+  align-items: center; /* already present on desktop, KEEP it */
   gap: 16px;
   overflow-x: auto;
   overflow-y: hidden;         /* 👈 critical */
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  padding: 0 40px;
   scrollbar-width: none;
+  padding-inline: 40px;
+  padding-block: 0;
 }
 
 .gallery::-webkit-scrollbar {
@@ -740,6 +728,19 @@ input[type=submit] {
   box-shadow: 0 20px 60px rgba(0,0,0,0.4);
 }
 
+.gallery-spacer {
+  flex: 0 0 50%;
+  height: 1px;
+  pointer-events: none;
+}
+
+.gallery-frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--bg-main);
+}
+
 /* Arrows */
 
 .arrow {
@@ -747,24 +748,30 @@ input[type=submit] {
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
-  width: 40px;
-  height: 40px;
-  display: flex;                 /* 👈 key fix */
-  align-items: center;           /* 👈 vertical centre */
-  justify-content: center;       /* 👈 horizontal centre */
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   border-radius: 50%;
   border: none;
-  font-size: 26px;               /* slightly smaller = nicer */
-  line-height: 1;                /* 👈 critical */
+
+  font-size: 26px;
+  line-height: 1;           /* 👈 critical fix */
+  padding: 0;               /* 👈 prevents glyph squash */
+
   cursor: pointer;
   backdrop-filter: blur(6px);
 }
 
 @media (max-width: 768px) {
   .arrow {
-    width: 32px;
-    height: 32px;
-    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
   }
 }
 
@@ -792,30 +799,55 @@ input[type=submit] {
 }
 
 .fade-left {
-  left: 0;
   background: linear-gradient(
     to right,
     var(--bg-card) 0%,
-    transparent 100%
+    rgba(0,0,0,0) 100%
   );
 }
 
 .fade-right {
-  right: 0;
   background: linear-gradient(
     to left,
     var(--bg-card) 0%,
-    transparent 100%
+    rgba(0,0,0,0) 100%
   );
 }
 
 /* Responsive */
 
+/* Mobile carousel fixes */
 @media (max-width: 768px) {
+  .gallery {
+    align-items: center;
+    padding-inline: 16px;
+  }
+
   .gallery img {
-    width: 80vw;        /* 👈 limit width */
-    height: 380px;     /* 👈 consistent height */
-    max-width: 480px;  /* 👈 prevents portraits from dominating */
+    width: 85vw;
+    height: auto;
+    max-height: 70vh;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 768px) {
+  .fade {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-spacer {
+    flex: 0;
+    width: 0;
+    height: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-section {
+    margin-bottom: 24px;
   }
 }
 

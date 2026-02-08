@@ -14,31 +14,43 @@
 </head>
 
 <body>
-    <div class="website-logo">
-        <img class="willowAndPawLogo" src="assets/W&P-Logo old.png" alt="logo">
-    </div>
+    <nav class="site-nav">
 
-
-    <div class="topnav" id="myTopnav">
-        <a href="index.html" class="active">Home</a>
-        <a href="portfolio.html" class="active">Portfolio</a>
-        <a href="sessions.html" class="active">Sessions</a>
-        <a href="aboutme.html">About</a>
-        <a href="contact.html" class="active">Contact</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
-        <button
-  class="theme-toggle"
-  aria-label="Toggle light and dark mode"
-  aria-pressed="false"
->
-  <span class="toggle-icon sun" aria-hidden="true">☀</span>
-  <span class="toggle-icon moon" aria-hidden="true">🌙</span>
-</button>
-      </div>
-            
-            <!-- <a class="nav-link" href="contact.html">Contact</a> -->
+        <!-- Desktop floating nav -->
+        <div class="nav-desktop">
+          <div class="nav-inner">
+      
+            <a href="index.html" class="nav-logo">Willow & Paw</a>
+      
+            <div class="nav-links">
+              <a href="portfolio.html">Portfolio</a>
+              <a href="sessions.html">Sessions</a>
+              <a href="aboutme.html">About</a>
+              <a href="contact.html" class="nav-cta">Book</a>
+            </div>
+      
+            <button class="theme-toggle" aria-label="Toggle theme">
+              <span class="toggle-icon sun">☀</span>
+              <span class="toggle-icon moon">🌙</span>
+            </button>
+      
+          </div>
         </div>
-    </div>
+      
+        <!-- Mobile bottom nav -->
+        <div class="nav-mobile">
+          <a href="index.html" aria-label="Home">🏠</a>
+          <a href="portfolio.html" aria-label="Portfolio">📷</a>
+          <a href="contact.html" class="mobile-cta">Book</a>
+          <a href="aboutme.html" aria-label="About">👋</a>
+      
+          <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+            <span class="toggle-icon sun">☀</span>
+            <span class="toggle-icon moon">🌙</span>
+          </button>
+        </div>
+      
+      </nav>
     
     <div class="article-container">
 
