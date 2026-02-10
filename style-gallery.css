@@ -11,7 +11,7 @@
 .portfolio-card {
   box-shadow:
     0 0 0 1px var(--card-outline),
-    0 10px 30px var(--card-shadow);
+    0 12px 30px var(--card-shadow);
 }
 
 /* Container styling for the gallery */
@@ -25,13 +25,6 @@
 
 .portfolioGallery {
     background-color: #292929;
-}
-
-.portfolio-card:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,0.08),
-    0 18px 45px rgba(0,0,0,0.35);
 }
 
 /* Emotional Section */
@@ -69,7 +62,7 @@
       /* Subtle separation */
       box-shadow:
         0 0 0 1px rgba(255,255,255,0.04),
-        0 10px 30px rgba(0,0,0,0.25);
+        0 12px 30px rgba(0,0,0,0.25);
     
       transition:
         transform 0.35s ease,
@@ -78,9 +71,6 @@
 
     .portfolio-card:hover {
       transform: translateY(-4px);
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,0.08),
-        0 18px 45px rgba(0,0,0,0.35);
     }
 }
 
@@ -367,4 +357,13 @@
 
 .portfolio-card {
   transform: translateZ(0);
+}
+
+/* 🔒 Lock portfolio cards in place */
+.portfolio-card {
+  transform: none !important;
+}
+
+.portfolio-card:hover {
+  transform: none !important;
 }
