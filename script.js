@@ -1,24 +1,3 @@
-
-// ---------------------------
-// Toggle checking device settings
-// ---------------------------
-(function () {
-  const storedTheme = localStorage.getItem('theme');
-
-  if (storedTheme) {
-    document.documentElement.setAttribute('data-theme', storedTheme);
-  } else {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    document.documentElement.setAttribute(
-      'data-theme',
-      prefersDark ? 'dark' : 'light'
-    );
-  }
-})();
-
-
-
-
 // ---------------------------
 // Mobile navigation toggle
 // ---------------------------
@@ -266,20 +245,26 @@ const fadeObserver = new IntersectionObserver(
 );
 
 // ===========================
-// Theme Toggle
+// Theme Toggle (FINAL, CLEAN)
 // ===========================
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.documentElement;
   const toggles = document.querySelectorAll('[data-theme-toggle]');
-  const currentTheme = root.getAttribute('data-theme');
 
-  // Set aria state on load
+  // 1. Load saved or system preference
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+
+  root.setAttribute('data-theme', initialTheme);
+
+  // 2. Set aria state
   toggles.forEach(btn => {
-    btn.setAttribute('aria-pressed', currentTheme === 'dark');
+    btn.setAttribute('aria-pressed', initialTheme === 'dark');
   });
 
-  // Toggle handler
+  // 3. Toggle handler
   toggles.forEach(btn => {
     btn.addEventListener('click', () => {
       const isDark = root.getAttribute('data-theme') === 'dark';
@@ -295,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
+// 4. React to OS theme changes (only if user hasn't chosen)
 const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
 mediaQuery.addEventListener('change', e => {

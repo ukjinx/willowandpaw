@@ -1,3 +1,19 @@
+:root {
+  --card-outline: rgba(0,0,0,0.06);
+  --card-shadow: rgba(0,0,0,0.2);
+}
+
+[data-theme="dark"] {
+  --card-outline: rgba(255,255,255,0.05);
+  --card-shadow: rgba(0,0,0,0.4);
+}
+
+.portfolio-card {
+  box-shadow:
+    0 0 0 1px var(--card-outline),
+    0 10px 30px var(--card-shadow);
+}
+
 /* Container styling for the gallery */
 .container {
     display: flex;
@@ -11,9 +27,11 @@
     background-color: #292929;
 }
 
-.gallery1:hover {
-    border: 8px solid #8F9E8B;
-    transform: scale(1.1);
+.portfolio-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.08),
+    0 18px 45px rgba(0,0,0,0.35);
 }
 
 /* Emotional Section */
@@ -42,13 +60,27 @@
         margin: 2px;
     }
     
-    .gallery1 {
-        border: 4px solid #412A22; /* Smaller border for smaller screens */
+    .portfolio-card {
+      background: var(--surface-1);
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+    
+      /* Subtle separation */
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.04),
+        0 10px 30px rgba(0,0,0,0.25);
+    
+      transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
     }
 
-    .gallery1:hover {
-        border: 4px solid #8F9E8B;
-        transform: scale(1.05); /* Slightly reduced zoom effect on hover */
+    .portfolio-card:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.08),
+        0 18px 45px rgba(0,0,0,0.35);
     }
 }
 
@@ -78,6 +110,8 @@
   object-fit: cover;     /* ✔ intentional crop */
   display: block;
   transition: transform 0.5s ease, opacity 0.4s ease;
+  transform: scale(1.03);
+  opacity: 0.95;
 }
 
 .portfolio-card:hover img {
@@ -124,6 +158,18 @@
   .portfolio-card {
     grid-column: span 2 !important;
     grid-row: span 2 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .portfolio-card {
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.04),
+      0 6px 18px rgba(0,0,0,0.25);
+  }
+
+  .portfolio-card:hover {
+    transform: none;
   }
 }
   
