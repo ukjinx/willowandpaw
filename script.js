@@ -140,6 +140,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = document.createElement('div');
         card.className = 'portfolio-card';
       
+        // NEW: viewport wrapper
+        const wrap = document.createElement('div');
+        wrap.className = 'image-wrap';
+      
         const img = document.createElement('img');
         img.src = `portfolio-gallery/${item.src}`;
         img.alt = item.caption || '';
@@ -155,7 +159,9 @@ document.addEventListener('DOMContentLoaded', () => {
       
         img.addEventListener('click', () => openLightbox(index));
       
-        card.appendChild(img);
+        // NEW structure
+        wrap.appendChild(img);
+        card.appendChild(wrap);
         grid.appendChild(card);
       });
     })

@@ -5,7 +5,7 @@
 /* ---------- Light Theme ---------- */
 html[data-theme="light"] {
   /* Backgrounds */
-  --bg-main: #90A19D;          /* main page background */
+  --bg-main: #cad8c7;          /* main page background */
   --bg-card: #FFF9F5;          /* cards, nav, surfaces */
 
   /* Text */
@@ -113,8 +113,7 @@ body {
     color: var(--link-hover);
   }
 
-  .card,
-.portfolio-card,
+.card,
 .pricing-box {
   background: var(--pricing-bg);
   padding: 40px;
@@ -555,26 +554,6 @@ li {
   width: 16rem;
   padding: 0.5rem;
   list-style-image: url(gallery1/camera-icon.png);
-}
-
-.portfolio-cover {
-  border: 0.5rem solid #412A22;
-  width: auto;
-  height: 16rem;
-  margin: 1.5rem;
-}
-
-.pano-cover {
-  width: auto;
-  height: 16rem;
-  border: 0.5rem solid #412A22;
-}
-
-.portfolio-border {
-  border: 0.5rem solid var(--text-primary);
-}
-.portfolio-border:hover {
-  border: 0.5rem solid var(--accent-secondary);
 }
 
 #top-portfolio {
@@ -1383,4 +1362,29 @@ html {
   html {
     transition: none;
   }
+}
+
+.portfolio-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.image-wrap {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s ease, filter 0.4s ease;
+}
+
+.portfolio-card:hover img {
+  transform: scale(1.06);
+  filter: brightness(1.08) contrast(1.05);
 }
