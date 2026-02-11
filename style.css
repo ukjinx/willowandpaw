@@ -6,7 +6,7 @@
 html[data-theme="light"] {
   /* Backgrounds */
   --bg-main: #cad8c7;          /* main page background */
-  --bg-card: #FFF9F5;          /* cards, nav, surfaces */
+  --bg-card: #E3EAE4;          /* cards, nav, surfaces */
 
   /* Text */
   --text-primary: #363432;     /* main text */
@@ -36,7 +36,7 @@ html[data-theme="light"] {
 html[data-theme="dark"] {
   /* Backgrounds */
   --bg-main: #363432;          /* main page background */
-  --bg-card: #1F1F1F;          /* cards, nav, surfaces */
+  --bg-card: #2B2927;          /* cards, nav, surfaces */
 
   /* Text */
   --text-primary: #F4F1ED;     /* main text */
@@ -171,7 +171,7 @@ a {
   display: none;
   width: 100%;
   border-bottom: 1px solid var(--border-subtle);
-  background: var(--bg-main);
+  background: var(--bg-card);
 }
 
 .nav-inner {
@@ -192,10 +192,42 @@ a {
    Theme-aware Logos
 ========================= */
 
-.logo {
-  display: none;
+/* Wrapper keeps layout stable */
+.logo-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Both logos stacked */
+.logo-wrapper .logo {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: auto;
-  height: auto;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+/* Ensure wrapper has height */
+.nav-logo .logo-wrapper {
+  height: 150px;
+}
+
+.mobile-logo .logo-wrapper {
+  height: 100px;
+}
+
+/* Light theme */
+html[data-theme="light"] .logo-light {
+  opacity: 1;
+  position: relative;
+}
+
+/* Dark theme */
+html[data-theme="dark"] .logo-dark {
+  opacity: 1;
+  position: relative;
 }
 
 /* Light theme */
