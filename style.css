@@ -194,8 +194,8 @@ a {
 
 .logo {
   display: none;
-  height: inherit;
   width: auto;
+  height: auto;
 }
 
 /* Light theme */
