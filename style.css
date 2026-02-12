@@ -410,17 +410,6 @@ html[data-theme="dark"] .logo-dark {
   }
 }
 
-/* Page fade wrapper */
-body {
-  opacity: 0;
-  transition: opacity 0.15s ease;
-}
-
-/* When page is ready */
-body.page-loaded {
-  opacity: 1;
-}
-
 a:hover {
   cursor: pointer;
 }
