@@ -270,6 +270,11 @@ html[data-theme="dark"] .logo-dark {
   display: none;
 }
 
+/* Mobile logo wrapper height fix */
+.mobile-logo .logo-wrapper {
+  height: 100px;   /* match your mobile logo size */
+}
+
 @media (max-width: 767px) {
   .mobile-logo {
     display: flex;
@@ -279,6 +284,56 @@ html[data-theme="dark"] .logo-dark {
 
   .mobile-logo img {
     height: 100px;
+  }
+}
+
+/* =========================
+   Responsive Navigation
+========================= */
+
+/* Hide mobile nav by default */
+.nav-mobile {
+  display: none;
+}
+
+/* Hide desktop nav on mobile */
+@media (max-width: 767px) {
+
+  .nav-desktop {
+    display: none;
+  }
+
+  .nav-mobile {
+    display: flex;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    justify-content: space-around;
+    align-items: center;
+
+    padding: 12px 8px env(safe-area-inset-bottom);
+    background: var(--bg-card);
+    border-top: 1px solid var(--border-subtle);
+
+    z-index: 1000;
+  }
+
+  body {
+    padding-bottom: 85px; /* space for bottom nav */
+  }
+}
+
+.mobile-logo {
+  position: relative;
+  z-index: 5;
+}
+
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 80px; /* height of mobile nav */
   }
 }
 
@@ -353,6 +408,17 @@ html[data-theme="dark"] .logo-dark {
   body {
     padding-bottom: 80px;
   }
+}
+
+/* Page fade wrapper */
+body {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+/* When page is ready */
+body.page-loaded {
+  opacity: 1;
 }
 
 a:hover {

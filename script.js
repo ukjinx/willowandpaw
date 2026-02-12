@@ -1,3 +1,44 @@
+// ===========================
+// Page Fade System (Clean)
+// ===========================
+
+// ===========================
+// Page Fade System (Robust)
+// ===========================
+
+// Fade IN (normal load)
+window.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.add('page-loaded');
+});
+
+// Fade IN (bfcache restore - Chrome back button fix)
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted) {
+    document.body.classList.add('page-loaded');
+  }
+});
+
+// Fade OUT on internal navigation
+document.addEventListener('click', function (e) {
+  const link = e.target.closest('a');
+  if (!link) return;
+
+  const isInternal = link.hostname === window.location.hostname;
+  const isHash = link.getAttribute('href')?.startsWith('#');
+  const isDownload = link.hasAttribute('download');
+  const isTargetBlank = link.target === '_blank';
+
+  if (isInternal && !isHash && !isDownload && !isTargetBlank) {
+    e.preventDefault();
+
+    document.body.classList.remove('page-loaded');
+
+    setTimeout(() => {
+      window.location.href = link.href;
+    }, 400);
+  }
+});
+
 // ---------------------------
 // Mobile navigation toggle
 // ---------------------------
