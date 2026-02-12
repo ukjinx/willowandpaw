@@ -25,8 +25,8 @@ html[data-theme="light"] {
   --cta-primary-text: #1E1F1D;
 
   /* Links */
-  --link: #196774;
-  --link-hover: #EF6024;
+  --link: #024f5c;
+  --link-hover: #802f0d;
 
   /* Utility */
   --brand-gold: #F0941F;
@@ -55,8 +55,8 @@ html[data-theme="dark"] {
   --cta-primary-text: #1E1F1D;
 
   /* Links */
-  --link: #90A19D;
-  --link-hover: #F0941F;
+  --link: #5f8e99;
+  --link-hover: #a27460;
 
   /* Utility */
   --brand-gold: #F0941F;
@@ -168,10 +168,25 @@ a {
 ========================= */
 
 .nav-desktop {
-  display: none;
   width: 100%;
+  background: var(--bg-main);
+  border-bottom: 1px solid transparent;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  transition: 
+    background 0.35s ease,
+    box-shadow 0.35s ease,
+    padding 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.nav-desktop.scrolled {
+  background: var(--bg-main);
   border-bottom: 1px solid var(--border-subtle);
-  background: var(--bg-card);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
 }
 
 .nav-inner {
@@ -211,11 +226,12 @@ a {
 
 /* Ensure wrapper has height */
 .nav-logo .logo-wrapper {
-  height: 150px;
+  height: 100px;
+  transition: height 0.35s ease;
 }
 
-.mobile-logo .logo-wrapper {
-  height: 100px;
+.nav-desktop.scrolled .logo-wrapper {
+  height: 75px;
 }
 
 /* Light theme */
@@ -778,6 +794,38 @@ input[type=submit] {
   text-align: center;
   font-size: 0.75rem;
   opacity: 0.6;
+}
+
+/* Footer logo wrapper */
+.footer-logo-wrapper {
+  position: relative;
+  height: 100px; /* match previous footer logo height */
+  width: auto;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+/* Stack logos */
+.footer-logo-wrapper .logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: auto;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+/* Light theme */
+html[data-theme="light"] .footer-logo-wrapper .logo-light {
+  opacity: 1;
+  position: relative;
+}
+
+/* Dark theme */
+html[data-theme="dark"] .footer-logo-wrapper .logo-dark {
+  opacity: 1;
+  position: relative;
 }
 
 /* Mobile */
