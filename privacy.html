@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute(
+          'data-theme',
+          prefersDark ? 'dark' : 'light'
+        );
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.png">
+
+  <title>Privacy Policy | Willow & Paw Photography</title>
+</head>
+
+<body>
+
+  <!-- NAVIGATION (same as other pages) -->
+  <nav class="site-nav">
+
+    <div class="nav-desktop">
+      <div class="nav-inner">
+
+        <a href="index.html" class="nav-logo">
+          <span class="logo-wrapper">
+            <img src="assets/willow-paw-light.png" class="logo logo-light" alt="Willow & Paw">
+            <img src="assets/willow-paw-dark.png" class="logo logo-dark" alt="Willow & Paw">
+          </span>
+        </a>
+
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="sessions.html">Sessions</a>
+          <a href="aboutme.html">About</a>
+          <a href="contact.html" class="nav-cta">Book</a>
+        </div>
+
+        <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+          <span class="toggle-icon sun">☀</span>
+          <span class="toggle-icon moon">🌙</span>
+        </button>
+
+      </div>
+    </div>
+
+  </nav>
+
+  <!-- PRIVACY CONTENT -->
+  <div class="terms-page">
+
+    <div class="terms-card">
+
+      <h1>Privacy Policy</h1>
+      <p class="terms-updated">Last updated: [Insert Date]</p>
+
+      <div class="terms-section">
+        <p>
+          Willow & Paw Photography is committed to protecting your privacy.
+          This policy explains what information is collected, why it is collected,
+          and how it is handled in line with UK data protection law.
+        </p>
+      </div>
+
+      <div class="terms-section">
+        <h2>1. Who We Are</h2>
+        <p>
+          Willow & Paw Photography is a sole trader photography business based in
+          South Wales, United Kingdom.
+        </p>
+        <p>
+          For any privacy-related enquiries, please contact:
+          <br>
+          [your email address]
+        </p>
+      </div>
+
+      <div class="terms-section">
+        <h2>2. What Information Is Collected</h2>
+        <p>
+          When you enquire or book a session, the following information may be collected:
+        </p>
+        <ul>
+          <li>Your name</li>
+          <li>Email address</li>
+          <li>Phone number (if provided)</li>
+          <li>Session location details</li>
+          <li>Information about your dog relevant to the session</li>
+        </ul>
+        <p>
+          Website analytics data may also be collected anonymously to help improve the site.
+        </p>
+      </div>
+
+      <div class="terms-section">
+        <h2>3. How Your Information Is Used</h2>
+        <p>Your information is used only to:</p>
+        <ul>
+          <li>Respond to enquiries</li>
+          <li>Manage and deliver photography sessions</li>
+          <li>Process payments</li>
+          <li>Deliver images</li>
+          <li>Comply with legal and accounting obligations</li>
+        </ul>
+        <p>
+          Your information is never sold or shared for marketing purposes.
+        </p>
+      </div>
+
+      <div class="terms-section">
+        <h2>4. Legal Basis for Processing</h2>
+        <p>
+          Under UK GDPR, personal data is processed on the following lawful bases:
+        </p>
+        <ul>
+          <li>Contract — to provide photography services you have requested</li>
+          <li>Legal obligation — for tax and accounting requirements</li>
+          <li>Legitimate interest — to operate and improve the business</li>
+        </ul>
+      </div>
+
+      <div class="terms-section">
+        <h2>5. How Your Data Is Stored</h2>
+        <p>
+          Personal data is stored securely using password-protected systems.
+          Images are backed up securely.
+        </p>
+        <p>
+          Client information is retained only for as long as necessary for
+          business and legal purposes.
+        </p>
+      </div>
+
+      <div class="terms-section">
+        <h2>6. Image Usage</h2>
+        <p>
+          Photographs may be used for portfolio, website, or social media
+          purposes unless you request otherwise in writing.
+        </p>
+        <p>
+          You may opt out of promotional use at any time.
+        </p>
+      </div>
+
+      <div class="terms-section">
+        <h2>7. Your Rights</h2>
+        <p>
+          Under UK data protection law, you have the right to:
+        </p>
+        <ul>
+          <li>Request access to your personal data</li>
+          <li>Request correction of inaccurate data</li>
+          <li>Request deletion of your data (where legally permitted)</li>
+          <li>Object to certain types of processing</li>
+        </ul>
+        <p>
+          Requests can be made via email.
+        </p>
+      </div>
+
+      <div class="terms-section">
+        <h2>8. Cookies</h2>
+        <p>
+          This website may use basic cookies for functionality and analytics.
+          You can control cookie settings through your browser.
+        </p>
+      </div>
+
+      <div class="terms-section">
+        <h2>9. Changes to This Policy</h2>
+        <p>
+          This policy may be updated occasionally to reflect changes in law
+          or business practices.
+        </p>
+      </div>
+
+      <p class="terms-closing">
+        Your trust matters. Your information is handled with the same care
+        and respect as your photographs.
+      </p>
+
+    </div>
+
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

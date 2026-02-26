@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute(
+          'data-theme',
+          prefersDark ? 'dark' : 'light'
+        );
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.png">
+
+  <title>Terms & Conditions | Willow & Paw Photography</title>
+</head>
+
+<body>
+
+  <!-- NAVIGATION (unchanged from your other pages) -->
+  <nav class="site-nav">
+
+    <div class="nav-desktop">
+      <div class="nav-inner">
+
+        <a href="index.html" class="nav-logo">
+          <span class="logo-wrapper">
+            <img src="assets/willow-paw-light.png" class="logo logo-light" alt="Willow & Paw">
+            <img src="assets/willow-paw-dark.png" class="logo logo-dark" alt="Willow & Paw">
+          </span>
+        </a>
+
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="sessions.html">Sessions</a>
+          <a href="aboutme.html">About</a>
+          <a href="contact.html" class="nav-cta">Book</a>
+        </div>
+
+        <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+          <span class="toggle-icon sun">☀</span>
+          <span class="toggle-icon moon">🌙</span>
+        </button>
+
+      </div>
+    </div>
+
+  </nav>
+
+  <!-- TERMS CONTENT -->
+  <div class="terms-page">
+
+    <div class="terms-card">
+
+      <h1>Terms & Conditions</h1>
+      <p class="terms-updated">Last updated: February 2026</p>
+
+      <div class="terms-section">
+        <p>
+          Thank you for choosing Willow & Paw Photography. These terms exist simply to
+          ensure clarity and fairness for everyone involved — especially your dog.
+        </p>
+        <p>
+          By booking a session, you agree to the following:
+        </p>
+      </div>
+
+      <div class="terms-section">
+        <h2>1. Booking Your Session</h2>
+        <p>
+          A session is secured once a booking fee has been paid and written confirmation has been received.
+        </p>
+        <ul>
+          <li>The booking fee is non-refundable.</li>
+          <li>The remaining balance is due prior to your session date.</li>
+          <li>Dates cannot be held without payment.</li>
+        </ul>
+      </div>
+
+      <div class="terms-section">
+        <h2>2. Cancellations & Rescheduling</h2>
+        <p>
+          If you need to reschedule, please provide at least 48 hours’ notice.
+        </p>
+        <ul>
+          <li>One reschedule is permitted without additional charge.</li>
+          <li>The booking fee may be transferred to a new agreed date.</li>
+          <li>If cancelled entirely, the booking fee is retained.</li>
+        </ul>
+        <p>
+          In cases of extreme weather or illness, sessions may be rearranged.
+        </p>
+      </div>
+
+      <div class="terms-section">
+        <h2>3. Your Dog’s Welfare</h2>
+        <p>
+          Your dog’s wellbeing is always the priority. Sessions are relaxed and guided
+          by your dog’s comfort.
+        </p>
+        <p>
+          Owners remain fully responsible for their dog’s behaviour and safety.
+        </p>
+      </div>
+
+      <div class="terms-section">
+        <h2>4. Image Selection & Delivery</h2>
+        <p>
+          Your session includes a relaxed outdoor experience, professional editing,
+          and two high-resolution digital images of your choice.
+        </p>
+        <p>
+          Additional images and full gallery upgrades are available.
+        </p>
+      </div>
+
+      <div class="terms-section">
+        <h2>5. Copyright & Usage</h2>
+        <p>
+          In accordance with the Copyright, Designs and Patents Act 1988,
+          all images remain the intellectual property of Willow & Paw Photography.
+        </p>
+        <p>
+          Clients receive a personal-use licence. Images may not be sold,
+          altered, or used commercially without prior agreement.
+        </p>
+      </div>
+
+      <div class="terms-section">
+        <h2>6. Data Protection</h2>
+        <p>
+          Personal information is stored securely and used only for booking,
+          communication, and service delivery in accordance with UK GDPR.
+        </p>
+      </div>
+
+      <div class="terms-section">
+        <h2>7. Limitation of Liability</h2>
+        <p>
+          In the unlikely event of total photographic failure or loss of files,
+          liability is limited to a refund of payments made.
+        </p>
+        <p>
+          Nothing in these terms limits your statutory rights under UK consumer law.
+        </p>
+      </div>
+
+      <p class="terms-closing">
+        These terms are here simply to protect both of us — so that the focus
+        on the day can stay exactly where it should be: on your dog.
+      </p>
+
+    </div>
+
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
