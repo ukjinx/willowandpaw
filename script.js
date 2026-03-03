@@ -88,6 +88,9 @@ if (gallery) {
 // Portfolio gallery + lightbox (FIXED & SAFE)
 // ---------------------------
 document.addEventListener('DOMContentLoaded', () => {
+  const playBtn = document.querySelector('.lightbox-play');
+let slideshowInterval = null;
+let isPlaying = false;
   const grid = document.getElementById('portfolioGrid');
   const lightbox = document.getElementById('lightbox');
   const lightboxImage = document.getElementById('lightboxImage');
@@ -95,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeBtn = document.querySelector('.lightbox-close');
   const nextBtn = document.querySelector('.lightbox-arrow.right');
   const prevBtn = document.querySelector('.lightbox-arrow.left');
+  const progress = document.querySelector('.lightbox-progress');
 
   if (!grid || !lightbox) return;
 
@@ -105,6 +109,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const item = portfolioImages[currentIndex];
     lightboxImage.src = `portfolio-gallery/${item.src}`;
     lightboxCaption.textContent = item.caption || '';
+  
+    if (progress) {
+      progress.textContent = `${currentIndex + 1} / ${portfolioImages.length}`;
+    }
   }
 
   function openLightbox(index) {
@@ -115,20 +123,60 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function closeLightbox() {
+    stopSlideshow(); // ALWAYS reset state
+  
     lightbox.classList.remove('show');
     document.body.classList.remove('lightbox-open');
   }
 
-  function showNext() {
+  function showNext(fromSlideshow = false) {
     currentIndex = (currentIndex + 1) % portfolioImages.length;
     updateLightbox();
+  
+    // Only stop if user triggered it
+    if (!fromSlideshow && isPlaying) {
+      stopSlideshow();
+    }
   }
-
+  
   function showPrev() {
     currentIndex =
       (currentIndex - 1 + portfolioImages.length) % portfolioImages.length;
     updateLightbox();
+  
+    if (isPlaying) {
+      stopSlideshow();
+    }
   }
+
+  function startSlideshow() {
+    if (isPlaying) return;
+  
+    isPlaying = true;
+    playBtn.textContent = '⏸';
+    playBtn.setAttribute('aria-label', 'Pause slideshow');
+  
+    slideshowInterval = setInterval(() => {
+      showNext(true); // mark as slideshow-triggered
+    }, 3000); // 3 seconds per image
+  }
+  
+  function stopSlideshow() {
+    isPlaying = false;
+  
+    if (slideshowInterval) {
+      clearInterval(slideshowInterval);
+      slideshowInterval = null;
+    }
+  
+    playBtn.textContent = '▶';
+    playBtn.setAttribute('aria-label', 'Start slideshow');
+  }
+
+  playBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    isPlaying ? stopSlideshow() : startSlideshow();
+  });
 
   // Load portfolio images
   fetch('data/portfolio.json')

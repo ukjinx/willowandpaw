@@ -189,7 +189,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 999;
+    z-index: 9999;
   
     opacity: 0;
     visibility: hidden;
@@ -304,6 +304,52 @@
 .lightbox-arrow.right {
   right: 20px;
 }
+
+
+.lightbox-play {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  font-size: 20px;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(8px);
+  border: none;
+  color: #f2e6b6;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.lightbox-play:hover {
+  background: rgba(0,0,0,0.6);
+  transform: scale(1.05);
+}
+
+#lightboxImage {
+  transition: opacity 0.4s ease;
+}
+
+#lightboxImage.fade-out {
+  opacity: 0;
+}
+
+.lightbox-progress {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #f2e6b6;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(8px);
+  padding: 6px 12px;
+  border-radius: 20px;
+  z-index: 1000;
+}
+
 
 /* Hide arrows on small screens */
 @media (max-width: 768px) {
