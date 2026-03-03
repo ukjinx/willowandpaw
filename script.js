@@ -99,6 +99,7 @@ let isPlaying = false;
   const nextBtn = document.querySelector('.lightbox-arrow.right');
   const prevBtn = document.querySelector('.lightbox-arrow.left');
   const progress = document.querySelector('.lightbox-progress');
+  const timerBar = document.querySelector('.lightbox-timer-bar');
 
   if (!grid || !lightbox) return;
 
@@ -156,9 +157,12 @@ let isPlaying = false;
     playBtn.textContent = '⏸';
     playBtn.setAttribute('aria-label', 'Pause slideshow');
   
+    startTimerAnimation();
+  
     slideshowInterval = setInterval(() => {
-      showNext(true); // mark as slideshow-triggered
-    }, 3000); // 3 seconds per image
+      showNext(true);
+      startTimerAnimation(); // restart timer each slide
+    }, 3000);
   }
   
   function stopSlideshow() {
@@ -168,6 +172,8 @@ let isPlaying = false;
       clearInterval(slideshowInterval);
       slideshowInterval = null;
     }
+  
+    resetTimerAnimation();
   
     playBtn.textContent = '▶';
     playBtn.setAttribute('aria-label', 'Start slideshow');
@@ -215,6 +221,25 @@ let isPlaying = false;
       });
     })
     .catch(err => console.error('Portfolio load error:', err));
+
+    function startTimerAnimation() {
+      if (!timerBar) return;
+    
+      timerBar.classList.remove('animate');
+    
+      // Force reflow so animation restarts cleanly
+      void timerBar.offsetWidth;
+    
+      timerBar.classList.add('animate');
+    }
+    
+    function resetTimerAnimation() {
+      if (!timerBar) return;
+    
+      timerBar.classList.remove('animate');
+      timerBar.style.width = '0%';
+    }
+
 
 
   // Controls
@@ -266,6 +291,7 @@ let isPlaying = false;
 
     if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 60) {
       diffX < 0 ? showNext() : showPrev();
+      if (isPlaying) startTimerAnimation();
     }
   });
 });
