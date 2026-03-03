@@ -179,7 +179,8 @@ let isPlaying = false;
   });
 
   // Load portfolio images
-  fetch('data/portfolio.json')
+  const dataSource = grid.dataset.source || 'data/portfolio.json';
+  fetch(dataSource)
     .then(res => res.json())
     .then(data => {
       portfolioImages = data;
