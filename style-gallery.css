@@ -234,6 +234,20 @@
     touch-action: none;
   }
 
+  .lightbox.slideshow-active .lightbox-timer {
+    opacity: 1;
+  }
+  
+  /* Light mode glow */
+.lightbox.slideshow-active .lightbox-timer-bar {
+  box-shadow: 0 0 10px rgba(110, 127, 95, 0.35);
+}
+
+/* Dark mode glow */
+[data-theme="dark"] .lightbox.slideshow-active .lightbox-timer-bar {
+  box-shadow: 0 0 10px rgba(200, 123, 60, 0.35);
+}
+
 /* ---------------------------------
    Lightbox animation polish
 ---------------------------------- */
@@ -352,22 +366,58 @@
 
 .lightbox-timer {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: rgba(255,255,255,0.2);
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;              /* Desktop */
+  height: 3px;               /* Ultra minimal */
+  background: rgba(255,255,255,0.08);
+  border-radius: 100px;
   overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
+/* Default = Light Mode (Woodland Amber) */
 .lightbox-timer-bar {
   width: 0%;
   height: 100%;
-  background: white;
+  border-radius: 100px;
+  background: linear-gradient(
+    90deg,
+    #6e7f5f,
+    #d8c7a1
+  );
+  transition: box-shadow 0.3s ease;
 }
 
-.lightbox-timer-bar.animate {
-  animation: slideTimer 3s linear forwards;
+/* Dark Mode = Moss → Warm Sand */
+[data-theme="dark"] .lightbox-timer-bar {
+  background: linear-gradient(
+    90deg,
+    #c87b3c,
+    #e7cda2
+  );
+}
+
+@media (max-width: 768px) {
+  .lightbox-timer {
+    width: 140px;
+  }
+}
+
+.lightbox-speed {
+  position: absolute;
+  bottom: 30px;
+  right: 90px;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(8px);
+  border: none;
+  color: #f2e6b6;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  cursor: pointer;
 }
 
 @keyframes slideTimer {

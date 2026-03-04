@@ -89,8 +89,9 @@ if (gallery) {
 // ---------------------------
 document.addEventListener('DOMContentLoaded', () => {
   const playBtn = document.querySelector('.lightbox-play');
-let slideshowInterval = null;
 let isPlaying = false;
+const speedSelect = document.querySelector('.lightbox-speed');
+let slideshowSpeed = 3000;
   const grid = document.getElementById('portfolioGrid');
   const lightbox = document.getElementById('lightbox');
   const lightboxImage = document.getElementById('lightboxImage');
@@ -108,12 +109,24 @@ let isPlaying = false;
 
   function updateLightbox() {
     const item = portfolioImages[currentIndex];
-    lightboxImage.src = `portfolio-gallery/${item.src}`;
-    lightboxCaption.textContent = item.caption || '';
   
-    if (progress) {
-      progress.textContent = `${currentIndex + 1} / ${portfolioImages.length}`;
-    }
+    // Fade out first
+    lightboxImage.classList.add('fade-out');
+  
+    setTimeout(() => {
+      lightboxImage.src = `portfolio-gallery/${item.src}`;
+      lightboxCaption.textContent = item.caption || '';
+  
+      if (progress) {
+        progress.textContent = `${currentIndex + 1} / ${portfolioImages.length}`;
+      }
+  
+      // Wait for image to load before fading in
+      lightboxImage.onload = () => {
+        lightboxImage.classList.remove('fade-out');
+      };
+  
+    }, 200); // matches half of transition duration
   }
 
   function openLightbox(index) {
@@ -154,26 +167,22 @@ let isPlaying = false;
     if (isPlaying) return;
   
     isPlaying = true;
+  
     playBtn.textContent = '⏸';
     playBtn.setAttribute('aria-label', 'Pause slideshow');
   
-    startTimerAnimation();
+    lightbox.classList.add('slideshow-active');
   
-    slideshowInterval = setInterval(() => {
-      showNext(true);
-      startTimerAnimation(); // restart timer each slide
-    }, 3000);
+    startTimerAnimation();
   }
+
   
   function stopSlideshow() {
     isPlaying = false;
   
-    if (slideshowInterval) {
-      clearInterval(slideshowInterval);
-      slideshowInterval = null;
-    }
+    timerBar.style.animationPlayState = 'paused';
   
-    resetTimerAnimation();
+    lightbox.classList.remove('slideshow-active');
   
     playBtn.textContent = '▶';
     playBtn.setAttribute('aria-label', 'Start slideshow');
@@ -182,6 +191,21 @@ let isPlaying = false;
   playBtn?.addEventListener('click', (e) => {
     e.stopPropagation();
     isPlaying ? stopSlideshow() : startSlideshow();
+  });
+
+  speedSelect?.addEventListener('change', (e) => {
+    slideshowSpeed = parseInt(e.target.value);
+  
+    if (isPlaying) {
+      clearInterval(slideshowInterval);
+      slideshowInterval = null;
+  
+      timerBar.style.animation = 'none';
+      timerBar.offsetHeight;
+  
+      startTimerAnimation();
+      startSlideshow();
+    }
   });
 
   // Load portfolio images
@@ -225,20 +249,19 @@ let isPlaying = false;
     function startTimerAnimation() {
       if (!timerBar) return;
     
-      timerBar.classList.remove('animate');
+      timerBar.style.animation = 'none';
+      timerBar.offsetHeight; // force reflow
     
-      // Force reflow so animation restarts cleanly
-      void timerBar.offsetWidth;
-    
-      timerBar.classList.add('animate');
+      timerBar.style.animation = `slideTimer ${slideshowSpeed}ms linear forwards`;
+      timerBar.style.animationPlayState = 'running';
     }
+
+    timerBar.addEventListener('animationend', () => {
+      if (!isPlaying) return;
     
-    function resetTimerAnimation() {
-      if (!timerBar) return;
-    
-      timerBar.classList.remove('animate');
-      timerBar.style.width = '0%';
-    }
+      showNext(true);
+      startTimerAnimation();
+    });
 
 
 
