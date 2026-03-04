@@ -200,16 +200,30 @@ let isMuted = false;
     updateLightbox();
     lightbox.classList.add('show');
     document.body.classList.add('lightbox-open');
+    const counter = document.getElementById("lightboxCounter");
+
+if (counter && portfolioImages.length > 0) {
+  counter.textContent = `1 / ${portfolioImages.length}`;
+}
   }
 
   function closeLightbox() {
+    const wasPlaying = isPlaying;
+  
     stopSlideshow();
   
-    // Immediate kill for mobile edge cases
-    hardStopAudio();
-  
-    lightbox.classList.remove('show');
-    document.body.classList.remove('lightbox-open');
+    if (wasPlaying) {
+      // Wait for fade before closing
+      setTimeout(() => {
+        hardStopAudio();
+        lightbox.classList.remove('show');
+        document.body.classList.remove('lightbox-open');
+      }, 1500); // matches fadeOutAudio duration
+    } else {
+      hardStopAudio();
+      lightbox.classList.remove('show');
+      document.body.classList.remove('lightbox-open');
+    }
   }
 
   function showNext(fromSlideshow = false) {
@@ -274,11 +288,6 @@ let isMuted = false;
     playBtn.setAttribute('aria-label', 'Start slideshow');
   
     fadeOutAudio();
-  
-    // EXTRA mobile safety
-    setTimeout(() => {
-      hardStopAudio();
-    }, 1600); // slightly longer than fade duration
   }
 
   function hardStopAudio() {

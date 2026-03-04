@@ -113,24 +113,31 @@
   <button class="lightbox-close">&times;</button>
   <button class="lightbox-arrow left">&#10094;</button>
   <button class="lightbox-arrow right">&#10095;</button>
-  <button class="lightbox-play">▶</button>
-  <button class="lightbox-mute" aria-label="Mute music">🔊</button>
-  <select class="lightbox-speed">
-    <option value="2000">2s</option>
-    <option value="3000" selected>3s</option>
-    <option value="4000">4s</option>
-    <option value="5000">5s</option>
-  </select>
+  <div class="lightbox-controls">
 
+    <button class="lightbox-mute" aria-label="Mute music">🔊</button>
+  
+    <button class="lightbox-play">▶</button>
+  
+    <select class="lightbox-speed">
+      <option value="2000">2s</option>
+      <option value="3000" selected>3s</option>
+      <option value="4000">4s</option>
+      <option value="5000">5s</option>
+    </select>
+  
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  
+    <div class="lightbox-timer">
+      <div class="lightbox-timer-bar"></div>
+    </div>
+  
+  </div>
+  
   <figure>
     <img id="lightboxImage" src="" alt="">
     <figcaption id="lightboxCaption"></figcaption>
   </figure>
-
-  <div class="lightbox-progress"></div>
-  <div class="lightbox-timer">
-  <div class="lightbox-timer-bar"></div>
-  </div>
 </div>
 
   <section class="final-cta">

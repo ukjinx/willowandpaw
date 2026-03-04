@@ -277,6 +277,52 @@
 }
 
 /* ---------------------------------
+   Lightbox Counter + Timer
+---------------------------------- */
+
+.lightbox-counter {
+  font-size: 14px;
+  color: #f2e6b6;
+  opacity: 0.85;
+  min-width: 60px;
+  text-align: center;
+}
+
+/* Timer container (shorter, elegant) */
+.lightbox-timer {
+  width: 140px;              /* shorter than full width */
+  height: 6px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.15);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Animated fill bar */
+.lightbox-timer-bar {
+  width: 0%;
+  height: 100%;
+  border-radius: 100px;
+
+  background: linear-gradient(
+    90deg,
+    #c87b3c,   /* Woodland Amber */
+    #e7cda2
+  );
+
+  transition: width linear;
+}
+
+/* Dark mode gradient */
+[data-theme="dark"] .lightbox-timer-bar {
+  background: linear-gradient(
+    90deg,
+    #6e7f5f,   /* Moss */
+    #d8c7a1    /* Warm Sand */
+  );
+}
+
+/* ---------------------------------
    Reduced motion support
 ---------------------------------- */
 @media (prefers-reduced-motion: reduce) {
@@ -319,24 +365,6 @@
   right: 20px;
 }
 
-
-.lightbox-play {
-  position: absolute;
-  bottom: 30px;
-  right: 30px;
-  font-size: 20px;
-  background: rgba(0,0,0,0.4);
-  backdrop-filter: blur(8px);
-  border: none;
-  color: #f2e6b6;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 1000;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
 .lightbox-play:hover {
   background: rgba(0,0,0,0.6);
   transform: scale(1.05);
@@ -348,34 +376,6 @@
 
 #lightboxImage.fade-out {
   opacity: 0;
-}
-
-.lightbox-progress {
-  position: absolute;
-  bottom: 30px;
-  left: 30px;
-  font-size: 14px;
-  letter-spacing: 1px;
-  color: #f2e6b6;
-  background: rgba(0,0,0,0.4);
-  backdrop-filter: blur(8px);
-  padding: 6px 12px;
-  border-radius: 20px;
-  z-index: 1000;
-}
-
-.lightbox-timer {
-  position: absolute;
-  bottom: 22px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 180px;              /* Desktop */
-  height: 3px;               /* Ultra minimal */
-  background: rgba(255,255,255,0.08);
-  border-radius: 100px;
-  overflow: hidden;
-  opacity: 0;
-  transition: opacity 0.3s ease;
 }
 
 /* Default = Light Mode (Moss → Warm Sand) */
@@ -406,35 +406,61 @@
   }
 }
 
-.lightbox-speed {
-  position: absolute;
-  bottom: 30px;
-  right: 90px;
-  background: rgba(0,0,0,0.4);
-  backdrop-filter: blur(8px);
+/* ---------------------------------
+   Lightbox Controls (Centered System)
+---------------------------------- */
+
+/* Shared button style */
+.lightbox-controls button,
+.lightbox-controls select {
+  background: transparent;
   border: none;
   color: #f2e6b6;
-  padding: 6px 10px;
-  border-radius: 20px;
-  font-size: 13px;
+  font-size: 16px;
   cursor: pointer;
 }
 
-.lightbox-mute {
-  position: absolute;
+/* ---------------------------------
+   Lightbox Controls – Locked Bottom Center
+---------------------------------- */
+
+.lightbox-controls {
+  position: fixed;
   bottom: 30px;
-  right: 150px;
-  font-size: 18px;
-  background: rgba(0,0,0,0.4);
-  backdrop-filter: blur(8px);
-  border: none;
-  color: #f2e6b6;
-  width: 48px;
-  height: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  padding: 10px 18px;
+  border-radius: 50px;
+
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+  z-index: 10000;
+}
+
+/* Circular buttons */
+.lightbox-mute,
+.lightbox-play {
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  cursor: pointer;
-  z-index: 1000;
-  transition: background 0.3s ease, transform 0.2s ease;
+  font-size: 18px;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+/* Speed selector refinement */
+.lightbox-speed {
+  font-size: 13px;
+  padding: 4px 6px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.08);
 }
 
 .lightbox-mute:hover {
