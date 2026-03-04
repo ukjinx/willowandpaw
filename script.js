@@ -92,6 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
 let isPlaying = false;
 const speedSelect = document.querySelector('.lightbox-speed');
 let slideshowSpeed = 3000;
+const music = document.getElementById('slideshowMusic');
+let fadeInterval = null;
+const muteBtn = document.querySelector('.lightbox-mute');
+let isMuted = false;
   const grid = document.getElementById('portfolioGrid');
   const lightbox = document.getElementById('lightbox');
   const lightboxImage = document.getElementById('lightboxImage');
@@ -129,6 +133,68 @@ let slideshowSpeed = 3000;
     }, 200); // matches half of transition duration
   }
 
+  function fadeInAudio(duration = 1500) {
+    if (!music) return;
+  
+    clearInterval(fadeInterval);
+  
+    music.volume = 0.01; // 👈 not zero (important)
+    music.currentTime = 0;
+  
+    const playPromise = music.play();
+  
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+  
+        const targetVolume = 0.6; // softer, premium feel
+        const step = 0.02;
+        const intervalTime = duration / (targetVolume / step);
+  
+        fadeInterval = setInterval(() => {
+          if (music.volume < targetVolume) {
+            music.volume = Math.min(music.volume + step, targetVolume);
+          } else {
+            clearInterval(fadeInterval);
+          }
+        }, intervalTime);
+  
+      }).catch(error => {
+        console.log("Audio blocked:", error);
+      });
+    }
+  }
+  
+  function fadeOutAudio(duration = 1500) {
+    if (!music) return;
+  
+    clearInterval(fadeInterval);
+  
+    const step = 0.02;
+    const intervalTime = duration / (music.volume / step);
+  
+    fadeInterval = setInterval(() => {
+      if (music.volume > 0.02) {
+        music.volume = Math.max(music.volume - step, 0);
+      } else {
+        clearInterval(fadeInterval);
+        music.pause();
+      }
+    }, intervalTime);
+  }
+
+  muteBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+  
+    isMuted = !isMuted;
+    music.muted = isMuted;
+  
+    muteBtn.textContent = isMuted ? '🔇' : '🔊';
+    muteBtn.setAttribute(
+      'aria-label',
+      isMuted ? 'Unmute music' : 'Mute music'
+    );
+  });
+
   function openLightbox(index) {
     currentIndex = index;
     updateLightbox();
@@ -138,16 +204,32 @@ let slideshowSpeed = 3000;
 
   function closeLightbox() {
     stopSlideshow(); // ALWAYS reset state
-  
+    fadeOutAudio(800);   // ensure silence
     lightbox.classList.remove('show');
     document.body.classList.remove('lightbox-open');
   }
 
   function showNext(fromSlideshow = false) {
-    currentIndex = (currentIndex + 1) % portfolioImages.length;
+
+    if (isPlaying && currentIndex === portfolioImages.length - 1) {
+      stopSlideshow();
+    
+      // Give music time to fade out before closing
+      setTimeout(() => {
+        closeLightbox();
+      }, 1200);
+    
+      return;
+    }
+  
+    currentIndex++;
+  
+    if (currentIndex >= portfolioImages.length) {
+      currentIndex = portfolioImages.length - 1;
+    }
+  
     updateLightbox();
   
-    // Only stop if user triggered it
     if (!fromSlideshow && isPlaying) {
       stopSlideshow();
     }
@@ -173,6 +255,7 @@ let slideshowSpeed = 3000;
   
     lightbox.classList.add('slideshow-active');
   
+    fadeInAudio(); // 🎵 start music
     startTimerAnimation();
   }
 
@@ -186,6 +269,8 @@ let slideshowSpeed = 3000;
   
     playBtn.textContent = '▶';
     playBtn.setAttribute('aria-label', 'Start slideshow');
+  
+    fadeOutAudio(); // 🎵 fade music out
   }
 
   playBtn?.addEventListener('click', (e) => {

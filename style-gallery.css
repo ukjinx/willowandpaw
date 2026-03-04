@@ -420,6 +420,28 @@
   cursor: pointer;
 }
 
+.lightbox-mute {
+  position: absolute;
+  bottom: 30px;
+  right: 150px;
+  font-size: 18px;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(8px);
+  border: none;
+  color: #f2e6b6;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.lightbox-mute:hover {
+  background: rgba(0,0,0,0.6);
+  transform: scale(1.05);
+}
+
 @keyframes slideTimer {
   from { width: 0%; }
   to { width: 100%; }
