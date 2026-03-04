@@ -78,7 +78,7 @@
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 200px;          /* 👈 base row unit */
+  grid-auto-flow: dense;
   gap: 10px;
   max-width: 1400px;
   margin: 40px auto;
