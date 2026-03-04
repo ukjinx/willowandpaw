@@ -106,7 +106,7 @@ let isMuted = false;
   const progress = document.querySelector('.lightbox-progress');
   const timerBar = document.querySelector('.lightbox-timer-bar');
 
-  if (!grid || !lightbox) return;
+  if (!lightbox) return;
 
   let portfolioImages = [];
   let currentIndex = 0;
@@ -120,10 +120,12 @@ let isMuted = false;
     setTimeout(() => {
       lightboxImage.src = `portfolio-gallery/${item.src}`;
       lightboxCaption.textContent = item.caption || '';
-  
-      if (progress) {
-        progress.textContent = `${currentIndex + 1} / ${portfolioImages.length}`;
-      }
+
+      const counter = document.getElementById("lightboxCounter");
+
+if (counter && portfolioImages.length > 0) {
+  counter.textContent = `${currentIndex + 1} / ${portfolioImages.length}`;
+}
   
       // Wait for image to load before fading in
       lightboxImage.onload = () => {
@@ -202,9 +204,9 @@ let isMuted = false;
     document.body.classList.add('lightbox-open');
     const counter = document.getElementById("lightboxCounter");
 
-if (counter && portfolioImages.length > 0) {
-  counter.textContent = `1 / ${portfolioImages.length}`;
-}
+    if (counter && portfolioImages.length > 0) {
+      counter.textContent = `${currentIndex + 1} / ${portfolioImages.length}`;
+    }
   }
 
   function closeLightbox() {
