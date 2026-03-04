@@ -278,16 +278,22 @@ if (counter && portfolioImages.length > 0) {
 
   
   function stopSlideshow() {
+    if (!isPlaying) return;
+  
     isPlaying = false;
   
-    timerBar.style.animationPlayState = 'paused';
+    // Stop timer immediately
+    timerBar.style.animation = 'none';
   
     lightbox.classList.remove('slideshow-active');
   
     playBtn.textContent = '▶';
     playBtn.setAttribute('aria-label', 'Start slideshow');
   
-    fadeOutAudio();
+    // Immediately stop music on manual pause
+    if (music && !music.paused) {
+      music.pause();
+    }
   }
 
   function hardStopAudio() {
