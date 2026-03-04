@@ -203,8 +203,11 @@ let isMuted = false;
   }
 
   function closeLightbox() {
-    stopSlideshow(); // ALWAYS reset state
-    fadeOutAudio(800);   // ensure silence
+    stopSlideshow();
+  
+    // Immediate kill for mobile edge cases
+    hardStopAudio();
+  
     lightbox.classList.remove('show');
     document.body.classList.remove('lightbox-open');
   }
@@ -270,7 +273,22 @@ let isMuted = false;
     playBtn.textContent = '▶';
     playBtn.setAttribute('aria-label', 'Start slideshow');
   
-    fadeOutAudio(); // 🎵 fade music out
+    fadeOutAudio();
+  
+    // EXTRA mobile safety
+    setTimeout(() => {
+      hardStopAudio();
+    }, 1600); // slightly longer than fade duration
+  }
+
+  function hardStopAudio() {
+    if (!music) return;
+  
+    clearInterval(fadeInterval);
+  
+    music.pause();
+    music.currentTime = 0;
+    music.volume = 0.6; // reset for next play
   }
 
   playBtn?.addEventListener('click', (e) => {
