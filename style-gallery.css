@@ -378,7 +378,7 @@
   transition: opacity 0.3s ease;
 }
 
-/* Default = Light Mode (Woodland Amber) */
+/* Default = Light Mode (Moss → Warm Sand) */
 .lightbox-timer-bar {
   width: 0%;
   height: 100%;
@@ -391,7 +391,7 @@
   transition: box-shadow 0.3s ease;
 }
 
-/* Dark Mode = Moss → Warm Sand */
+/* Dark Mode = Woodland Amber */
 [data-theme="dark"] .lightbox-timer-bar {
   background: linear-gradient(
     90deg,
