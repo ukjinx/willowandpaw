@@ -371,7 +371,14 @@
 }
 
 #lightboxImage {
-  transition: opacity 0.4s ease;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.6s ease, transform 0.8s ease;
+}
+
+#lightboxImage.fade-out {
+  opacity: 0;
+  transform: scale(1.03);
 }
 
 #lightboxImage.fade-out {
@@ -550,4 +557,18 @@
 
 .portfolio-card:hover {
   transform: none !important;
+}
+
+.lightbox-speed:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.lightbox-speed {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lightbox-speed:focus-visible {
+  outline: none;
+  box-shadow: none;
 }

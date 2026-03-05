@@ -111,6 +111,17 @@ let isMuted = false;
   let portfolioImages = [];
   let currentIndex = 0;
 
+  const startBtn = document.getElementById('startSlideshowBtn');
+
+startBtn?.addEventListener('click', () => {
+  if (portfolioImages.length === 0) return;
+
+  openLightbox(0);        // open first image
+  setTimeout(() => {
+    startSlideshow();     // start auto play
+  }, 400);                // small delay so lightbox animates in smoothly
+});
+
   function updateLightbox() {
     const item = portfolioImages[currentIndex];
   
@@ -132,7 +143,7 @@ if (counter && portfolioImages.length > 0) {
         lightboxImage.classList.remove('fade-out');
       };
   
-    }, 200); // matches half of transition duration
+    }, 300); // smoother transition timing
   }
 
   function fadeInAudio(duration = 1500) {
@@ -141,7 +152,7 @@ if (counter && portfolioImages.length > 0) {
     clearInterval(fadeInterval);
   
     music.volume = 0.01; // 👈 not zero (important)
-    music.currentTime = 0;
+    if (music.currentTime === 0) music.currentTime = 0;
   
     const playPromise = music.play();
   
@@ -166,7 +177,7 @@ if (counter && portfolioImages.length > 0) {
     }
   }
   
-  function fadeOutAudio(duration = 1500) {
+  function fadeOutAudio(duration = 2200) {
     if (!music) return;
   
     clearInterval(fadeInterval);
@@ -215,16 +226,17 @@ if (counter && portfolioImages.length > 0) {
     stopSlideshow();
   
     if (wasPlaying) {
-      // Wait for fade before closing
       setTimeout(() => {
         hardStopAudio();
         lightbox.classList.remove('show');
         document.body.classList.remove('lightbox-open');
-      }, 1500); // matches fadeOutAudio duration
+        resetStartButton();   // 👈 ensure reset
+      }, 1500);
     } else {
       hardStopAudio();
       lightbox.classList.remove('show');
       document.body.classList.remove('lightbox-open');
+      resetStartButton();   // 👈 ensure reset
     }
   }
 
@@ -247,7 +259,14 @@ if (counter && portfolioImages.length > 0) {
       currentIndex = portfolioImages.length - 1;
     }
   
-    updateLightbox();
+    // Preload next image for smoother transition
+const nextItem = portfolioImages[currentIndex];
+if (nextItem) {
+  const preload = new Image();
+  preload.src = `portfolio-gallery/${nextItem.src}`;
+}
+
+updateLightbox();
   
     if (!fromSlideshow && isPlaying) {
       stopSlideshow();
@@ -264,8 +283,19 @@ if (counter && portfolioImages.length > 0) {
     }
   }
 
+  function resetStartButton() {
+    if (!startBtn) return;
+  
+    startBtn.disabled = false;
+    startBtn.textContent = "▶ Start Slideshow";
+  }
+
   function startSlideshow() {
     if (isPlaying) return;
+    if (startBtn) {
+      startBtn.textContent = "⏸ Slideshow Playing";
+      startBtn.disabled = true;
+    }
   
     isPlaying = true;
   
@@ -284,7 +314,6 @@ if (counter && portfolioImages.length > 0) {
   
     isPlaying = false;
   
-    // Stop timer immediately
     timerBar.style.animation = 'none';
   
     lightbox.classList.remove('slideshow-active');
@@ -292,10 +321,11 @@ if (counter && portfolioImages.length > 0) {
     playBtn.textContent = '▶';
     playBtn.setAttribute('aria-label', 'Start slideshow');
   
-    // Immediately stop music on manual pause
     if (music && !music.paused) {
-      music.pause();
+      fadeOutAudio(); // 🎵 smooth fade out
     }
+  
+    resetStartButton();
   }
 
   function hardStopAudio() {
@@ -304,7 +334,7 @@ if (counter && portfolioImages.length > 0) {
     clearInterval(fadeInterval);
   
     music.pause();
-    music.currentTime = 0;
+    if (music.currentTime === 0) music.currentTime = 0; // only runs when gallery fully closes
     music.volume = 0.6; // reset for next play
   }
 
@@ -326,6 +356,7 @@ if (counter && portfolioImages.length > 0) {
       startTimerAnimation();
       startSlideshow();
     }
+    e.target.blur();   // 👈 ADD THIS LINE
   });
 
   // Load portfolio images
