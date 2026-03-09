@@ -10,6 +10,11 @@ function myFunction() {
   }
 }
 
+function resolveImagePath(src) {
+  if (src.startsWith('/')) return src; // already absolute
+  return `/portfolio-gallery/${src}`;  // fallback for main portfolio
+}
+
 // ---------------------------
 // Homepage scroll gallery
 // ---------------------------
@@ -129,7 +134,7 @@ startBtn?.addEventListener('click', () => {
     lightboxImage.classList.add('fade-out');
   
     setTimeout(() => {
-      lightboxImage.src = `portfolio-gallery/${item.src}`;
+      lightboxImage.src = resolveImagePath(item.src);
       lightboxCaption.textContent = item.caption || '';
 
       const counter = document.getElementById("lightboxCounter");
@@ -263,7 +268,7 @@ if (counter && portfolioImages.length > 0) {
 const nextItem = portfolioImages[currentIndex];
 if (nextItem) {
   const preload = new Image();
-  preload.src = `portfolio-gallery/${nextItem.src}`;
+  preload.src = resolveImagePath(nextItem.src);
 }
 
 updateLightbox();
@@ -375,7 +380,7 @@ updateLightbox();
         wrap.className = 'image-wrap';
       
         const img = document.createElement('img');
-        img.src = `portfolio-gallery/${item.src}`;
+        img.src = resolveImagePath(item.src);
         img.alt = item.caption || '';
         img.loading = 'lazy';
       
