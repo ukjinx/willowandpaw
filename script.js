@@ -264,11 +264,20 @@ if (counter && portfolioImages.length > 0) {
       currentIndex = portfolioImages.length - 1;
     }
   
-    // Preload next image for smoother transition
-const nextItem = portfolioImages[currentIndex];
-if (nextItem) {
-  const preload = new Image();
-  preload.src = resolveImagePath(nextItem.src);
+// Preload next two images
+for (let i = 1; i <= 2; i++) {
+
+  const preloadIndex = currentIndex + i;
+
+  if (preloadIndex < portfolioImages.length) {
+
+    const preloadItem = portfolioImages[preloadIndex];
+
+    const preload = new Image();
+    preload.src = resolveImagePath(preloadItem.src);
+
+  }
+
 }
 
 updateLightbox();
@@ -308,6 +317,8 @@ updateLightbox();
     playBtn.setAttribute('aria-label', 'Pause slideshow');
   
     lightbox.classList.add('slideshow-active');
+
+    showControls();
   
     fadeInAudio(); // 🎵 start music
     startTimerAnimation();
@@ -440,6 +451,36 @@ updateLightbox();
   lightbox.addEventListener('click', e => {
     if (e.target === lightbox) closeLightbox();
   });
+
+  let controlsTimeout;
+const controls = document.querySelector('.lightbox-controls');
+
+const arrows = document.querySelectorAll('.lightbox-arrow');
+
+function showControls() {
+
+  controls.classList.remove('hidden');
+  arrows.forEach(a => a.classList.remove('hidden'));
+
+  lightbox.classList.remove('cursor-hidden');
+
+  clearTimeout(controlsTimeout);
+
+  if (isPlaying) {
+    controlsTimeout = setTimeout(() => {
+      controls.classList.add('hidden');
+      arrows.forEach(a => a.classList.add('hidden'));
+
+      lightbox.classList.add('cursor-hidden');
+
+    }, 1500);
+  }
+
+}
+
+['mousemove','click','touchstart','keydown'].forEach(event => {
+  document.addEventListener(event, showControls);
+});
 
   // Keyboard navigation
   document.addEventListener('keydown', e => {
