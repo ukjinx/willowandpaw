@@ -1,13 +1,17 @@
 [
     { "src": "/portfolio-gallery/bonzo/bonzo1.jpg", "caption": ""},
-    { "src": "/portfolio-gallery/bonzo/bonzo2.jpg", "caption": ""}, 
+    { "src": "/portfolio-gallery/bonzo/bonzo2.jpg", "caption": ""},
+    { "src": "/portfolio-gallery/bonzo/bonzo2-bw.jpg", "caption": ""}, 
     { "src": "/portfolio-gallery/bonzo/bonzo3.jpg", "caption": ""},
     { "src": "/portfolio-gallery/bonzo/bonzo4.jpg", "caption": ""},
+    { "src": "/portfolio-gallery/bonzo/bonzo4-bw.jpg", "caption": ""},
     { "src": "/portfolio-gallery/bonzo/bonzo5.jpg", "caption": ""},
     { "src": "/portfolio-gallery/bonzo/bonzo6.jpg", "caption": ""},
+    { "src": "/portfolio-gallery/bonzo/bonzo12.jpg", "caption": ""},
     { "src": "/portfolio-gallery/bonzo/bonzo7.jpg", "caption": ""},
     { "src": "/portfolio-gallery/bonzo/bonzo11.jpg", "caption": ""},
     { "src": "/portfolio-gallery/bonzo/bonzo8.jpg", "caption": ""},
+    { "src": "/portfolio-gallery/bonzo/bonzo8-bw.jpg", "caption": ""},
     { "src": "/portfolio-gallery/bonzo/bonzo9.jpg", "caption": ""},
     { "src": "/portfolio-gallery/bonzo/bonzo10.jpg", "caption": ""}
   ]
