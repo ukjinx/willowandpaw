@@ -1874,41 +1874,63 @@ html {
 
 .faq-hero {
   position: relative;
-  height: 300px;
+  height: 420px; /* bigger hero */
   background-image: url("assets/faq-hero.jpg");
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-attachment: fixed;
+
+
+  /* cinematic fade */
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
 }
 
+.faq-hero {
+  animation: hero-breathe 18s ease-in-out infinite alternate;
+}
+
+@keyframes hero-breathe {
+  from { background-size: 100%; }
+  to { background-size: 105%; }
+}
+
+/* Hero base */
 .faq-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* Light mode – brighten image */
+:root[data-theme="light"] .faq-hero-overlay {
   background: linear-gradient(
-    rgba(0,0,0,0.55),
-    rgba(0,0,0,0.75)
+    to bottom,
+    rgba(255,255,255,0.35),
+    rgba(255,255,255,0.10)
   );
 }
 
-/* Light mode overlay (stronger) */
-[data-theme="light"] .faq-hero-overlay {
+/* Dark mode – darken image */
+:root[data-theme="dark"] .faq-hero-overlay {
   background: linear-gradient(
-    rgba(0,0,0,0.55),
-    rgba(0,0,0,0.65)
-  );
-}
-
-/* Dark mode overlay (lighter so image shows more) */
-[data-theme="dark"] .faq-hero-overlay {
-  background: linear-gradient(
-    rgba(0,0,0,0.35),
-    rgba(0,0,0,0.45)
+    to bottom,
+    rgba(0,0,0,0.45),
+    rgba(0,0,0,0.25)
   );
 }
 
 .faq-hero-content h1,
 .faq-hero-content p {
-  color: #ffffff;
+  color: #black;
   text-shadow: 0 3px 14px rgba(0,0,0,0.55);
 
 }
@@ -1919,6 +1941,7 @@ html {
   color: white;
   max-width: 700px;
   padding: 20px;
+  z-index: 2;
 }
 
 .faq-hero-content h1 {
