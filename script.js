@@ -127,29 +127,33 @@ startBtn?.addEventListener('click', () => {
   }, 400);                // small delay so lightbox animates in smoothly
 });
 
-  function updateLightbox() {
-    const item = portfolioImages[currentIndex];
-  
-    // Fade out first
-    lightboxImage.classList.add('fade-out');
-  
+function updateLightbox() {
+  const item = portfolioImages[currentIndex];
+
+  lightboxImage.classList.add('fade-out');
+
+  setTimeout(() => {
+    lightboxImage.src = resolveImagePath(item.src);
+
+    // Caption fade update
+    lightboxCaption.style.opacity = 0;
     setTimeout(() => {
-      lightboxImage.src = resolveImagePath(item.src);
       lightboxCaption.textContent = item.caption || '';
+      lightboxCaption.style.opacity = 0.9;
+    }, 150);
 
-      const counter = document.getElementById("lightboxCounter");
+    const counter = document.getElementById("lightboxCounter");
 
-if (counter && portfolioImages.length > 0) {
-  counter.textContent = `${currentIndex + 1} / ${portfolioImages.length}`;
+    if (counter && portfolioImages.length > 0) {
+      counter.textContent = `${currentIndex + 1} / ${portfolioImages.length}`;
+    }
+
+    lightboxImage.onload = () => {
+      lightboxImage.classList.remove('fade-out');
+    };
+
+  }, 300);
 }
-  
-      // Wait for image to load before fading in
-      lightboxImage.onload = () => {
-        lightboxImage.classList.remove('fade-out');
-      };
-  
-    }, 300); // smoother transition timing
-  }
 
   function fadeInAudio(duration = 1500) {
     if (!music) return;
