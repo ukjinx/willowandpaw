@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute(
+          'data-theme',
+          prefersDark ? 'dark' : 'light'
+        );
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.png">
+
+  <title>Dog Photography FAQ | Willow & Paw Photography</title>
+</head>
+
+<body>
+    <!--- NAVIGATION -->
+    <nav class="site-nav">
+        <div class="nav-desktop">
+            <div class="nav-inner">
+          
+              <a href="index.html" class="nav-logo">
+                <span class="logo-wrapper">
+                  <img src="assets/willow-paw-light.png" class="logo logo-light" alt="Willow & Paw">
+                  <img src="assets/willow-paw-dark.png" class="logo logo-dark" alt="Willow & Paw">
+                </span>
+              </a>
+          
+              <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="sessions.html">Sessions</a>
+                <a href="aboutme.html">About</a>
+                <a href="contact.html" class="nav-cta">Book</a>
+              </div>
+          
+              <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+                <span class="toggle-icon sun">☀</span>
+                <span class="toggle-icon moon">🌙</span>
+              </button>
+          
+            </div>
+          </div>
+        </nav>
+
+<!-- FAQ HERO -->
+
+<section class="faq-hero">
+
+    <div class="faq-hero-overlay"></div>
+  
+    <div class="faq-hero-content">
+      <h1>Dog Photography FAQ</h1>
+      <p>
+        Everything you might want to know before your dog’s photography session.
+      </p>
+    </div>
+  
+  </section>
+
+          <!-- FAQ CONTENT -->
+          <div class="terms-page">
+            <div class="terms-card">
+
+<p class="faq-intro">
+Choosing a photographer for your dog is a big decision, and it’s natural to have questions.
+Here are some of the things clients often ask before their session.
+</p>
+
+<div class="faq-category">
+
+<h2>Before the Session</h2>
+
+<details class="faq-item">
+<summary>I am concerned that my dog will be nervous with new people.</summary>
+<p>
+Many dogs are unsure around new people at first. Sessions are relaxed and unhurried,
+giving your dog time to explore the environment and feel comfortable before we start.
+Patience and positive reinforcement help bring out their natural personality.
+</p>
+</details>
+
+<details class="faq-item">
+<summary>My dog won’t sit still for photos.</summary>
+<p>
+That’s completely normal. Dog photography focuses on capturing natural moments,
+movement, and personality rather than forcing perfect poses.
+</p>
+</details>
+
+<details class="faq-item">
+<summary>How do I know if the photographer is good?</summary>
+<p>
+A strong portfolio should show consistency across different dogs, lighting conditions,
+and locations. Experience working with animals is just as important as technical
+photography skill.
+</p>
+</details>
+
+<details class="faq-item">
+<summary>My dog cannot be off lead.</summary>
+<p>
+That’s absolutely fine. Many action shots are taken with dogs safely on lead and
+edited afterwards so the lead is no longer visible.
+</p>
+</details>
+
+<details class="faq-item">
+<summary>What happens if the weather is bad?</summary>
+<p>
+If the weather isn’t suitable we simply reschedule. Outdoor sessions work best when
+both you and your dog are comfortable.
+</p>
+</details>
+
+</div>
+
+
+<div class="faq-category">
+
+<h2>During the Session</h2>
+
+<details class="faq-item">
+<summary>I don’t think my dog would relax in a studio.</summary>
+<p>
+Sessions take place outdoors in natural locations such as woodland areas where dogs
+feel far more relaxed and able to be themselves.
+</p>
+</details>
+
+<details class="faq-item">
+<summary>Can I choose the style of photos?</summary>
+<p>
+Absolutely. Sessions can focus on action, portraits, or a mixture of both depending
+on the personality of your dog and what you would like to capture.
+</p>
+</details>
+
+<details class="faq-item">
+<summary>Can I be in the photos with my dog?</summary>
+<p>
+Of course. Many people love having a few images that capture the bond between them
+and their dog.
+</p>
+</details>
+
+</div>
+
+
+<div class="faq-category">
+
+<h2>After the Session</h2>
+
+<details class="faq-item">
+<summary>How will I view the images?</summary>
+<p>
+After your session you will receive access to a private online gallery where you can
+view the photographs and select your favourites.
+</p>
+</details>
+
+<details class="faq-item">
+<summary>Can I order prints?</summary>
+<p>
+Yes. High-quality professional prints are available so you can enjoy your dog’s
+portraits on the wall rather than just on a screen.
+</p>
+</details>
+
+</div>
+
+
+<div class="faq-category">
+
+<h2>Special Situations</h2>
+
+<details class="faq-item">
+<summary>Do you photograph older dogs?</summary>
+<p>
+Absolutely. Senior dogs often make some of the most meaningful photographs.
+Sessions can be adapted so they remain relaxed and comfortable.
+</p>
+</details>
+
+<details class="faq-item">
+<summary>What if my dog has mobility or medical needs?</summary>
+<p>
+Sessions can be tailored to your dog’s needs. The goal is always to create a calm,
+safe environment where your dog can simply be themselves.
+</p>
+</details>
+
+</div>
+
+<br><br>
+                <p class="faq-intro">
+                  If you have any other questions about dog photography sessions,
+                  you are always welcome to get in touch.
+                </p>
+            </div>
+          </div>
+
+
+            <div id="footer-placeholder"></div>
+            <script src="script.js"></script>
+        </body>
+        </html>
