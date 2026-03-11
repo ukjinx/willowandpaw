@@ -111,6 +111,25 @@ let isMuted = false;
   const progress = document.querySelector('.lightbox-progress');
   const timerBar = document.querySelector('.lightbox-timer-bar');
 
+  const musicTracks = [
+    "/assets/music/willowandpaw-1.mp3",
+    "/assets/music/willowandpaw-2.mp3",
+    "/assets/music/willowandpaw-3.mp3",
+    "/assets/music/willowandpaw-4.mp3",
+    "/assets/music/willowandpaw-5.mp3",
+    "/assets/music/willowandpaw-6.mp3"
+  ];
+
+  function loadRandomTrack() {
+    if (!music) return;
+  
+    const randomIndex = Math.floor(Math.random() * musicTracks.length);
+    const selectedTrack = musicTracks[randomIndex];
+  
+    music.src = selectedTrack;
+    music.load();
+  }
+
   if (!lightbox) return;
 
   let portfolioImages = [];
@@ -310,6 +329,7 @@ updateLightbox();
 
   function startSlideshow() {
     if (isPlaying) return;
+  
     if (startBtn) {
       startBtn.textContent = "⏸ Slideshow Playing";
       startBtn.disabled = true;
@@ -321,10 +341,12 @@ updateLightbox();
     playBtn.setAttribute('aria-label', 'Pause slideshow');
   
     lightbox.classList.add('slideshow-active');
-
+  
     showControls();
   
-    fadeInAudio(); // 🎵 start music
+    loadRandomTrack();   // 🎵 random song
+    fadeInAudio();       // smooth fade in
+  
     startTimerAnimation();
   }
 
