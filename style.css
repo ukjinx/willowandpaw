@@ -1928,13 +1928,6 @@ html {
   );
 }
 
-.faq-hero-content h1,
-.faq-hero-content p {
-  color: #black;
-  text-shadow: 0 3px 14px rgba(0,0,0,0.55);
-
-}
-
 .faq-hero-content {
   position: relative;
   text-align: center;
