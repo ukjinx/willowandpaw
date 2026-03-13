@@ -219,16 +219,27 @@
 
 
   .lightbox-close {
-    position: absolute;
-    top: 20px;
-    right: 24px;
-    font-size: 32px;
-    background: none;
-    border: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    margin-left: 8px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    font-size: 16px;
+    line-height: 1;
+  
+    background: rgba(255,255,255,0.08);
     color: #f2e6b6;
-    cursor: pointer;
-    pointer-events: auto;
-    z-index: 1001;
+  
+    transition: transform 0.2s ease, background 0.3s ease;
+  }
+  
+  .lightbox-close:hover {
+    background: rgba(0,0,0,0.6);
+    transform: scale(1.05);
   }
 
   body.lightbox-open {
