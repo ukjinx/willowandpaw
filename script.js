@@ -205,7 +205,7 @@ function updateLightbox() {
     }
   }
   
-  function fadeOutAudio(duration = 2200) {
+  function fadeOutAudio(duration = 2200, onComplete = null) {
     if (!music) return;
   
     clearInterval(fadeInterval);
@@ -214,12 +214,16 @@ function updateLightbox() {
     const intervalTime = duration / (music.volume / step);
   
     fadeInterval = setInterval(() => {
+  
       if (music.volume > 0.02) {
         music.volume = Math.max(music.volume - step, 0);
       } else {
         clearInterval(fadeInterval);
         music.pause();
+  
+        if (onComplete) onComplete();   // 👈 NEW
       }
+  
     }, intervalTime);
   }
 
@@ -271,12 +275,12 @@ function updateLightbox() {
   function showNext(fromSlideshow = false) {
 
     if (isPlaying && currentIndex === portfolioImages.length - 1) {
+
       stopSlideshow();
     
-      // Give music time to fade out before closing
-      setTimeout(() => {
+      fadeOutAudio(2200, () => {
         closeLightbox();
-      }, 1200);
+      });
     
       return;
     }
