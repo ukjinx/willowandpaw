@@ -167,12 +167,15 @@
   
   .lightbox img {
     max-width: 100%;
-    max-height: 80vh;   /* 👈 key change */
+    max-height: 78vh;
     width: auto;
     height: auto;
     object-fit: contain;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-
+  
+    opacity: 0;
+    transform: scale(1.04);
+  
+    transition: opacity 0.45s ease, transform 1.6s ease;
   }
   
   .lightbox {
@@ -214,7 +217,7 @@
   
   #lightboxImage {
     max-width: 95vw;
-    max-height: 85vh;
+    max-height: 78vh;
     object-fit: contain;
   }
 
@@ -258,8 +261,11 @@
     height: 100%;
   
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+  
+    gap: 20px;
   }
   
   /* Light mode glow */
@@ -275,13 +281,6 @@
 /* ---------------------------------
    Lightbox animation polish
 ---------------------------------- */
-
-/* Initial state */
-.lightbox img {
-  opacity: 0;
-  transform: scale(1.04);
-  transition: opacity 0.45s ease, transform 1.6s ease;
-}
 
 /* When lightbox is visible */
 .lightbox.show img {
@@ -464,10 +463,8 @@
 ---------------------------------- */
 
 .lightbox-controls {
-  position: fixed;
-  bottom: 35px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  margin-top: 10px;
   
   display: flex;
   align-items: center;
