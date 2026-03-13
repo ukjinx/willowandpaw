@@ -520,6 +520,24 @@ function showControls() {
     if (e.key === 'ArrowRight') showNext();
     if (e.key === 'ArrowLeft') showPrev();
   });
+  
+  document.addEventListener("keydown", (e) => {
+
+    // Only trigger when the lightbox is open
+    const lightbox = document.querySelector(".lightbox");
+    if (!lightbox || !lightbox.classList.contains("show")) return;
+  
+    // Spacebar toggles slideshow
+    if (e.code === "Space") {
+      e.preventDefault();
+  
+      const playButton = document.querySelector(".lightbox-play");
+      if (playButton) {
+        playButton.click();
+      }
+    }
+  
+  });
 
   // Touch gestures
   let startX = 0;
