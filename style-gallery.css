@@ -185,6 +185,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-top: 6vh;
   
     background: rgba(0,0,0,0.92);
     backdrop-filter: blur(6px);
@@ -357,6 +358,15 @@
   .lightbox {
     backdrop-filter: blur(10px);
   }
+}
+
+@media (max-width: 768px) {
+
+  .lightbox {
+    align-items: flex-start;
+    padding-top: 8vh;
+  }
+
 }
 
 .lightbox-arrow {
