@@ -188,7 +188,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 6vh;
+    padding-top: 0;
   
     background: rgba(0,0,0,0.92);
     backdrop-filter: blur(6px);
@@ -217,8 +217,9 @@
   
   #lightboxImage {
     max-width: 95vw;
-    max-height: 78vh;
+    max-height: 100%;
     object-fit: contain;
+    flex: 1;
   }
 
 
@@ -266,6 +267,8 @@
     align-items: center;
   
     gap: 20px;
+  
+    padding-bottom: 40px; /* prevents controls hitting screen edge */
   }
   
   /* Light mode glow */
