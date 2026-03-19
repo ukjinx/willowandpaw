@@ -96,7 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const playBtn = document.querySelector('.lightbox-play');
 let isPlaying = false;
 const speedSelect = document.querySelector('.lightbox-speed');
-let slideshowSpeed = 3000;
+
+// ✅ Declare FIRST
+let slideshowSpeed = parseInt(speedSelect?.value) || 5000;
 const music = document.getElementById('slideshowMusic');
 let fadeInterval = null;
 const muteBtn = document.querySelector('.lightbox-mute');
@@ -169,6 +171,11 @@ function updateLightbox() {
 
     lightboxImage.onload = () => {
       lightboxImage.classList.remove('fade-out');
+    
+      // ✅ Start timer ONLY after image is fully visible
+      if (isPlaying) {
+        startTimerAnimation();
+      }
     };
 
   }, 300);
@@ -348,10 +355,13 @@ updateLightbox();
   
     showControls();
   
-    loadRandomTrack();   // 🎵 random song
-    fadeInAudio();       // smooth fade in
+    loadRandomTrack();
+    fadeInAudio();
   
-    startTimerAnimation();
+    // ✅ FIX: If image already loaded, start timer manually
+    if (lightboxImage.complete) {
+      startTimerAnimation();
+    }
   }
 
   
@@ -393,16 +403,11 @@ updateLightbox();
     slideshowSpeed = parseInt(e.target.value);
   
     if (isPlaying) {
-      clearInterval(slideshowInterval);
-      slideshowInterval = null;
-  
-      timerBar.style.animation = 'none';
-      timerBar.offsetHeight;
-  
-      startTimerAnimation();
-      startSlideshow();
+      // Restart current image so timing stays accurate
+      updateLightbox();
     }
-    e.target.blur();   // 👈 ADD THIS LINE
+  
+    e.target.blur();
   });
 
   // Load portfolio images
@@ -456,8 +461,7 @@ updateLightbox();
     timerBar.addEventListener('animationend', () => {
       if (!isPlaying) return;
     
-      showNext(true);
-      startTimerAnimation();
+      showNext(true); // next image will trigger timer via onload
     });
 
 
@@ -559,7 +563,6 @@ function showControls() {
 
     if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 60) {
       diffX < 0 ? showNext() : showPrev();
-      if (isPlaying) startTimerAnimation();
     }
   });
 });
