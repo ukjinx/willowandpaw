@@ -286,7 +286,9 @@ function updateLightbox() {
       stopSlideshow();
     
       fadeOutAudio(2200, () => {
-        closeLightbox();
+        setTimeout(() => {
+          closeLightbox();
+        }, 300); // small delay for smoother finish
       });
     
       return;
@@ -448,21 +450,34 @@ updateLightbox();
     })
     .catch(err => console.error('Portfolio load error:', err));
 
-    function startTimerAnimation() {
-      if (!timerBar) return;
-    
-      timerBar.style.animation = 'none';
-      timerBar.offsetHeight; // force reflow
-    
-      timerBar.style.animation = `slideTimer ${slideshowSpeed}ms linear forwards`;
-      timerBar.style.animationPlayState = 'running';
-    }
+    let timerFallback = null;
 
-    timerBar.addEventListener('animationend', () => {
-      if (!isPlaying) return;
-    
-      showNext(true); // next image will trigger timer via onload
-    });
+function startTimerAnimation() {
+  if (!timerBar) return;
+
+  // Clear any existing fallback
+  clearTimeout(timerFallback);
+
+  timerBar.style.animation = 'none';
+  timerBar.offsetHeight;
+
+  timerBar.style.animation = `slideTimer ${slideshowSpeed}ms linear forwards`;
+  timerBar.style.animationPlayState = 'running';
+
+  // ✅ Fallback for mobile (guarantees next slide runs)
+  timerFallback = setTimeout(() => {
+    if (isPlaying) {
+      showNext(true);
+    }
+  }, slideshowSpeed + 50); // small buffer
+}
+
+timerBar.addEventListener('animationend', () => {
+  if (!isPlaying) return;
+
+  clearTimeout(timerFallback); // ✅ prevent duplicate trigger
+  showNext(true);
+});
 
 
 
