@@ -1340,6 +1340,107 @@ button {
   opacity: 0.85;
 }
 
+/* =========================
+   Pricing Sale State
+========================= */
+
+.price-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Default (no sale) */
+.price-original {
+  font-size: 3.4rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Sale active */
+.price-wrapper[data-sale="true"] .price-original {
+  font-size: 1.6rem;
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+/* Sale price */
+.price-sale {
+  display: none;
+}
+
+/* Show sale price when active */
+.price-wrapper[data-sale="true"] .price-sale {
+  display: block;
+  font-size: 3.6rem;
+  font-weight: 700;
+  color: #d14b4b; /* premium red, not harsh */
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+/* Badge */
+.price-badge {
+  display: none;
+}
+
+.price-wrapper[data-sale="true"] .price-badge {
+  display: inline-block;
+
+  margin-bottom: 12px;
+
+  font-size: 0.8rem;        /* 👈 bigger */
+  letter-spacing: 0.14em;
+
+  padding: 8px 16px;        /* 👈 bigger pill */
+  border-radius: 999px;
+
+  background: rgba(209, 75, 75, 0.16); /* slightly stronger */
+  color: #d14b4b;
+
+  font-weight: 700;         /* 👈 stronger presence */
+}
+
+/* Hide urgency by default */
+.pricing-urgency {
+  display: none;
+}
+
+/* Only show when sale is active */
+.price-wrapper[data-sale="true"] .pricing-urgency {
+  display: inline-block;
+
+  margin-top: 4px;   /* 👈 THIS fixes the big gap */
+  padding: 6px 12px; /* slightly tighter */
+
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  border-radius: 999px;
+
+  background: rgba(209, 75, 75, 0.12);
+  color: #d14b4b;
+
+  font-weight: 600;
+}
+
+.price-wrapper[data-sale="true"] .pricing-urgency {
+  animation: fadeInSoft 0.6s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInSoft {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 .upgrade-box {
   margin-top: 30px;
   padding-top: 24px;
