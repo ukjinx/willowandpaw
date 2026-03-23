@@ -1975,17 +1975,17 @@ html {
 
 .faq-hero {
   position: relative;
-  height: 420px; /* bigger hero */
+  height: 420px;
   background-image: url("assets/faq-hero.jpg");
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  background-attachment: fixed;
 
-
-  /* cinematic fade */
   mask-image: linear-gradient(
     to bottom,
     transparent 0%,
@@ -1993,6 +1993,12 @@ html {
     black 85%,
     transparent 100%
   );
+}
+
+@media (max-width: 768px) {
+  .faq-hero {
+    background-attachment: scroll; /* 👈 disable parallax on mobile */
+  }
 }
 
 .faq-hero {
