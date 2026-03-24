@@ -601,19 +601,6 @@ function showControls() {
 
 /* Footer */
 
-fetch('/includes/footer.html')
-  .then(response => response.text())
-  .then(data => {
-    const footerPlaceholder = document.getElementById('footer-placeholder');
-    if (!footerPlaceholder) return;
-
-    footerPlaceholder.innerHTML = data;
-
-    // Observe newly injected fade-in elements
-    const newFadeElements = footerPlaceholder.querySelectorAll('.fade-in');
-    newFadeElements.forEach(el => fadeObserver.observe(el));
-  });
-
 const fadeObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach(entry => {
@@ -627,6 +614,21 @@ const fadeObserver = new IntersectionObserver(
     threshold: 0.2
   }
 );
+
+fetch('/includes/footer.html')
+  .then(response => response.text())
+  .then(data => {
+    const footerPlaceholder = document.getElementById('footer-placeholder');
+    if (!footerPlaceholder) return;
+
+    footerPlaceholder.innerHTML = data;
+
+    // Observe newly injected fade-in elements
+    const newFadeElements = footerPlaceholder.querySelectorAll('.fade-in');
+    newFadeElements.forEach(el => fadeObserver.observe(el));
+  });
+
+
 
 // ===========================
 // Theme Toggle (FINAL, CLEAN)
@@ -677,8 +679,9 @@ mediaQuery.addEventListener('change', e => {
 });
 
 
-  const nav = document.querySelector('.nav-desktop');
+const nav = document.querySelector('.nav-desktop');
 
+if (nav) {
   window.addEventListener('scroll', () => {
     if (window.scrollY > 40) {
       nav.classList.add('scrolled');
@@ -686,6 +689,7 @@ mediaQuery.addEventListener('change', e => {
       nav.classList.remove('scrolled');
     }
   });
+}
 
 
   
