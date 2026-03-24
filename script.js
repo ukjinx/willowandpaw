@@ -106,6 +106,20 @@ let isMuted = false;
   const grid = document.getElementById('portfolioGrid');
   const lightbox = document.getElementById('lightbox');
   const lightboxImage = document.getElementById('lightboxImage');
+  lightboxImage.addEventListener('load', async () => {
+    // Wait for actual decode (fixes cached images issue)
+    if (lightboxImage.decode) {
+      try {
+        await lightboxImage.decode();
+      } catch (e) {}
+    }
+  
+    lightboxImage.classList.remove('fade-out');
+  
+    if (isPlaying) {
+      safeStartTimer();
+    }
+  });
   const lightboxCaption = document.getElementById('lightboxCaption');
   const closeBtn = document.querySelector('.lightbox-close');
   const nextBtn = document.querySelector('.lightbox-arrow.right');
@@ -136,6 +150,7 @@ let isMuted = false;
 
   let portfolioImages = [];
   let currentIndex = 0;
+  let timerStartedForCurrentImage = false;
 
   const startBtn = document.getElementById('startSlideshowBtn');
 
@@ -150,6 +165,10 @@ startBtn?.addEventListener('click', () => {
 
 function updateLightbox() {
   const item = portfolioImages[currentIndex];
+
+  timerStartedForCurrentImage = false; // ✅ ADD THIS
+  clearTimeout(timerFallback); // ✅ kill any previous timer
+timerBar.style.animation = 'none';
 
   lightboxImage.classList.add('fade-out');
 
@@ -168,15 +187,6 @@ function updateLightbox() {
     if (counter && portfolioImages.length > 0) {
       counter.textContent = `${currentIndex + 1} / ${portfolioImages.length}`;
     }
-
-    lightboxImage.onload = () => {
-      lightboxImage.classList.remove('fade-out');
-    
-      // ✅ Start timer ONLY after image is fully visible
-      if (isPlaying) {
-        startTimerAnimation();
-      }
-    };
 
   }, 300);
 }
@@ -360,9 +370,9 @@ updateLightbox();
     loadRandomTrack();
     fadeInAudio();
   
-    // ✅ FIX: If image already loaded, start timer manually
-    if (lightboxImage.complete) {
-      startTimerAnimation();
+    // ✅ KEY FIX: start timer if image is already loaded
+    if (lightboxImage.complete && lightboxImage.naturalWidth !== 0) {
+      safeStartTimer();
     }
   }
 
@@ -451,6 +461,13 @@ updateLightbox();
     .catch(err => console.error('Portfolio load error:', err));
 
     let timerFallback = null;
+
+    function safeStartTimer() {
+      if (timerStartedForCurrentImage) return;
+    
+      timerStartedForCurrentImage = true;
+      startTimerAnimation();
+    }
 
 function startTimerAnimation() {
   if (!timerBar) return;
