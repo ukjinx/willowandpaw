@@ -675,3 +675,36 @@ line-height: 1.3;
     max-width: 96vw;
   }
 }
+
+
+.lightbox-download {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 15px;
+  background: rgba(255,255,255,0.08);
+  color: #f2e6b6;
+
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.lightbox-download:hover {
+  background: rgba(0,0,0,0.6);
+  transform: scale(1.05);
+}
+
+.download-toggle-wrap {
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+.download-all-wrapper {
+  text-align: center;
+  margin: 40px 0;
+}

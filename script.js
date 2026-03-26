@@ -103,8 +103,12 @@ const music = document.getElementById('slideshowMusic');
 let fadeInterval = null;
 const muteBtn = document.querySelector('.lightbox-mute');
 let isMuted = false;
-  const grid = document.getElementById('portfolioGrid');
-  const lightbox = document.getElementById('lightbox');
+const grid = document.getElementById('portfolioGrid');
+const lightbox = document.getElementById('lightbox');
+
+// ✅ SAFETY CHECKS
+if (!grid || !lightbox) return;
+
   const lightboxImage = document.getElementById('lightboxImage');
   lightboxImage.addEventListener('load', async () => {
     // Wait for actual decode (fixes cached images issue)
@@ -152,6 +156,20 @@ let isMuted = false;
   let currentIndex = 0;
   let timerStartedForCurrentImage = false;
 
+  const downloadAllBtn = document.getElementById('downloadAllBtn');
+
+  downloadAllBtn?.addEventListener('click', () => {
+    if (!zipFile) return;
+  
+    const link = document.createElement('a');
+    link.href = zipFile;
+    link.download = zipFile.split('/').pop();
+  
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
+
   const startBtn = document.getElementById('startSlideshowBtn');
 
 startBtn?.addEventListener('click', () => {
@@ -165,6 +183,16 @@ startBtn?.addEventListener('click', () => {
 
 function updateLightbox() {
   const item = portfolioImages[currentIndex];
+
+  const downloadBtn = document.querySelector('.lightbox-download');
+
+  if (downloadBtn) {
+    if (item.approved && item.full) {
+      downloadBtn.style.display = 'flex';
+    } else {
+      downloadBtn.style.display = 'none';
+    }
+  }
 
   timerStartedForCurrentImage = false; // ✅ ADD THIS
   clearTimeout(timerFallback); // ✅ kill any previous timer
@@ -424,10 +452,23 @@ updateLightbox();
 
   // Load portfolio images
   const dataSource = grid.dataset.source || 'data/portfolio.json';
+
+  let zipFile = grid.dataset.zip || null;
+  
   fetch(dataSource)
     .then(res => res.json())
     .then(data => {
       portfolioImages = data;
+
+      const approvedImages = data.filter(img => img.approved);
+
+if (approvedImages.length > 0 && downloadAllBtn && zipFile) {
+  downloadAllBtn.style.display = 'inline-block';
+  downloadAllBtn.textContent = `Download ${approvedImages.length} Images`;
+}
+
+      const hasApproved = data.some(img => img.approved);
+
 
       data.forEach((item, index) => {
         const card = document.createElement('div');
@@ -597,6 +638,26 @@ function showControls() {
       diffX < 0 ? showNext() : showPrev();
     }
   });
+
+  const downloadBtn = document.querySelector('.lightbox-download');
+
+  downloadBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+  
+    const item = portfolioImages[currentIndex];
+  
+    if (!item.full || !item.approved) return;
+  
+    const link = document.createElement('a');
+    link.href = resolveImagePath(item.full);
+    link.download = item.full.split('/').pop();
+  
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
+
+
 });
 
 /* Footer */

@@ -1,16 +1,86 @@
 [
-    { "src": "/images/2026/gwili/gwili001.jpg", "caption": "Gwili 001"},
-    { "src": "/images/2026/gwili/gwili002.jpg", "caption": "Gwili 002"},
-    { "src": "/images/2026/gwili/gwili003.jpg", "caption": "Gwili 003"},
-    { "src": "/images/2026/gwili/gwili004.jpg", "caption": "Gwili 004"},
-    { "src": "/images/2026/gwili/gwili005.jpg", "caption": "Gwili 005"},
-    { "src": "/images/2026/gwili/gwili006.jpg", "caption": "Gwili 006"},
-    { "src": "/images/2026/gwili/gwili007.jpg", "caption": "Gwili 007"},
-    { "src": "/images/2026/gwili/gwili008.jpg", "caption": "Gwili 008"},
-    { "src": "/images/2026/gwili/gwili009.jpg", "caption": "Gwili 009"},
-    { "src": "/images/2026/gwili/gwili010.jpg", "caption": "Gwili 010"},
-    { "src": "/images/2026/gwili/gwili011.jpg", "caption": "Gwili 011"},
-    { "src": "/images/2026/gwili/gwili012.jpg", "caption": "Gwili 012"},
-    { "src": "/images/2026/gwili/gwili013.jpg", "caption": "Gwili 013"},
-    { "src": "/images/2026/gwili/gwili014.jpg", "caption": "Gwili 014"}
+  {
+    "src": "/images/2026/gwili/gwili001.jpg",
+    "full": "",
+    "caption": "Gwili 001",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/gwili/gwili002.jpg",
+    "full": "",
+    "caption": "Gwili 002",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/gwili/gwili003.jpg",
+    "full": "/images/2026/gwili/full/gwili-003.jpg",
+    "caption": "Gwili 003",
+    "approved": true
+  },
+  {
+    "src": "/images/2026/gwili/gwili004.jpg",
+    "full": "/images/2026/gwili/full/gwili-004.jpg",
+    "caption": "Gwili 004",
+    "approved": true
+  },
+  {
+    "src": "/images/2026/gwili/gwili005.jpg",
+    "full": "/images/2026/gwili/full/gwili-005.jpg",
+    "caption": "Gwili 005",
+    "approved": true
+  },
+  {
+    "src": "/images/2026/gwili/gwili006.jpg",
+    "full": "",
+    "caption": "Gwili 006",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/gwili/gwili007.jpg",
+    "full": "",
+    "caption": "Gwili 007",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/gwili/gwili008.jpg",
+    "full": "",
+    "caption": "Gwili 008",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/gwili/gwili009.jpg",
+    "full": "",
+    "caption": "Gwili 009",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/gwili/gwili010.jpg",
+    "full": "",
+    "caption": "Gwili 010",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/gwili/gwili011.jpg",
+    "full": "",
+    "caption": "Gwili 011",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/gwili/gwili012.jpg",
+    "full": "",
+    "caption": "Gwili 012",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/gwili/gwili013.jpg",
+    "full": "",
+    "caption": "Gwili 013",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/gwili/gwili014.jpg",
+    "full": "",
+    "caption": "Gwili 014",
+    "approved": false
+  }
   ]

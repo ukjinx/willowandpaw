@@ -1,18 +1,97 @@
 [
-    { "src": "/images/2026/bonzo/bonzo1.jpg", "caption": "Bonzo 001"},
-    { "src": "/images/2026/bonzo/bonzo2.jpg", "caption": "Bonzo 002"},
-    { "src": "/images/2026/bonzo/bonzo2-bw.jpg", "caption": "Bonzo 003"}, 
-    { "src": "/images/2026/bonzo/bonzo3.jpg", "caption": "Bonzo 004"},
-    { "src": "/images/2026/bonzo/bonzo4.jpg", "caption": "Bonzo 005"},
-    { "src": "/images/2026/bonzo/bonzo4-bw.jpg", "caption": "Bonzo 006"},
-    { "src": "/images/2026/bonzo/bonzo5.jpg", "caption": "Bonzo 007"},
-    { "src": "/images/2026/bonzo/bonzo6.jpg", "caption": "Bonzo 008"},
-    { "src": "/images/2026/bonzo/bonzo13.jpg", "caption": "Bonzo 009"},
-    { "src": "/images/2026/bonzo/bonzo7.jpg", "caption": "Bonzo 010"},
-    { "src": "/images/2026/bonzo/bonzo11.jpg", "caption": "Bonzo 011"},
-    { "src": "/images/2026/bonzo/bonzo8.jpg", "caption": "Bonzo 012"},
-    { "src": "/images/2026/bonzo/bonzo8-bw.jpg", "caption": "Bonzo 013"},
-    { "src": "/images/2026/bonzo/bonzo9-blackout.jpg", "caption": "Bonzo 014"},
-    { "src": "/images/2026/bonzo/bonzo10.jpg", "caption": "Bonzo 015"},
-    { "src": "/images/2026/bonzo/bonzo12.jpg", "caption": "Bonzo 016"}
+  {
+    "src": "/images/2026/bonzo/bonzo1.jpg",
+    "caption": "Bonzo 001",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/bonzo/bonzo2.jpg",
+    "full": "/images/2026/bonzo/bonzo2.jpg",
+    "caption": "Bonzo 002",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/bonzo/bonzo2-bw.jpg",
+    "full": "/images/2026/bonzo/bonzo5.jpg",
+    "caption": "Bonzo 003",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/bonzo/bonzo3.jpg",
+    "full": "/images/2026/bonzo/bonzo3.jpg",
+    "caption": "Bonzo 004",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/bonzo/bonzo4.jpg",
+    
+    "caption": "Bonzo 005",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/bonzo/bonzo4-bw.jpg",
+    "full": "/images/2026/bonzo/bonzo4.jpg",
+    "caption": "Bonzo 006",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/bonzo/bonzo5.jpg",
+    "full": "/images/2026/bonzo/bonzo5.jpg",
+    "caption": "Bonzo 007",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/bonzo/bonzo6.jpg",
+    "full": "/images/2026/bonzo/bonzo6.jpg",
+    "caption": "Bonzo 008",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/bonzo/bonzo13.jpg",
+    "full": "/images/2026/bonzo/bonzo13.jpg",
+    "caption": "Bonzo 009",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/bonzo/bonzo7.jpg",
+    "full": "/images/2026/bonzo/bonzo7.jpg",
+    "caption": "Bonzo 010",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/bonzo/bonzo11.jpg",
+    "full": "/images/2026/bonzo/bonzo11.jpg",
+    "caption": "Bonzo 011",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/bonzo/bonzo8.jpg",
+    "full": "/images/2026/bonzo/bonzo8.jpg",
+    "caption": "Bonzo 012",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/bonzo/bonzo8-bw.jpg",
+    "full": "/images/2026/bonzo/bonzo8-bw.jpg",
+    "caption": "Bonzo 013",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/bonzo/bonzo9-blackout.jpg",
+    
+    "caption": "Bonzo 014",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/bonzo/bonzo10.jpg",
+    "full": "/images/2026/bonzo/bonzo10.jpg",
+    "caption": "Bonzo 015",
+    "approved": false
+  },
+  {
+    "src": "/images/2026/bonzo/bonzo12.jpg",
+    "full": "/images/2026/bonzo/bonzo12.jpg",
+    "caption": "Bonzo 016",
+    "approved": false
+  }
   ]

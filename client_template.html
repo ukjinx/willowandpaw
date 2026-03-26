@@ -91,7 +91,7 @@
             
         
 
-    <section class="emotion-section">
+      <section class="emotion-section">
         <h1><em>Willow</em></h1>
         <p>Please take your time and enjoy your gallery.<br><br>
             Click any image to view larger, or start the slideshow for the full experience.
@@ -103,43 +103,59 @@
       </section>
 
 
+      <div class="download-all-wrapper">
+        <button id="downloadAllBtn" class="btn btn-primary" style="display:none;">
+          Download Selected Images
+        </button>
+      </div>
+
+
       <div 
       class="portfolio-grid" 
       id="portfolioGrid"
-      data-source="data/willow.json">
-    </div>
+      data-source="/data/willow.json"
+      data-zip="/images/portfolio/full/willow.zip">
+      </div>
+
 
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox">
-    <button class="lightbox-close">&times;</button>
+
+  <div class="lightbox-inner">
+
     <button class="lightbox-arrow left">&#10094;</button>
     <button class="lightbox-arrow right">&#10095;</button>
+
+    <figure>
+      <img id="lightboxImage" src="" alt="">
+    </figure>
+
     <div class="lightbox-controls">
-  
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+
       <button class="lightbox-mute" aria-label="Mute music">🔊</button>
-    
       <button class="lightbox-play">▶</button>
-    
+
       <select class="lightbox-speed">
         <option value="2000">2s</option>
-        <option value="3000" selected>3s</option>
-        <option value="4000">4s</option>
+        <option value="3000">3s</option>
+        <option value="4000" selected>4s</option>
         <option value="5000">5s</option>
       </select>
-    
+
       <div class="lightbox-counter" id="lightboxCounter"></div>
-    
+
       <div class="lightbox-timer">
         <div class="lightbox-timer-bar"></div>
       </div>
-    
+      <button class="lightbox-download" style="display:none;">⬇</button>
+      <button class="lightbox-close" aria-label="Close gallery">✕</button>
+
     </div>
-    
-    <figure>
-      <img id="lightboxImage" src="" alt="">
-      <figcaption id="lightboxCaption"></figcaption>
-    </figure>
+
   </div>
+
+</div>
   
 
   <section class="final-cta">

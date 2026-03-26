@@ -1,20 +1,92 @@
 [
-    { "src": "Willow1.jpg", "caption": ""},
-    { "src": "Willow12.jpg", "caption": ""}, 
-    { "src": "Willow2.jpg", "caption": ""},
-    { "src": "Willow3.jpg", "caption": ""},
-    { "src": "Willow7.jpg", "caption": ""},
-    { "src": "Willow4.jpg", "caption": ""},
-    { "src": "Willow5.jpg", "caption": ""},
-    { "src": "Willow6.jpg", "caption": ""},
-    { "src": "Willow8.jpg", "caption": ""},
-    { "src": "Willow15.jpg", "caption": ""},
-    { "src": "Willow10.jpg", "caption": ""},
-    { "src": "Willow11.jpg", "caption": ""},
-    { "src": "Willow19.jpg", "caption": ""},
-    { "src": "Willow13.jpg", "caption": ""},
-    { "src": "Willow14.jpg", "caption": ""},
-    { "src": "Willow16.jpg", "caption": ""},
-    { "src": "Willow17.jpg", "caption": ""},
-    { "src": "Willow18.jpg", "caption": ""}
+  {
+    "src": "/images/portfolio/Willow1.jpg",
+    "caption": "Willow 001",
+    "approved": true
+  },
+  {
+    "src": "/images/portfolio/Willow12.jpg",
+    "caption": "Willow 002",
+    "approved": true
+  },
+  {
+    "src": "/images/portfolio/Willow2.jpg",
+    "caption": "Willow 003",
+    "approved": true
+  },
+  {
+    "src": "/images/portfolio/Willow3.jpg",
+    "caption": "Willow 004",
+    "approved": true
+  },
+  {
+    "src": "/images/portfolio/Willow7.jpg",
+    "caption": "Willow 005",
+    "approved": true
+  },
+  {
+    "src": "/images/portfolio/Willow4.jpg",
+    "caption": "Willow 006",
+    "approved": true
+  },
+  {
+    "src": "/images/portfolio/Willow5.jpg",
+    "caption": "Willow 007",
+    "approved": true
+  },
+  {
+    "src": "/images/portfolio/Willow6.jpg",
+    "caption": "Willow 008",
+    "approved": true
+  },
+  {
+    "src": "/images/portfolio/Willow8.jpg",
+    "caption": "Willow 009",
+    "approved": true
+  },
+  {
+    "src": "/images/portfolio/Willow15.jpg",
+    "caption": "Willow 010",
+    "approved": true
+  },
+  {
+    "src": "/images/portfolio/Willow10.jpg",
+    "caption": "Willow 011",
+    "approved": true
+  },
+  {
+    "src": "/images/portfolio/Willow11.jpg",
+    "caption": "Willow 012",
+    "approved": true
+  },
+  {
+    "src": "/images/portfolio/Willow19.jpg",
+    "caption": "Willow 013",
+    "approved": true
+  },
+  {
+    "src": "/images/portfolio/Willow13.jpg",
+    "caption": "Willow 014",
+    "approved": true
+  },
+  {
+    "src": "/images/portfolio/Willow14.jpg",
+    "caption": "Willow 015",
+    "approved": true
+  },
+  {
+    "src": "/images/portfolio/Willow16.jpg",
+    "caption": "Willow 016",
+    "approved": true
+  },
+  {
+    "src": "/images/portfolio/Willow17.jpg",
+    "caption": "Willow 017",
+    "approved": true
+  },
+  {
+    "src": "/images/portfolio/Willow18.jpg",
+    "caption": "Willow 018",
+    "approved": true
+  }
   ]

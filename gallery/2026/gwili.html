@@ -103,11 +103,19 @@
       </section>
 
 
+      <div class="download-all-wrapper">
+        <button id="downloadAllBtn" class="btn btn-primary" style="display:none;">
+          Download Selected Images
+        </button>
+      </div>
+
+
       <div 
       class="portfolio-grid" 
       id="portfolioGrid"
-      data-source="/data/2026/gwili.json">
-    </div>
+      data-source="/data/2026/gwili.json"
+      data-zip="/images/2026/gwili/full/gwili.zip">
+      </div>
 
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox">
@@ -139,6 +147,7 @@
       <div class="lightbox-timer">
         <div class="lightbox-timer-bar"></div>
       </div>
+      <button class="lightbox-download" style="display:none;">⬇</button>
       <button class="lightbox-close" aria-label="Close gallery">✕</button>
 
     </div>
