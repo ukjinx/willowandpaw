@@ -150,8 +150,6 @@ if (!grid || !lightbox) return;
     music.load();
   }
 
-  if (!lightbox) return;
-
   let portfolioImages = [];
   let currentIndex = 0;
   let timerStartedForCurrentImage = false;
@@ -751,3 +749,120 @@ if (nav) {
     }
   });
 }
+
+// ===========================
+// Cookie Consent (GLOBAL)
+// ===========================
+
+(function () {
+  const CONSENT_KEY = "cookieConsent";
+  const CONSENT_EXPIRY_DAYS = 180;
+
+  let analyticsLoaded = false;
+
+  // ---------------------------
+  // Storage helpers
+  // ---------------------------
+  function setConsent(value) {
+    const expiry = new Date();
+    expiry.setDate(expiry.getDate() + CONSENT_EXPIRY_DAYS);
+
+    localStorage.setItem(
+      CONSENT_KEY,
+      JSON.stringify({
+        value,
+        expiry: expiry.getTime()
+      })
+    );
+  }
+
+  function getConsent() {
+    const stored = localStorage.getItem(CONSENT_KEY);
+    if (!stored) return null;
+
+    try {
+      const parsed = JSON.parse(stored);
+
+      if (Date.now() > parsed.expiry) {
+        localStorage.removeItem(CONSENT_KEY);
+        return null;
+      }
+
+      return parsed.value;
+    } catch (e) {
+      localStorage.removeItem(CONSENT_KEY);
+      return null;
+    }
+  }
+
+  // ---------------------------
+  // Load Google Analytics
+  // ---------------------------
+  function loadAnalytics() {
+    if (analyticsLoaded) return;
+    analyticsLoaded = true;
+
+    const script = document.createElement("script");
+    script.src = "https://www.googletagmanager.com/gtag/js?id=G-ZH5F82ETRF";
+    script.async = true;
+
+    script.onload = () => {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+
+      gtag('js', new Date());
+      gtag('config', 'G-ZH5F82ETRF');
+    };
+
+    document.head.appendChild(script);
+  }
+
+  // ---------------------------
+  // Init
+  // ---------------------------
+  function initCookieConsent() {
+    const banner = document.getElementById("cookieBanner");
+    const acceptBtn = document.getElementById("acceptCookies");
+    const rejectBtn = document.getElementById("rejectCookies");
+
+    // If banner not on page → still respect stored consent
+    const consent = getConsent();
+
+    if (consent === "accepted") {
+      loadAnalytics();
+    }
+
+    // If banner doesn't exist → stop here safely
+    if (!banner || !acceptBtn || !rejectBtn) return;
+
+    if (consent) {
+      banner.style.display = "none";
+      return;
+    }
+
+    // Show banner if no choice yet
+    banner.style.display = "block";
+
+    acceptBtn.addEventListener("click", () => {
+      setConsent("accepted");
+      banner.style.display = "none";
+      loadAnalytics();
+    });
+
+    rejectBtn.addEventListener("click", () => {
+      setConsent("rejected");
+      banner.style.display = "none";
+    });
+  }
+
+  // ---------------------------
+  // Run safely
+  // ---------------------------
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCookieConsent);
+  } else {
+    initCookieConsent();
+  }
+
+})();

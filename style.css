@@ -153,6 +153,22 @@ a {
 }
 
 /* =========================
+   Cookie Banner Tokens
+========================= */
+
+html[data-theme="light"] {
+  --cookie-bg: rgba(227, 234, 228, 0.95); /* matches card */
+  --cookie-text: var(--text-primary);
+  --cookie-border: var(--border-subtle);
+}
+
+html[data-theme="dark"] {
+  --cookie-bg: rgba(43, 41, 39, 0.95); /* matches dark card */
+  --cookie-text: var(--text-primary);
+  --cookie-border: var(--border-subtle);
+}
+
+/* =========================
    Hybrid Navigation
 ========================= */
 
@@ -2056,4 +2072,50 @@ html {
 
 .faq-hero {
   margin-bottom: 60px;
+}
+
+.cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background: var(--cookie-bg);
+  color: var(--cookie-text);
+  border: 1px solid var(--cookie-border);
+
+  padding: 18px 22px;
+  border-radius: 16px;
+
+  max-width: 520px;
+  width: calc(100% - 40px);
+
+  box-shadow:
+    0 12px 40px rgba(0,0,0,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+
+  backdrop-filter: blur(12px);
+  z-index: 9999;
+}
+
+.cookie-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cookie-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.cookie-banner p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.cookie-actions .btn {
+  padding: 10px 18px;
+  font-size: 0.8rem;
 }
