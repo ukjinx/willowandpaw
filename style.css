@@ -2119,3 +2119,17 @@ html {
   padding: 10px 18px;
   font-size: 0.8rem;
 }
+
+.cookie-settings-btn {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.cookie-settings-btn:hover {
+  color: #fff;
+}
