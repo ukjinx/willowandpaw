@@ -698,7 +698,7 @@ fetch('/includes/footer.html')
         const banner = document.getElementById("cookieBanner");
       
         if (banner) {
-          banner.style.display = "flex";
+          banner.classList.add("show");
         }
       
         // DO NOT delete consent automatically
@@ -852,9 +852,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ✅ ALWAYS set initial state
   if (consent === "accepted" || consent === "rejected") {
-    banner.style.display = "none";
+    banner.classList.remove("show");
   } else {
-    banner.style.display = "flex";
+    banner.classList.add("show");
   }
 
   // Load analytics if accepted
@@ -865,13 +865,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // Accept
   acceptBtn.addEventListener("click", () => {
     setConsent("accepted");
-    banner.style.display = "none";
+    banner.classList.remove("show");
     loadAnalytics();
   });
-
+  
   // Reject
   rejectBtn.addEventListener("click", () => {
     setConsent("rejected");
-    banner.style.display = "none";
+    banner.classList.remove("show");
   });
 });

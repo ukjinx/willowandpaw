@@ -1,3 +1,10 @@
+* {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
 /* =========================
    Base Theme Tokens
 ========================= */
@@ -30,6 +37,11 @@ html[data-theme="light"] {
 
   /* Utility */
   --brand-gold: #F0941F;
+
+  /* Accent */
+  --accent-soft: rgba(240, 148, 31, 0.12);
+  --accent-strong: #d97f12;
+
 }
 
 /* ---------- Dark Theme ---------- */
@@ -60,11 +72,29 @@ html[data-theme="dark"] {
 
   /* Utility */
   --brand-gold: #F0941F;
+
+  /* Accent */
+  --accent-soft: rgba(240, 148, 31, 0.18);
+  --accent-strong: #ffad42;
 }
 
 /* =========================
    Pricing Theme Tokens
 ========================= */
+
+
+/* =========================
+   Global UI Polish
+========================= */
+
+::selection {
+  background: var(--accent-primary);
+  color: #1E1F1D;
+}
+
+html[data-theme="dark"] ::selection {
+  color: #1E1F1D;
+}
 
 html[data-theme="light"] {
   --pricing-bg: linear-gradient(
@@ -103,10 +133,6 @@ body {
 
   p {
     color: var(--text-secondary);
-  }
-
-  a {
-    color: var(--link);
   }
   
   a:hover {
@@ -168,7 +194,7 @@ body {
 }
 
 .btn-primary:hover {
-  filter: brightness(1.05);
+  background: var(--accent-strong);
 }
 
 .btn-secondary {
@@ -178,10 +204,11 @@ body {
 }
 
 .btn-secondary:hover {
-  background: rgba(144,161,157,0.15);
+  background: var(--accent-soft);
 }
 
 a {
+  color: var(--link);
   text-decoration: none;
 }
 
@@ -340,11 +367,6 @@ html[data-theme="dark"] .logo-dark {
    Responsive Navigation
 ========================= */
 
-/* Hide mobile nav by default */
-.nav-mobile {
-  display: none;
-}
-
 /* Hide desktop nav on mobile */
 @media (max-width: 767px) {
 
@@ -368,10 +390,6 @@ html[data-theme="dark"] .logo-dark {
     border-top: 1px solid var(--border-subtle);
 
     z-index: 1000;
-  }
-
-  body {
-    padding-bottom: 85px; /* space for bottom nav */
   }
 }
 
@@ -504,12 +522,12 @@ p {
 }
 
 .btn-secondary {
-  border: 1px solid #8F9E8B;
+  border: 1px solid var(--accent-secondary);
   background: transparent;
 }
 
 .btn-secondary:hover {
-  background: rgba(143, 158, 139, 0.15);
+  background: color-mix(in srgb, var(--accent-secondary) 15%, transparent);
 }
 
 .why-section {
@@ -1255,7 +1273,7 @@ button {
   width: 100%;
   padding: 12px;
   border-radius: 4px;
-  border: 1px solid #000;
+  border: 1px solid var(--border-subtle);
   box-sizing: border-box;
 }
 
@@ -1431,7 +1449,7 @@ button {
   display: block;
   font-size: 3.6rem;
   font-weight: 700;
-  color: #d14b4b; /* premium red, not harsh */
+  color: var(--accent-primary);
   margin-top: 4px;
   margin-bottom: 4px;
 }
@@ -1560,7 +1578,7 @@ button {
 }
 
 .primary-cta:hover {
-  background: #F2E6B6;
+  background: var(--accent-strong);
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
@@ -2018,7 +2036,7 @@ html {
   padding: 18px 22px;
   margin-bottom: 14px;
   border-radius: 10px;
-  background: var(--card-bg);
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -2119,29 +2137,42 @@ html {
   position: fixed;
   bottom: 20px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(20px);
 
   background: var(--cookie-bg);
   color: var(--cookie-text);
   border: 1px solid var(--cookie-border);
 
-  padding: 18px 22px;
-  border-radius: 16px;
+  padding: 20px 24px;
+  border-radius: 18px;
 
   max-width: 520px;
   width: calc(100% - 40px);
 
   box-shadow:
-    0 12px 40px rgba(0,0,0,0.18),
-    inset 0 1px 0 rgba(255,255,255,0.04);
+    0 20px 60px rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.05);
 
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
   z-index: 9999;
-  display: none;
+
+  /* 👇 animation base state */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease,
+    visibility 0.4s;
 }
 
+/* 👇 visible state */
 .cookie-banner.show {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
 }
 
 .cookie-content {
