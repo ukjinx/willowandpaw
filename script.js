@@ -701,7 +701,8 @@ fetch('/includes/footer.html')
           banner.style.display = "flex";
         }
       
-        localStorage.removeItem("cookieConsent");
+        // DO NOT delete consent automatically
+        // Just reopen the banner
       });
     }
   });
@@ -845,14 +846,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const acceptBtn = document.getElementById("acceptCookies");
   const rejectBtn = document.getElementById("rejectCookies");
 
+  if (!banner || !acceptBtn || !rejectBtn) return;
+
   const consent = getConsent();
 
-  // Show banner if no decision
-  if (!consent) {
+  // ✅ ALWAYS set initial state
+  if (consent === "accepted" || consent === "rejected") {
+    banner.style.display = "none";
+  } else {
     banner.style.display = "flex";
   }
 
-  // Load analytics if already accepted
+  // Load analytics if accepted
   if (consent === "accepted") {
     loadAnalytics();
   }
@@ -869,5 +874,4 @@ document.addEventListener("DOMContentLoaded", () => {
     setConsent("rejected");
     banner.style.display = "none";
   });
-
 });
