@@ -850,16 +850,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const consent = getConsent();
 
-  // ✅ ALWAYS set initial state
-  if (consent === "accepted" || consent === "rejected") {
-    banner.classList.remove("show");
-  } else {
-    banner.classList.add("show");
-  }
+  console.log("Cookie consent status:", consent); // 👈 DEBUG
 
-  // Load analytics if accepted
+  // 👇 FIXED LOGIC
   if (consent === "accepted") {
+    banner.classList.remove("show");
     loadAnalytics();
+  } 
+  else if (consent === "rejected") {
+    banner.classList.remove("show");
+  } 
+  else {
+    banner.classList.add("show");
   }
 
   // Accept
@@ -868,7 +870,7 @@ document.addEventListener("DOMContentLoaded", () => {
     banner.classList.remove("show");
     loadAnalytics();
   });
-  
+
   // Reject
   rejectBtn.addEventListener("click", () => {
     setConsent("rejected");
