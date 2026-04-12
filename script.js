@@ -137,7 +137,9 @@ if (!grid || !lightbox) return;
     "/assets/music/willowandpaw-3.mp3",
     "/assets/music/willowandpaw-4.mp3",
     "/assets/music/willowandpaw-5.mp3",
-    "/assets/music/willowandpaw-6.mp3"
+    "/assets/music/willowandpaw-6.mp3",
+    "/assets/music/willowandpaw-7.mp3",
+    "/assets/music/willowandpaw-8.mp3"
   ];
 
   function loadRandomTrack() {
