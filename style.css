@@ -408,22 +408,12 @@ html[data-theme="dark"] .logo-dark {
     left: 0;
     right: 0;
     bottom: 0;
-  
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  
-    padding: 12px 8px;
+    transition: bottom 0.15s ease-out;
     padding-bottom: calc(10px + env(safe-area-inset-bottom));
   
-    background: var(--bg-card);
-    border-top: 1px solid var(--border-subtle);
-  
-    z-index: 1000;
-  
-    /* 👇 KEY: we will control this via JS */
-    transform: translateY(0);
-    will-change: transform;
+    /* ❌ REMOVE THESE */
+    transform: none;
+    will-change: auto;
   }
 }
 
@@ -1865,6 +1855,11 @@ button {
 
 html {
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -882,13 +882,10 @@ function updateMobileNavPosition() {
   const nav = document.querySelector('.nav-mobile');
   if (!nav || !window.visualViewport) return;
 
-  const viewport = window.visualViewport;
+  const vv = window.visualViewport;
 
-  // How much space is hidden by browser UI
-  const offset = window.innerHeight - viewport.height - viewport.offsetTop;
-
-  // Move nav down into that space
-  nav.style.transform = `translateY(${offset}px)`;
+  // Stick nav to the *actual* bottom of the visible viewport
+  nav.style.bottom = `${window.innerHeight - vv.height - vv.offsetTop}px`;
 }
 
 // Run on load
