@@ -877,3 +877,27 @@ document.addEventListener("DOMContentLoaded", () => {
     banner.classList.remove("show");
   });
 });
+
+function updateMobileNavPosition() {
+  const nav = document.querySelector('.nav-mobile');
+  if (!nav || !window.visualViewport) return;
+
+  const viewport = window.visualViewport;
+
+  // How much space is hidden by browser UI
+  const offset = window.innerHeight - viewport.height - viewport.offsetTop;
+
+  // Move nav down into that space
+  nav.style.transform = `translateY(${offset}px)`;
+}
+
+// Run on load
+updateMobileNavPosition();
+
+// Update on viewport changes
+window.visualViewport?.addEventListener('resize', updateMobileNavPosition);
+window.visualViewport?.addEventListener('scroll', updateMobileNavPosition);
+
+// Fallback
+window.addEventListener('scroll', updateMobileNavPosition);
+window.addEventListener('resize', updateMobileNavPosition);
