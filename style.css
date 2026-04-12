@@ -186,7 +186,7 @@ body {
   display: grid;
   align-items: stretch;
   grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
+  gap: 40px;
   margin-top: 40px;
   align-items: stretch;
   overflow: visible; /* ensure shadows don't clip */
@@ -196,20 +196,12 @@ body {
 @media (max-width: 768px) {
   .pricing-grid {
     grid-template-columns: 1fr;
-    gap: 50px; /* 👈 increase spacing */
-  }
-
-  .pricing-box {
-    margin-top: 20px; /* 👈 extra breathing room */
+    gap: 150px;
   }
 }
 
 .pricing-box {
   padding-top: 60px; /* 👈 creates space INSIDE instead */
-}
-
-.pricing-box::before {
-  top: 16px; /* 👈 move it inside the card */
 }
 
 .pricing-box.standard {
@@ -412,33 +404,33 @@ html[data-theme="dark"] .logo-dark {
   }
 
   .nav-mobile {
-    display: flex;
-
     position: fixed;
-    bottom: 0;
     left: 0;
     right: 0;
-
+  
+    bottom: env(safe-area-inset-bottom);
+  
+    display: flex;
     justify-content: space-around;
     align-items: center;
-
-    padding: 12px 8px env(safe-area-inset-bottom);
+  
+    padding: 12px 8px 10px;
     background: var(--bg-card);
     border-top: 1px solid var(--border-subtle);
-
+  
     z-index: 1000;
+  }
+}
+
+@supports (height: 100dvh) {
+  body {
+    min-height: 100dvh;
   }
 }
 
 .mobile-logo {
   position: relative;
   z-index: 5;
-}
-
-@media (max-width: 767px) {
-  body {
-    padding-bottom: 80px; /* height of mobile nav */
-  }
 }
 
 .nav-links {
@@ -1554,19 +1546,9 @@ button {
 .pricing-box::before {
   content: attr(data-label);
   position: absolute;
-  top: -14px;
+  top: 16px; /* 👈 move INSIDE the card */
   left: 50%;
   transform: translateX(-50%);
-
-  background: var(--accent-primary);
-  color: #1E1F1D;
-
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-
-  padding: 6px 12px;
-  border-radius: 999px;
 }
 
 .pricing-box {
