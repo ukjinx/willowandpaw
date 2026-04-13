@@ -1285,6 +1285,19 @@ button {
   box-sizing: border-box;
 }
 
+textarea.formInput {
+  min-height: 220px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+@media (max-width: 600px) {
+  textarea.formInput {
+    min-height: 460px;
+    font-size: 16px; /* prevents iOS zoom */
+  }
+}
+
 /* Mobile stack */
 @media (max-width: 600px) {
   .two-col {
