@@ -1,5 +1,6 @@
 [
     { "src": "/images/portfolio/Willow12.jpg", "caption": ""},
+    { "src": "/images/portfolio/Willow21.jpg", "caption": ""},
     { "src": "/images/2026/bonzo/bonzo1.jpg", "caption": ""}, 
     { "src": "/images/portfolio/Wally1.jpg", "caption": ""},
     { "src": "/images/portfolio/gwili003.jpg", "caption": ""},
@@ -8,9 +9,8 @@
     { "src": "/images/2026/bonzo/bonzo9-blackout.jpg", "caption": ""},
     { "src": "/images/portfolio/gwili001.jpg", "caption": ""},
     { "src": "/images/portfolio/Willow3.jpg", "caption": ""},
-    { "src": "/images/portfolio/Luna3.jpg", "caption": ""},
+    { "src": "/images/2026/bonzo/bonzo14.jpg", "caption": ""},
     { "src": "/images/2026/bonzo/bonzo13.jpg", "caption": ""},
-    { "src": "/images/portfolio/Wally2.jpg", "caption": ""},
     { "src": "/images/portfolio/Willow1.jpg", "caption": ""},
     { "src": "/images/portfolio/gwili005.jpg", "caption": ""},
     { "src": "/images/2026/bonzo/bonzo6.jpg", "caption": ""},
@@ -18,6 +18,6 @@
     { "src": "/images/2026/bonzo/bonzo4.jpg", "caption": ""},
     { "src": "/images/portfolio/Willow13.jpg", "caption": ""},
     { "src": "/images/portfolio/Willow19.jpg", "caption": ""},
-    { "src": "/images/portfolio/Luna6.jpg", "caption": ""},
+    { "src": "/images/portfolio/Willow20.jpg", "caption": ""},
     { "src": "/images/portfolio/Wally4.jpg", "caption": ""}
   ]
