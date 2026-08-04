@@ -269,20 +269,24 @@ timerBar.style.animation = 'none';
         if (progress < 1) {
             requestAnimationFrame(fade);
         } else {
-            music.pause();
-            music.volume = 0.6;
-            onComplete?.();
+          music.pause();
+          music.currentTime = 0;
+          music.volume = 0.6;
+          
+          if (onComplete) {
+              setTimeout(onComplete, 50);
+          }
         }
     }
 
     requestAnimationFrame(fade);
 
-setTimeout(() => {
-    if (music && !music.paused) {
-        music.pause();
-        music.volume = 0.6;
-    }
-}, duration + 250);
+// setTimeout(() => {
+//     if (music && !music.paused) {
+//         music.pause();
+//         music.volume = 0.6;
+//     }
+// }, duration + 250);
 }
 
   muteBtn?.addEventListener('click', (e) => {
@@ -337,25 +341,27 @@ setTimeout(() => {
     if (isPlaying && currentIndex === portfolioImages.length - 1) {
 
       console.log("Reached end");
-    
+  
+      // Stop slideshow visuals only
       isPlaying = false;
-    
+  
       timerBar.style.animation = 'none';
       clearTimeout(timerFallback);
-    
+  
       lightbox.classList.remove('slideshow-active');
-    
+  
       playBtn.textContent = '▶';
       playBtn.setAttribute('aria-label', 'Start slideshow');
-    
+  
+      // Fade music first, then close gallery
       fadeOutAudio(2200, () => {
           lightbox.classList.remove('show');
           document.body.classList.remove('lightbox-open');
           resetStartButton();
       });
-    
+  
       return;
-    }
+  }
   
     currentIndex++;
   
