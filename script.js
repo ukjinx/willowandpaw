@@ -407,24 +407,26 @@ updateLightbox();
   }
 
   
-  function stopSlideshow() {
+  function stopSlideshow(skipAudioFade = false) {
+
     if (!isPlaying) return;
-  
+
     isPlaying = false;
-  
+
     timerBar.style.animation = 'none';
-  
+    clearTimeout(timerFallback);
+
     lightbox.classList.remove('slideshow-active');
-  
+
     playBtn.textContent = '▶';
     playBtn.setAttribute('aria-label', 'Start slideshow');
-  
-    if (music && !music.paused) {
-      fadeOutAudio(); // 🎵 smooth fade out
+
+    if (!skipAudioFade && music && !music.paused) {
+        fadeOutAudio();
     }
-  
+
     resetStartButton();
-  }
+}
 
   function hardStopAudio() {
     if (!music) return;
