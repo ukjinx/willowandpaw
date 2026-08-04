@@ -338,13 +338,21 @@ setTimeout(() => {
 
       console.log("Reached end");
     
-      stopSlideshow(true);
+      isPlaying = false;
     
-      // Close lightbox immediately
-      closeLightbox();
+      timerBar.style.animation = 'none';
+      clearTimeout(timerFallback);
     
-      // Fade audio separately
-      fadeOutAudio(2200);
+      lightbox.classList.remove('slideshow-active');
+    
+      playBtn.textContent = '▶';
+      playBtn.setAttribute('aria-label', 'Start slideshow');
+    
+      fadeOutAudio(2200, () => {
+          lightbox.classList.remove('show');
+          document.body.classList.remove('lightbox-open');
+          resetStartButton();
+      });
     
       return;
     }
