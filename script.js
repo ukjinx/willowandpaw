@@ -323,22 +323,16 @@ timerBar.style.animation = 'none';
 
     if (isPlaying && currentIndex === portfolioImages.length - 1) {
 
-      stopSlideshow();
-      if (isPlaying && currentIndex === portfolioImages.length - 1) {
-
-        stopSlideshow(true);   // <-- skip the first fade
-    
-        fadeOutAudio(2200, () => {
-            setTimeout(() => {
-                closeLightbox();
-            }, 300);
-        });
-    
-        return;
-    }
-    
+      stopSlideshow(true);   // Don't fade here
+  
+      fadeOutAudio(2200, () => {
+          setTimeout(() => {
+              closeLightbox();
+          }, 300);
+      });
+  
       return;
-    }
+  }
   
     currentIndex++;
   
