@@ -330,17 +330,17 @@ timerBar.style.animation = 'none';
     if (isPlaying && currentIndex === portfolioImages.length - 1) {
 
       console.log("Reached end");
-  
+    
       stopSlideshow(true);
-  
-      fadeOutAudio(2200, () => {
-          setTimeout(() => {
-              closeLightbox();
-          }, 300);
-      });
-  
+    
+      // Close lightbox immediately
+      closeLightbox();
+    
+      // Fade audio separately
+      fadeOutAudio(2200);
+    
       return;
-  }
+    }
   
     currentIndex++;
   
