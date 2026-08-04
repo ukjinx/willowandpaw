@@ -276,6 +276,13 @@ timerBar.style.animation = 'none';
     }
 
     requestAnimationFrame(fade);
+
+setTimeout(() => {
+    if (music && !music.paused) {
+        music.pause();
+        music.volume = 0.6;
+    }
+}, duration + 250);
 }
 
   muteBtn?.addEventListener('click', (e) => {
