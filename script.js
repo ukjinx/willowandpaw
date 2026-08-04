@@ -214,11 +214,17 @@ timerBar.style.animation = 'none';
 
     const counter = document.getElementById("lightboxCounter");
 
-    if (counter && portfolioImages.length > 0) {
-      counter.textContent = `${currentIndex + 1} / ${portfolioImages.length}`;
-    }
+    if (isPlaying) {
 
-  }, 300);
+      clearTimeout(timerFallback);
+
+      timerFallback = setTimeout(() => {
+          showNext(true);
+      }, slideshowSpeed);
+
+  }
+
+}, 300);
 }
 
   function fadeInAudio(duration = 1500) {
