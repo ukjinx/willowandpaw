@@ -324,12 +324,18 @@ timerBar.style.animation = 'none';
     if (isPlaying && currentIndex === portfolioImages.length - 1) {
 
       stopSlideshow();
+      if (isPlaying && currentIndex === portfolioImages.length - 1) {
+
+        stopSlideshow(true);   // <-- skip the first fade
     
-      fadeOutAudio(2200, () => {
-        setTimeout(() => {
-          closeLightbox();
-        }, 300); // small delay for smoother finish
-      });
+        fadeOutAudio(2200, () => {
+            setTimeout(() => {
+                closeLightbox();
+            }, 300);
+        });
+    
+        return;
+    }
     
       return;
     }
