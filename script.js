@@ -214,16 +214,6 @@ timerBar.style.animation = 'none';
 
     const counter = document.getElementById("lightboxCounter");
 
-    if (isPlaying) {
-
-      clearTimeout(timerFallback);
-
-      timerFallback = setTimeout(() => {
-          showNext(true);
-      }, slideshowSpeed);
-
-  }
-
 }, 300);
 }
 
@@ -258,27 +248,35 @@ timerBar.style.animation = 'none';
     }
   }
   
-  function fadeOutAudio(duration = 2200, onComplete = null) {
-    if (!music) return;
-  
+  function fadeOutAudio(duration = 2200, onComplete) {
+
+    if (!music || music.paused) {
+        onComplete?.();
+        return;
+    }
+
     clearInterval(fadeInterval);
-  
-    const step = 0.02;
-    const intervalTime = duration / (music.volume / step);
-  
-    fadeInterval = setInterval(() => {
-  
-      if (music.volume > 0.02) {
-        music.volume = Math.max(music.volume - step, 0);
-      } else {
-        clearInterval(fadeInterval);
-        music.pause();
-  
-        if (onComplete) onComplete();   // 👈 NEW
-      }
-  
-    }, intervalTime);
-  }
+
+    const startVolume = music.volume;
+    const start = performance.now();
+
+    function fade(now) {
+
+        const progress = Math.min((now - start) / duration, 1);
+
+        music.volume = startVolume * (1 - progress);
+
+        if (progress < 1) {
+            requestAnimationFrame(fade);
+        } else {
+            music.pause();
+            music.volume = 0.6;
+            onComplete?.();
+        }
+    }
+
+    requestAnimationFrame(fade);
+}
 
   muteBtn?.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -327,9 +325,13 @@ timerBar.style.animation = 'none';
 
   function showNext(fromSlideshow = false) {
 
+    console.log("showNext()", currentIndex);
+
     if (isPlaying && currentIndex === portfolioImages.length - 1) {
 
-      stopSlideshow(true);   // Don't fade here
+      console.log("Reached end");
+  
+      stopSlideshow(true);
   
       fadeOutAudio(2200, () => {
           setTimeout(() => {
@@ -520,25 +522,32 @@ if (approvedImages.length > 0 && downloadAllBtn && zipFile) {
       startTimerAnimation();
     }
 
-function startTimerAnimation() {
-  if (!timerBar) return;
-
-  // Clear any existing fallback
-  clearTimeout(timerFallback);
-
-  timerBar.style.animation = 'none';
-  timerBar.offsetHeight;
-
-  timerBar.style.animation = `slideTimer ${slideshowSpeed}ms linear forwards`;
-  timerBar.style.animationPlayState = 'running';
-
-  // ✅ Fallback for mobile (guarantees next slide runs)
-  timerFallback = setTimeout(() => {
-    if (isPlaying) {
-      showNext(true);
+    function startTimerAnimation() {
+      if (!timerBar) return;
+    
+      // Clear any existing fallback
+      clearTimeout(timerFallback);
+    
+      timerBar.style.animation = 'none';
+      timerBar.offsetHeight;
+    
+      timerBar.style.animation = `slideTimer ${slideshowSpeed}ms linear forwards`;
+      timerBar.style.animationPlayState = 'running';
+    
+    
+      console.log("Timer started", currentIndex);
+    
+      // ✅ Fallback for mobile
+      timerFallback = setTimeout(() => {
+    
+        console.log("Timer fired", currentIndex);
+    
+        if (isPlaying) {
+          showNext(true);
+        }
+    
+      }, slideshowSpeed + 50);
     }
-  }, slideshowSpeed + 50); // small buffer
-}
 
 timerBar.addEventListener('animationend', () => {
   if (!isPlaying) return;
@@ -646,6 +655,7 @@ function showControls() {
 
     if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 60) {
       diffX < 0 ? showNext() : showPrev();
+      console.log("showNext", currentIndex);
     }
   });
 
