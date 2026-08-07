@@ -120,8 +120,9 @@ const lightbox = document.getElementById('lightbox');
 // ✅ SAFETY CHECKS
 if (!grid || !lightbox) return;
 
-  const lightboxImage = document.getElementById('lightboxImage');
-  lightboxImage.addEventListener('load', async () => {
+const lightboxImage = document.getElementById('lightboxImage');
+
+lightboxImage?.addEventListener('load', async () => {
 
     if (lightboxImage.decode) {
         try {
@@ -193,14 +194,7 @@ if (!grid || !lightbox) return;
   
     openLightbox(0);
   
-    setTimeout(() => {
-      startSlideshow();
-    }, 400);
   });
-  setTimeout(() => {
-    startSlideshow();     // start auto play
-  }, 400);                // small delay so lightbox animates in smoothly
-});
 
 function updateCounter() {
   const counter = document.getElementById("lightboxCounter");
@@ -624,12 +618,12 @@ if (approvedImages.length > 0 && downloadAllBtn && zipFile) {
       }, slideshowSpeed + 50);
     }
 
-timerBar.addEventListener('animationend', () => {
-  if (!isPlaying) return;
-
-  clearTimeout(timerFallback); // ✅ prevent duplicate trigger
-  showNext(true);
-});
+    timerBar?.addEventListener('animationend', () => {
+      if (!isPlaying) return;
+    
+      clearTimeout(timerFallback);
+      showNext(true);
+    });
 
 
 
@@ -752,8 +746,6 @@ function showControls() {
     document.body.removeChild(link);
   });
 
-
-});
 
 /* Footer */
 
@@ -993,3 +985,5 @@ window.visualViewport?.addEventListener('scroll', updateMobileNavPosition);
 // Fallback
 window.addEventListener('scroll', updateMobileNavPosition);
 window.addEventListener('resize', updateMobileNavPosition);
+
+});
