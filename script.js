@@ -183,6 +183,13 @@ startBtn?.addEventListener('click', () => {
   }, 400);                // small delay so lightbox animates in smoothly
 });
 
+function updateCounter() {
+  const counter = document.getElementById("lightboxCounter");
+  if (counter) {
+    counter.textContent = `${currentIndex + 1} / ${portfolioImages.length}`;
+  }
+}
+
 function updateLightbox() {
   const item = portfolioImages[currentIndex];
 
@@ -215,6 +222,8 @@ timerBar.style.animation = 'none';
     const counter = document.getElementById("lightboxCounter");
 
 }, 300);
+
+updateCounter();
 }
 
   function fadeInAudio(duration = 1500) {
