@@ -111,19 +111,18 @@ if (!grid || !lightbox) return;
 
   const lightboxImage = document.getElementById('lightboxImage');
   lightboxImage.addEventListener('load', async () => {
-    // Wait for actual decode (fixes cached images issue)
+
     if (lightboxImage.decode) {
-      try {
-        await lightboxImage.decode();
-      } catch (e) {}
+        try {
+            await lightboxImage.decode();
+        } catch (e) {}
     }
-  
+
     lightboxImage.classList.remove('fade-out');
-  
-    if (isPlaying) {
-      safeStartTimer();
-    }
-  });
+
+});
+
+
   const lightboxCaption = document.getElementById('lightboxCaption');
   const closeBtn = document.querySelector('.lightbox-close');
   const nextBtn = document.querySelector('.lightbox-arrow.right');
@@ -156,7 +155,6 @@ if (!grid || !lightbox) return;
 
   let portfolioImages = [];
   let currentIndex = 0;
-  let timerStartedForCurrentImage = false;
 
   const downloadAllBtn = document.getElementById('downloadAllBtn');
 
@@ -203,23 +201,39 @@ function updateLightbox() {
     }
   }
 
-  timerStartedForCurrentImage = false; // ✅ ADD THIS
-  clearTimeout(timerFallback); // ✅ kill any previous timer
+  clearTimeout(timerFallback);
 timerBar.style.animation = 'none';
 
   lightboxImage.classList.add('fade-out');
 
   setTimeout(() => {
+
     lightboxImage.src = resolveImagePath(item.src);
+
+    if (isPlaying) {
+
+      setTimeout(() => {
+  
+          if (isPlaying) {
+              startTimerAnimation();
+          }
+  
+      }, 350);
+  
+  }if (lightboxImage.complete && lightboxImage.naturalWidth !== 0) {
+
+    // If the image is already cached, the load event may never fire.
+    if (isPlaying && lightboxImage.complete && lightboxImage.naturalWidth > 0) {
+        safeStartTimer();
+    }
 
     // Caption fade update
     lightboxCaption.style.opacity = 0;
-    setTimeout(() => {
-      lightboxCaption.textContent = item.caption || '';
-      lightboxCaption.style.opacity = 0.9;
-    }, 150);
 
-    const counter = document.getElementById("lightboxCounter");
+    setTimeout(() => {
+        lightboxCaption.textContent = item.caption || '';
+        lightboxCaption.style.opacity = 0.9;
+    }, 150);
 
 }, 300);
 
@@ -347,7 +361,7 @@ updateCounter();
 
     console.log("showNext()", currentIndex);
 
-    if (isPlaying && currentIndex === portfolioImages.length - 1) {
+    if (isPlaying && currentIndex >= portfolioImages.length - 1) {
 
       console.log("Reached end");
   
@@ -372,11 +386,24 @@ updateCounter();
       return;
   }
   
-    currentIndex++;
+  currentIndex++;
+
+  if (currentIndex >= portfolioImages.length) {
   
-    if (currentIndex >= portfolioImages.length) {
+      // We somehow ran past the final image.
+      // End the slideshow cleanly.
       currentIndex = portfolioImages.length - 1;
-    }
+  
+      if (isPlaying) {
+          fadeOutAudio(2200, () => {
+              lightbox.classList.remove('show');
+              document.body.classList.remove('lightbox-open');
+              resetStartButton();
+          });
+      }
+  
+      return;
+  }
   
 // Preload next two images
 for (let i = 1; i <= 2; i++) {
@@ -439,9 +466,7 @@ updateLightbox();
     fadeInAudio();
   
     // ✅ KEY FIX: start timer if image is already loaded
-    if (lightboxImage.complete && lightboxImage.naturalWidth !== 0) {
-      safeStartTimer();
-    }
+    startTimerAnimation();
   }
 
   
@@ -544,13 +569,6 @@ if (approvedImages.length > 0 && downloadAllBtn && zipFile) {
     .catch(err => console.error('Portfolio load error:', err));
 
     let timerFallback = null;
-
-    function safeStartTimer() {
-      if (timerStartedForCurrentImage) return;
-    
-      timerStartedForCurrentImage = true;
-      startTimerAnimation();
-    }
 
     function startTimerAnimation() {
       if (!timerBar) return;
