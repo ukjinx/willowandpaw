@@ -1,3 +1,14 @@
+window.onerror = function(message, source, lineno, colno) {
+  alert(
+    "JS Error:\n" +
+    message +
+    "\nLine: " +
+    lineno +
+    "\nColumn: " +
+    colno
+  );
+};
+
 // ---------------------------
 // Mobile navigation toggle
 // ---------------------------
@@ -155,6 +166,7 @@ if (!grid || !lightbox) return;
 
   let portfolioImages = [];
   let currentIndex = 0;
+  let timerFallback = null;
 
   const downloadAllBtn = document.getElementById('downloadAllBtn');
 
@@ -189,20 +201,18 @@ function updateCounter() {
 }
 
 function updateLightbox() {
+
   const item = portfolioImages[currentIndex];
 
   const downloadBtn = document.querySelector('.lightbox-download');
 
   if (downloadBtn) {
-    if (item.approved && item.full) {
-      downloadBtn.style.display = 'flex';
-    } else {
-      downloadBtn.style.display = 'none';
-    }
+    downloadBtn.style.display =
+      (item.approved && item.full) ? 'flex' : 'none';
   }
 
   clearTimeout(timerFallback);
-timerBar.style.animation = 'none';
+  timerBar.style.animation = 'none';
 
   lightboxImage.classList.add('fade-out');
 
@@ -210,35 +220,29 @@ timerBar.style.animation = 'none';
 
     lightboxImage.src = resolveImagePath(item.src);
 
+    // Restart slideshow timer after image transition
     if (isPlaying) {
-
       setTimeout(() => {
-  
-          if (isPlaying) {
-              startTimerAnimation();
-          }
-  
+        if (isPlaying) {
+          startTimerAnimation();
+        }
       }, 350);
-  
-  }if (lightboxImage.complete && lightboxImage.naturalWidth !== 0) {
-
-    // If the image is already cached, the load event may never fire.
-    if (isPlaying && lightboxImage.complete && lightboxImage.naturalWidth > 0) {
-        safeStartTimer();
     }
 
-    // Caption fade update
+    // Update caption
     lightboxCaption.style.opacity = 0;
 
     setTimeout(() => {
-        lightboxCaption.textContent = item.caption || '';
-        lightboxCaption.style.opacity = 0.9;
+      lightboxCaption.textContent = item.caption || '';
+      lightboxCaption.style.opacity = 0.9;
     }, 150);
 
-}, 300);
+  }, 300);
 
-updateCounter();
+  updateCounter();
+
 }
+
 
   function fadeInAudio(duration = 1500) {
     if (!music) return;
@@ -567,8 +571,6 @@ if (approvedImages.length > 0 && downloadAllBtn && zipFile) {
       });
     })
     .catch(err => console.error('Portfolio load error:', err));
-
-    let timerFallback = null;
 
     function startTimerAnimation() {
       if (!timerBar) return;
