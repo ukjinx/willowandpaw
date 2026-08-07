@@ -184,10 +184,19 @@ if (!grid || !lightbox) return;
 
   const startBtn = document.getElementById('startSlideshowBtn');
 
-startBtn?.addEventListener('click', () => {
-  if (portfolioImages.length === 0) return;
+  startBtn?.addEventListener('click', () => {
 
-  openLightbox(0);        // open first image
+    if (!portfolioImages.length) {
+      console.warn("Portfolio still loading");
+      return;
+    }
+  
+    openLightbox(0);
+  
+    setTimeout(() => {
+      startSlideshow();
+    }, 400);
+  });
   setTimeout(() => {
     startSlideshow();     // start auto play
   }, 400);                // small delay so lightbox animates in smoothly
@@ -201,6 +210,16 @@ function updateCounter() {
 }
 
 function updateLightbox() {
+
+  if (!portfolioImages.length) {
+    console.warn("No portfolio images loaded yet");
+    return;
+  }
+
+  if (currentIndex < 0 || currentIndex >= portfolioImages.length) {
+    console.warn("Invalid lightbox index:", currentIndex);
+    currentIndex = 0;
+  }
 
   const item = portfolioImages[currentIndex];
 
@@ -363,8 +382,14 @@ function updateLightbox() {
 
   function showNext(fromSlideshow = false) {
 
+    // Safety check - don't continue if images haven't loaded
+    if (!portfolioImages.length) {
+      console.warn("No portfolio images available");
+      return;
+    }
+  
     console.log("showNext()", currentIndex);
-
+  
     if (isPlaying && currentIndex >= portfolioImages.length - 1) {
 
       console.log("Reached end");
