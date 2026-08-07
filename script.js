@@ -1,13 +1,13 @@
-window.onerror = function(message, source, lineno, colno) {
-  alert(
-    "JS Error:\n" +
-    message +
-    "\nLine: " +
-    lineno +
-    "\nColumn: " +
-    colno
-  );
-};
+// window.onerror = function(message, source, lineno, colno) {
+//   alert(
+//     "JS Error:\n" +
+//     message +
+//     "\nLine: " +
+//     lineno +
+//     "\nColumn: " +
+//     colno
+//   );
+// };
 
 // ---------------------------
 // Mobile navigation toggle
