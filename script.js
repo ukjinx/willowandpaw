@@ -1,22 +1,22 @@
-// window.onerror = function(message, source, lineno, colno) {
-//   alert(
-//     "JS Error:\n" +
-//     message +
-//     "\nLine: " +
-//     lineno +
-//     "\nColumn: " +
-//     colno
-//   );
-// };
+window.onerror = function(message, source, lineno, colno, error) {
 
-window.onerror = function(message, source, lineno, colno) {
+  console.error("========== JAVASCRIPT ERROR ==========");
+  console.error("Message:", message);
+  console.error("Source:", source);
+  console.error("Line:", lineno);
+  console.error("Column:", colno);
+  console.error("Error object:", error);
+  console.error("Stack:", error?.stack);
+  console.error("======================================");
+
   alert(
     "JS ERROR\n\n" +
     message +
     "\n\nLine: " +
     lineno +
     "\nColumn: " +
-    colno
+    colno +
+    "\n\nCheck the browser console for the full stack."
   );
 
   return false;
