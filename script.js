@@ -236,7 +236,7 @@ function updateLightbox() {
 
   setTimeout(() => {
 
-    // lightboxImage.src = resolveImagePath(item.src);
+    lightboxImage.src = resolveImagePath(item.src);
 
     // Update caption
     lightboxCaption.style.opacity = 0;
