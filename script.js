@@ -381,13 +381,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openLightbox(index) {
 
+    if (!portfolioImages.length) {
+      console.warn("Cannot open lightbox: no images loaded.");
+      return;
+    }
+  
+    if (!Number.isInteger(index)) {
+      console.warn("Invalid lightbox index:", index);
+      index = 0;
+    }
+  
+    if (index < 0 || index >= portfolioImages.length) {
+      console.warn(
+        "Lightbox index out of range:",
+        index,
+        "Images:",
+        portfolioImages.length
+      );
+  
+      index = 0;
+    }
+  
     currentIndex = index;
-
+  
     updateLightbox();
-
+  
     lightbox.classList.add('show');
     document.body.classList.add('lightbox-open');
-
+  
     updateCounter();
   }
 
@@ -428,53 +449,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function showNext(fromSlideshow = false) {
 
-    if (!portfolioImages.length) return;
-
+    if (!portfolioImages.length) {
+      return;
+    }
+  
+    if (
+      !Number.isInteger(currentIndex) ||
+      currentIndex < 0 ||
+      currentIndex >= portfolioImages.length
+    ) {
+      currentIndex = 0;
+    }
+  
     if (
       isPlaying &&
       currentIndex >= portfolioImages.length - 1
     ) {
-
       finishSlideshow();
       return;
-
     }
-
-    currentIndex++;
-
-    if (currentIndex >= portfolioImages.length) {
-
-      currentIndex =
-        portfolioImages.length - 1;
-
+  
+    const nextIndex = currentIndex + 1;
+  
+    if (nextIndex >= portfolioImages.length) {
+  
       if (isPlaying) {
         finishSlideshow();
       }
-
+  
       return;
     }
-
+  
+    currentIndex = nextIndex;
+  
     // Preload next two images
     for (let i = 1; i <= 2; i++) {
-
-      const preloadIndex =
-        currentIndex + i;
-
-      if (preloadIndex < portfolioImages.length) {
-
-        const preloadItem =
-          portfolioImages[preloadIndex];
-
-        const preload = new Image();
-
-        preload.src =
-          resolveImagePath(preloadItem.src);
-
+  
+      const preloadIndex = currentIndex + i;
+  
+      if (
+        preloadIndex >= 0 &&
+        preloadIndex < portfolioImages.length
+      ) {
+  
+        const preloadItem = portfolioImages[preloadIndex];
+  
+        if (preloadItem?.src) {
+  
+          const preload = new Image();
+  
+          preload.src =
+            resolveImagePath(preloadItem.src);
+        }
       }
     }
-
+  
     updateLightbox();
-
+  
     if (!fromSlideshow && isPlaying) {
       stopSlideshow();
     }
@@ -515,11 +546,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     timerBar.style.animation = 'none';
 
-    // Force browser reflow
-    void timerBar.offsetWidth;
-
-    timerBar.style.animation =
-      `slideTimer ${slideshowSpeed}ms linear forwards`;
+    requestAnimationFrame(() => {
+    
+      if (!timerBar || !isPlaying) return;
+    
+      timerBar.style.animation =
+        `slideTimer ${slideshowSpeed}ms linear forwards`;
+    
+      timerBar.style.animationPlayState = 'running';
+    
+    });
 
     timerBar.style.animationPlayState = 'running';
 
@@ -707,23 +743,6 @@ document.addEventListener('DOMContentLoaded', () => {
         : 'Mute music'
     );
   });
-
-  // ---------------------------
-  // Timer animation
-  // ---------------------------
-
-  timerBar?.addEventListener(
-    'animationend',
-    () => {
-
-      if (!isPlaying) return;
-
-      clearTimeout(timerFallback);
-
-      showNext(true);
-
-    }
-  );
 
   // ---------------------------
   // Navigation controls
