@@ -287,12 +287,34 @@ document.addEventListener('DOMContentLoaded', () => {
   function hardStopAudio() {
 
     if (!music) return;
-
+  
     clearInterval(fadeInterval);
+  
+    music.pause();
+  
+    // Only reset the playback position when the audio
+    // has loaded enough metadata to safely seek.
+    if (music.readyState >= 1 && Number.isFinite(music.duration)) {
+      try {
+        music.currentTime = 0;
+      } catch (e) {
+        console.warn("Could not reset audio position:", e);
+      }
+    }
+  
+    music.volume = 0.6;
 
     music.pause();
+
+if (music.readyState >= 1 && Number.isFinite(music.duration)) {
+  try {
     music.currentTime = 0;
-    music.volume = 0.6;
+  } catch (e) {
+    console.warn("Could not reset audio position:", e);
+  }
+}
+
+music.volume = 0.6;
   }
 
   // ---------------------------
