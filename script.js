@@ -271,13 +271,12 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
 
         music.pause();
-        music.currentTime = 0;
         music.volume = 0.6;
-
+      
         if (onComplete) {
           setTimeout(onComplete, 50);
         }
-
+      
       }
     }
 
@@ -291,30 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
     clearInterval(fadeInterval);
   
     music.pause();
-  
-    // Only reset the playback position when the audio
-    // has loaded enough metadata to safely seek.
-    if (music.readyState >= 1 && Number.isFinite(music.duration)) {
-      try {
-        music.currentTime = 0;
-      } catch (e) {
-        console.warn("Could not reset audio position:", e);
-      }
-    }
-  
     music.volume = 0.6;
-
-    music.pause();
-
-if (music.readyState >= 1 && Number.isFinite(music.duration)) {
-  try {
-    music.currentTime = 0;
-  } catch (e) {
-    console.warn("Could not reset audio position:", e);
-  }
-}
-
-music.volume = 0.6;
   }
 
   // ---------------------------
