@@ -1,26 +1,26 @@
-window.onerror = function(message, source, lineno, colno, error) {
+// window.onerror = function(message, source, lineno, colno, error) {
 
-  console.error("========== JAVASCRIPT ERROR ==========");
-  console.error("Message:", message);
-  console.error("Source:", source);
-  console.error("Line:", lineno);
-  console.error("Column:", colno);
-  console.error("Error object:", error);
-  console.error("Stack:", error?.stack);
-  console.error("======================================");
+//   console.error("========== JAVASCRIPT ERROR ==========");
+//   console.error("Message:", message);
+//   console.error("Source:", source);
+//   console.error("Line:", lineno);
+//   console.error("Column:", colno);
+//   console.error("Error object:", error);
+//   console.error("Stack:", error?.stack);
+//   console.error("======================================");
 
-  alert(
-    "JS ERROR\n\n" +
-    message +
-    "\n\nLine: " +
-    lineno +
-    "\nColumn: " +
-    colno +
-    "\n\nCheck the browser console for the full stack."
-  );
+//   alert(
+//     "JS ERROR\n\n" +
+//     message +
+//     "\n\nLine: " +
+//     lineno +
+//     "\nColumn: " +
+//     colno +
+//     "\n\nCheck the browser console for the full stack."
+//   );
 
-  return false;
-};
+//   return false;
+// };
 
 // ---------------------------
 // Mobile navigation toggle
