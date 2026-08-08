@@ -124,13 +124,18 @@ const lightboxImage = document.getElementById('lightboxImage');
 
 lightboxImage?.addEventListener('load', async () => {
 
-    if (lightboxImage.decode) {
-        try {
-            await lightboxImage.decode();
-        } catch (e) {}
-    }
+  if (lightboxImage.decode) {
+      try {
+          await lightboxImage.decode();
+      } catch (e) {}
+  }
 
-    lightboxImage.classList.remove('fade-out');
+  lightboxImage.classList.remove('fade-out');
+
+  // Start the slideshow timer only after the image is fully ready
+  if (isPlaying) {
+      startTimerAnimation();
+  }
 
 });
 
@@ -232,15 +237,6 @@ function updateLightbox() {
   setTimeout(() => {
 
     lightboxImage.src = resolveImagePath(item.src);
-
-    // Restart slideshow timer after image transition
-    if (isPlaying) {
-      setTimeout(() => {
-        if (isPlaying) {
-          startTimerAnimation();
-        }
-      }, 350);
-    }
 
     // Update caption
     lightboxCaption.style.opacity = 0;
@@ -484,12 +480,12 @@ updateLightbox();
     lightbox.classList.add('slideshow-active');
   
     showControls();
-  
-    loadRandomTrack();
-    fadeInAudio();
-  
-    // ✅ KEY FIX: start timer if image is already loaded
-    startTimerAnimation();
+
+loadRandomTrack();
+fadeInAudio();
+
+// Force the current image to reload the timer sequence
+updateLightbox();
   }
 
   
