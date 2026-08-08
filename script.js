@@ -236,7 +236,7 @@ function updateLightbox() {
 
   setTimeout(() => {
 
-    lightboxImage.src = resolveImagePath(item.src);
+    // lightboxImage.src = resolveImagePath(item.src);
 
     // Update caption
     lightboxCaption.style.opacity = 0;
@@ -604,22 +604,20 @@ if (approvedImages.length > 0 && downloadAllBtn && zipFile) {
     
       // ✅ Fallback for mobile
       timerFallback = setTimeout(() => {
+
+        if (!isPlaying) return;
     
-        console.log("Timer fired", currentIndex);
+        showNext(true);
     
-        if (isPlaying) {
-          showNext(true);
-        }
-    
-      }, slideshowSpeed + 50);
+    }, slideshowSpeed);
     }
 
-    timerBar?.addEventListener('animationend', () => {
-      if (!isPlaying) return;
+    // timerBar?.addEventListener('animationend', () => {
+    //   if (!isPlaying) return;
     
-      clearTimeout(timerFallback);
-      showNext(true);
-    });
+    //   clearTimeout(timerFallback);
+    //   showNext(true);
+    // });
 
 
 
